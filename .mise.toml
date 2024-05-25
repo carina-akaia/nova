@@ -1,0 +1,5 @@
+[env]
+# supports arbitrary env vars so rtx can be used like direnv/dotenv
+
+[tools]
+rust = "nightly-2024-05-24"
