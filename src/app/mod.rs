@@ -8,7 +8,7 @@ pub fn App() -> impl IntoView {
 	provide_meta_context();
 
 	view! {
-		<Stylesheet id="leptos" href="/pkg/akaia_nova.css"/>
+		<Stylesheet id="leptos" href="/app/akaia_nova.css"/>
 		<Title text="Welcome to Leptos"/>
 
 		<Router>

@@ -9,5 +9,9 @@
 	"rust-analyzer.cargo.features": [
 		"ssr",
 		"hydrate"
+	],
+	"cSpell.words": [
+		"actix",
+		"Stylesheet"
 	]
 }
