@@ -1,9 +1,6 @@
-use {
-	crate::{domain::PortfolioDemo, near_account::AccountId},
-	leptos::*,
-};
+use {crate::domain::PortfolioDemo, leptos::*};
 
 #[component]
 pub fn IndexPage() -> impl IntoView {
-	view! { <PortfolioDemo account_id={AccountId("carina.akaia.near".to_owned())}/> }
+	view! { <PortfolioDemo account_id={"carina.akaia.near".to_owned()}/> }
 }

@@ -1,40 +1,44 @@
 use {
-	super::AccountId,
+	super::NearAccountId,
 	leptos::*,
-	leptos_query::*,
+	// leptos_query::*,
 	serde::{Deserialize, Serialize},
-	std::sync::Arc,
 };
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AccountBalance {
+pub struct NearAccountBalance {
 	pub total:        String,
 	pub state_staked: String,
 	pub staked:       String,
 	pub available:    String,
 }
 
-type BalanceResponse = Result<Option<AccountBalance>, ServerFnError>;
+pub type BalanceQueryResponse = Result<Option<NearAccountBalance>, ServerFnError>;
 
-pub fn balance_query() -> QueryScope<AccountId, BalanceResponse> {
-	create_query(get_balance, QueryOptions::default())
-}
+// pub fn balance_query() -> QueryScope<NearAccountId, BalanceQueryResponse> {
+// 	create_query(get_balance, QueryOptions::default())
+// }
 
-#[server(GetBalance, "/near_account/balance")]
-async fn get_balance(account_id: AccountId) -> Result<Option<AccountBalance>, ServerFnError> {
-	use near_api_lib::{
-		accounts::get_account_balance, primitives::types::AccountId as NearAccountId,
-		JsonRpcProvider,
+// #[cfg(feature = "ssr")]
+#[server(name=GetBalance, prefix="/api", endpoint="near_account/balance")]
+pub async fn get_balance(
+	account_id: NearAccountId,
+) -> Result<Option<NearAccountBalance>, ServerFnError> {
+	use {
+		near_api_lib::{
+			accounts::get_account_balance, primitives::types::AccountId, JsonRpcProvider,
+		},
+		std::sync::Arc,
 	};
 
 	let provider = Arc::new(JsonRpcProvider::new("https://rpc.mainnet.near.org"));
 
-	match account_id.0.parse::<NearAccountId>() {
+	match account_id.0.parse::<AccountId>() {
 		| Ok(parsed_account_id) => {
 			let result = get_account_balance(provider, parsed_account_id.clone()).await;
 
 			match result {
-				| Ok(balance) => Ok(Some(AccountBalance {
+				| Ok(balance) => Ok(Some(NearAccountBalance {
 					total:        balance.total,
 					state_staked: balance.state_staked,
 					staked:       balance.staked,
