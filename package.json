@@ -1,0 +1,34 @@
+{
+  "name": "@akaia/nova",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "add:solidui": "pnpm dlx solidui-cli@latest add",
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "solid-devtools": "^0.29.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vite-plugin-solid": "^2.8.2"
+  },
+  "dependencies": {
+    "@kobalte/core": "^0.12.6",
+    "@solid-primitives/refs": "^1.0.8",
+    "chart.js": "^4.4.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "cmdk-solid": "^1.0.1",
+    "corvu": "^0.5.1",
+    "embla-carousel-solid": "^8.0.2",
+    "solid-element": "^1.8.0",
+    "solid-js": "^1.8.11",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
