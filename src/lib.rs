@@ -1,12 +1,17 @@
-pub mod app;
+#![allow(non_snake_case)]
 
-#[cfg(feature = "hydrate")]
+use leptos::*;
+
+pub mod app;
+mod common;
+pub use common::*;
+pub mod domain;
+
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub fn hydrate() {
-    use app::*;
-    use leptos::*;
+	#[allow(unused_imports)]
+	use app;
 
-    console_error_panic_hook::set_once();
-
-    mount_to_body(App);
+	console_error_panic_hook::set_once();
+	leptos_dom::HydrationCtx::stop_hydrating();
 }

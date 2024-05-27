@@ -1,12 +1,9 @@
-use leptos::*;
+use {
+	crate::{account::AccountId, domain::PortfolioDemo},
+	leptos::*,
+};
 
 #[component]
 pub fn IndexPage() -> impl IntoView {
-	let (count, set_count) = create_signal(0);
-	let on_click = move |_| set_count.update(|count| *count += 1);
-
-	view! {
-		<h1>"Welcome to Leptos!"</h1>
-		<button on:click={on_click}>"Click Me: " {count}</button>
-	}
+	view! { <PortfolioDemo account_id={AccountId("carina.akaia.near".to_owned())}/> }
 }
