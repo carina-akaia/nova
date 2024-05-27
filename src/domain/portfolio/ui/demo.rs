@@ -4,7 +4,7 @@ use {
 	leptos_query::QueryResult,
 };
 
-#[island]
+#[component]
 pub fn PortfolioDemo(account_id: AccountId) -> impl IntoView {
 	let QueryResult { data, .. } = balance_query().use_query(move || account_id.clone().into());
 
