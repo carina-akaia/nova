@@ -1,12 +1,10 @@
 use {
+	super::AccountId,
 	leptos::*,
 	leptos_query::*,
 	serde::{Deserialize, Serialize},
 	std::sync::Arc,
 };
-
-#[derive(Debug, Clone, Serialize, Deserialize, Hash, Eq, PartialEq)]
-pub struct AccountId(pub String);
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AccountBalance {
@@ -22,7 +20,7 @@ pub fn balance_query() -> QueryScope<AccountId, BalanceResponse> {
 	create_query(get_balance, QueryOptions::default())
 }
 
-#[server(GetBalance, "/account/balance")]
+#[server(GetBalance, "/near_account/balance")]
 async fn get_balance(account_id: AccountId) -> Result<Option<AccountBalance>, ServerFnError> {
 	use near_api_lib::{
 		accounts::get_account_balance, primitives::types::AccountId as NearAccountId,

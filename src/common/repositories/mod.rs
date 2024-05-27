@@ -1,1 +1,1 @@
-pub mod account;
+pub mod near_account;

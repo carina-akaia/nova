@@ -1,5 +1,5 @@
 use {
-	crate::account::{balance_query, AccountId},
+	crate::near_account::{balance_query, AccountId},
 	leptos::*,
 	leptos_query::QueryResult,
 };

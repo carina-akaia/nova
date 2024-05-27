@@ -1,5 +1,5 @@
 use {
-	crate::{account::AccountId, domain::PortfolioDemo},
+	crate::{domain::PortfolioDemo, near_account::AccountId},
 	leptos::*,
 };
 
