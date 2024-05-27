@@ -13,10 +13,12 @@ pub fn PortfolioDemo(account_id: AccountId) -> impl IntoView {
 			view! { <div>"Loading..."</div> }
 		}}>
 			{move || {
-				data.get().unwrap().map(|balance| {
+				data.get()
+					.unwrap()
+					.map(|balance| {
 						view! {
 							<ul un-flex={"~ col"} un-gap={"2"} un-w={"full"}>
-								<li>{balance.total}</li>
+								<li>{balance.unwrap().total}</li>
 							</ul>
 						}
 					})

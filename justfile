@@ -6,6 +6,10 @@ setup:
 vendor:
 	(cargo vendor .cache/cargo)
 
+fmt:
+	(rustfmt ./src/**/*.rs)
+	(leptosfmt ./src)
+
 dev:
 	(cargo leptos watch)
 
