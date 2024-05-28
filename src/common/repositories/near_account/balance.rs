@@ -1,7 +1,7 @@
 use {
 	super::NearAccountId,
 	leptos::*,
-	// leptos_query::*,
+	leptos_query::{create_query, QueryOptions, QueryScope},
 	serde::{Deserialize, Serialize},
 };
 
@@ -15,9 +15,9 @@ pub struct NearAccountBalance {
 
 pub type BalanceQueryResponse = Result<Option<NearAccountBalance>, ServerFnError>;
 
-// pub fn balance_query() -> QueryScope<NearAccountId, BalanceQueryResponse> {
-// 	create_query(get_balance, QueryOptions::default())
-// }
+pub fn balance_query() -> QueryScope<NearAccountId, BalanceQueryResponse> {
+	create_query(get_balance, QueryOptions::default())
+}
 
 // #[cfg(feature = "ssr")]
 #[server(name=GetBalance, prefix="/api", endpoint="near_account/balance")]

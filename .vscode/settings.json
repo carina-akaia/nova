@@ -11,6 +11,8 @@
 	],
 	"cSpell.words": [
 		"actix",
-		"Stylesheet"
+		"attributify",
+		"Stylesheet",
+		"unocss"
 	]
 }
