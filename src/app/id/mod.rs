@@ -1,5 +1,5 @@
 use {
-	crate::domain::PortfolioDemo,
+	crate::core::PortfolioDemo,
 	leptos::*,
 	leptos_router::{use_params, Params},
 };
