@@ -1,6 +1,7 @@
 # (cargo install --git https://github.com/bram209/leptosfmt.git)
 
 setup:
+	(sudo apt-get install pkg-config libssl-dev)
 	(cargo install --locked cargo-make cargo-expand cargo-tree)
 	(cargo install cargo-leptos leptosfmt)
 

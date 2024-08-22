@@ -1,10 +1,10 @@
 use {
-	crate::near_account::{get_balance, BalanceQueryResponse, NearAccountBalance, NearAccountId},
+	crate::near::{get_balance, BalanceQueryResponse, NearAccountBalance, NearAccountId},
 	leptos::*,
 };
 
 #[component]
-pub fn PortfolioDemo(#[prop(into)] account_id: String) -> impl IntoView {
+pub fn Vault(#[prop(into)] account_id: String) -> impl IntoView {
 	let account_id_signal = create_rw_signal(NearAccountId(account_id));
 
 	let balance_resource: Resource<NearAccountId, BalanceQueryResponse> =
@@ -21,6 +21,7 @@ pub fn PortfolioDemo(#[prop(into)] account_id: String) -> impl IntoView {
 						let NearAccountBalance { available, total, staked, state_staked } = balance
 							.unwrap()
 							.unwrap();
+
 						view! {
 							<div border={"2 solid rounded-lg"} w={"128"} flex={"~ col"}>
 								<h1 class={"typography"} m={"0"} p={"4"} border-b={"2 solid"}>

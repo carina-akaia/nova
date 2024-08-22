@@ -1,9 +1,9 @@
-mod id;
 mod index;
 mod not_found;
+mod widget_id;
 
 use {
-	self::{id::IdPage, index::IndexPage, not_found::NotFoundPage},
+	self::{index::IndexPage, not_found::NotFoundPage, widget_id::WidgetPage},
 	leptos::*,
 	leptos_meta::*,
 	leptos_query::{provide_query_client_with_options_and_persister, query_persister},
@@ -30,7 +30,7 @@ pub fn Nova() -> impl IntoView {
 			<main p={"4"} h={"100%"} flex={"~ col"} items={"center"} justify={"center"}>
 				<Routes>
 					<Route path={"/"} view={IndexPage}/>
-					<Route path={"/:id"} view={IdPage}/>
+					<Route path={"/:widget_id"} view={WidgetPage}/>
 					<Route path={"/*any"} view={NotFoundPage}/>
 				</Routes>
 			</main>

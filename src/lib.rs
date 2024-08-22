@@ -5,7 +5,7 @@ use leptos::*;
 pub mod app;
 mod common;
 pub use common::*;
-pub mod core;
+pub mod widgets;
 
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub fn hydrate() {
