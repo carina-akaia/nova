@@ -26,4 +26,5 @@ deploy:
 	(sudo cp --update ./system/configuration/systemd/* /etc/systemd/system/)
 	(sudo chown -R akaia:akaia /akaia/configuration)
 	(sudo systemctl daemon-reload)
-	(sudo systemctl enable --now nova.akaia)
+	(sudo systemctl enable nova.akaia)
+	(sudo systemctl restart nova.akaia)
