@@ -1,12 +1,12 @@
 use {
-	crate::widgets::Vault,
-	leptos::{logging::log, *},
+	crate::{near::NearAccountId, widgets::Vault},
+	leptos::*,
 	leptos_router::{use_params, Params},
 };
 
 #[island]
 fn Widget(#[prop(into)] id: String) -> impl IntoView {
-	let account_id = create_rw_signal("akaia.near".to_string());
+	let account_id = create_rw_signal(NearAccountId("akaia.near".to_string()));
 
 	create_effect(move |_| {
 		use leptos_use::use_window;
@@ -17,14 +17,10 @@ fn Widget(#[prop(into)] id: String) -> impl IntoView {
 			w.as_ref().unwrap().location().hostname().unwrap()
 		);
 
-		account_id.set(result);
-
-		log!("Account ID: {}", account_id.get());
+		account_id.set(NearAccountId(result));
 	});
 
-	log!("Widget: {}", id);
-
-	view! { <Vault account_id={account_id()}/> }
+	view! { <Vault account_id_signal={account_id}/> }
 }
 
 #[derive(Params, PartialEq)]
