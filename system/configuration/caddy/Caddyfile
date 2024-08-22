@@ -1,0 +1,3 @@
+nova.akaia {
+	reverse_proxy localhost:1337
+}

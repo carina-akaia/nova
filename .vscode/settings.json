@@ -1,5 +1,9 @@
 {
-	"rust-analyzer.server.path": "~/.local/share/mise/shims/rust-analyzer",
+	"terminal.integrated.fontFamily": "'AKAIA Alpha', monospace",
+	"terminal.integrated.fontSize": 18,
+	"editor.fontFamily": "'AKAIA Alpha', monospace",
+	"editor.fontSize": 19,
+	"explorer.sortOrder": "filesFirst",
 	"rust-analyzer.procMacro.ignored": {
 		"leptos_macro": [
 			"component",
@@ -13,6 +17,10 @@
 	"cSpell.words": [
 		"actix",
 		"attributify",
+		"Caddyfile",
+		"NOFILE",
+		"nologin",
+		"reshim",
 		"Stylesheet",
 		"unocss"
 	]

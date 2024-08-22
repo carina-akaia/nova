@@ -19,3 +19,9 @@ build:
 
 # preview:
 #	()
+
+deploy:
+	(cp --update ./system/configuration/caddy/* /akaia/configuration/caddy/Caddyfile)
+	(sudo cp --update ./system/configuration/systemd/* /etc/systemd/system/)
+	(sudo systemctl daemon-reload)
+	(sudo systemctl enable --now akaia)

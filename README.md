@@ -13,7 +13,7 @@ Install Mise unless it's already installed:
 ### Installing required tools and dependencies
 
 ```sh
-mise trust && mise i && cargo install just && just setup
+bash -c "mise trust && mise i && cargo install just"; mise reshim; just setup
 ```
 
 ### Running development server
