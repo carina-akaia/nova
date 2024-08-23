@@ -3,9 +3,11 @@
 use leptos::*;
 
 pub mod app;
+pub mod applets;
+pub mod core;
+
 mod common;
 pub use common::*;
-pub mod widgets;
 
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub fn hydrate() {

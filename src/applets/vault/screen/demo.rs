@@ -4,7 +4,7 @@ use {
 };
 
 #[component]
-pub fn Vault(#[prop(into)] account_id_signal: RwSignal<NearAccountId>) -> impl IntoView {
+pub fn Demo(#[prop(into)] account_id_signal: RwSignal<NearAccountId>) -> impl IntoView {
 	let balance_resource: Resource<NearAccountId, BalanceQueryResponse> =
 		create_resource(account_id_signal, get_balance);
 

@@ -312,6 +312,7 @@ dependencies = [
  "actix-web",
  "cfg-if 1.0.0",
  "console_error_panic_hook",
+ "custom-elements",
  "http 1.1.0",
  "leptos 0.6.14",
  "leptos-tracked",
@@ -1360,6 +1361,17 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.66",
+]
+
+[[package]]
+name = "custom-elements"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6274ad25234bd2b10fbe440bb70aaacddadfe94a4d98a0d93034947f86c45028"
+dependencies = [
+ "js-sys",
+ "wasm-bindgen",
+ "web-sys",
 ]
 
 [[package]]
