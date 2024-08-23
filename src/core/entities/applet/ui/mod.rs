@@ -17,5 +17,5 @@ pub fn Applet(#[prop(into)] screen_id: String) -> impl IntoView {
 		account_id.set(NearAccountId(result));
 	});
 
-	view! { <akaia-applet id={id} screen={screen_id} query="{}" /> }
+	view! { <akaia-applet id={id} screen={screen_id} query="" /> }
 }
