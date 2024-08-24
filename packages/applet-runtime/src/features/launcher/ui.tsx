@@ -7,7 +7,16 @@ const AppletExample: Component = () => {
 	const state = useContext(LauncherContext)
 
 	return (
-		<div w="full" h="full" flex="~ center">
+		<div
+			w="full"
+			h="full"
+			style={{
+				display: "flex",
+				"flex-direction": "column",
+				"justify-content": "center",
+				"align-items": "center",
+			}}
+		>
 			<h1>{"Loading" + ` ${state.account_id}'s ` + state.applet_id + ` ${state.route}...`}</h1>
 
 			<Button variant="default">Ok</Button>

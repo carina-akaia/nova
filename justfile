@@ -27,8 +27,8 @@ build:
 
 deploy:
 	(sudo mkdir -p /akaia/configuration/caddy)
-	(sudo cp --update ./system/configuration/caddy/* /akaia/configuration/caddy/Caddyfile)
-	(sudo cp --update ./system/configuration/systemd/* /etc/systemd/system/)
+	(sudo cp --update ./src/system/configuration/caddy/* /akaia/configuration/caddy/Caddyfile)
+	(sudo cp --update ./src/system/configuration/systemd/* /etc/systemd/system/)
 	(sudo chown -R akaia:akaia /akaia/configuration)
 	(sudo systemctl daemon-reload)
 	(sudo systemctl enable nova.akaia)
