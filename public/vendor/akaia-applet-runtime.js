@@ -1,9 +1,10 @@
-import { render, insert, createComponent, mergeProps, template } from 'solid-js/web';
-import { splitProps } from 'solid-js';
+import { render, createComponent, insert, mergeProps, template } from 'solid-js/web';
+import { createContext, useContext, splitProps } from 'solid-js';
 import { Button as Button$1 } from '@kobalte/core';
 import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { createStore } from 'solid-js/store';
 
 // src/features/launcher/ui.tsx
 function cn(...inputs) {
@@ -44,30 +45,51 @@ var Button = (props) => {
     }
   }, rest));
 };
+var initialLauncherParams = {
+  account_id: null,
+  applet_id: null,
+  route: null,
+  query: null
+};
+var LauncherContext = createContext(initialLauncherParams);
+var [appletProps, setAppletProps] = createStore(initialLauncherParams);
+
+// src/features/launcher/ui.tsx
 var _tmpl$ = /* @__PURE__ */ template(`<div un-w=full><h1>`);
+var AppletExample = () => {
+  const state = useContext(LauncherContext);
+  return (() => {
+    var _el$ = _tmpl$(), _el$2 = _el$.firstChild;
+    insert(_el$2, () => `Loading ${state.account_id}'s ` + state.applet_id + ` ${state.route}...`);
+    insert(_el$, createComponent(Button, {
+      variant: "default",
+      children: "Ok"
+    }), null);
+    return _el$;
+  })();
+};
 var tagName = "akaia-applet-launcher";
 var AkaiaAppletLauncher = class extends HTMLElement {
   static get observedAttributes() {
-    return ["account_id", "applet_id", "route"];
+    return ["account_id", "applet_id", "route", "query"];
   }
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log(`Attribute ${name} has changed to ${newValue}.`);
+    setAppletProps((props) => ({
+      ...props,
+      [name]: newValue
+    }));
   }
   connectedCallback() {
     render(() => {
-      const _self$ = this;
-      return (() => {
-        var _el$3 = _tmpl$(), _el$4 = _el$3.firstChild;
-        insert(_el$4, () => `Loading ${_self$.attributes.getNamedItem("account_id")?.value}'s ` + _self$.attributes.getNamedItem("applet_id")?.value + ` ${_self$.attributes.getNamedItem("route")?.value}...`);
-        insert(_el$3, createComponent(Button, {
-          variant: "default",
-          children: "Ok"
-        }), null);
-        return _el$3;
-      })();
+      return createComponent(LauncherContext.Provider, {
+        value: appletProps,
+        get children() {
+          return createComponent(AppletExample, {});
+        }
+      });
     }, this.attachShadow({
       mode: "closed"
-    }).appendChild(document.createElement("main")));
+    }));
   }
 };
 var launcherInit = () => {

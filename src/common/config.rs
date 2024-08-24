@@ -13,6 +13,7 @@ pub const IMPORT_MAP: &str = r#"{
 		"jsdom": "https://ga.jspm.io/npm:jsdom@24.1.1/lib/dev.api.js",
 		"solid-element": "https://ga.jspm.io/npm:solid-element@1.8.1/dist/index.js",
 		"solid-js": "https://ga.jspm.io/npm:solid-js@1.8.21/dist/dev.js",
+		"solid-js/store": "https://ga.jspm.io/npm:solid-js@1.8.21/store/dist/dev.js",
 		"solid-js/web": "https://ga.jspm.io/npm:solid-js@1.8.21/web/dist/dev.js",
 		"tailwind-merge": "https://ga.jspm.io/npm:tailwind-merge@2.5.2/dist/bundle-mjs.mjs",
 		"tailwindcss": "https://ga.jspm.io/npm:tailwindcss@3.4.10/lib/dev.index.js",

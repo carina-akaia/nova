@@ -1,57 +1,46 @@
-import { Component } from "solid-js"
+import { Component, useContext } from "solid-js"
 import { Button } from "@/common/ui/components"
-import { customElement } from "solid-element"
 import { render } from "solid-js/web"
+import { appletProps, LauncherContext, setAppletProps } from "./model"
 
-export type AppletLauncherProps = {
-	account_id: string
-	applet_id: string
-	route: string
-}
-
-const _AkaiaAppletLauncher: Component<AppletLauncherProps> = (props) => {
-	const applet_id = () => props.applet_id
-	console.log(applet_id())
+const AppletExample: Component = () => {
+	const state = useContext(LauncherContext)
 
 	return (
 		<div un-w="full">
-			<h1>{`Loading ${props.account_id}'s ${applet_id()} ${props.route}...`}</h1>
+			<h1>{"Loading" + ` ${state.account_id}'s ` + state.applet_id + ` ${state.route}...`}</h1>
+
 			<Button variant="default">Ok</Button>
 		</div>
 	)
 }
 
-const launcherDefaultProps: AppletLauncherProps = {
-	account_id: "",
-	applet_id: "",
-	route: "",
-}
-
 const tagName = "akaia-applet-launcher"
+
+export type AppletLauncherParams = {
+	account_id: string
+	applet_id: string
+	route: string
+}
 
 export class AkaiaAppletLauncher extends HTMLElement {
 	static get observedAttributes() {
-		return ["account_id", "applet_id", "route"]
+		return ["account_id", "applet_id", "route", "query"]
 	}
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    console.log(`Attribute ${name} has changed to ${newValue}.`);
-  }
+	attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+		setAppletProps((props) => ({ ...props, [name]: newValue }))
+	}
 
 	connectedCallback() {
 		render(
-			() => (
-				<div un-w="full">
-					<h1>
-						{"Loading" +
-							` ${this.attributes.getNamedItem("account_id")?.value}'s ` +
-							this.attributes.getNamedItem("applet_id")?.value +
-							` ${this.attributes.getNamedItem("route")?.value}...`}
-					</h1>
-
-					<Button variant="default">Ok</Button>
-				</div>
-			),
+			() => {
+				return (
+					<LauncherContext.Provider value={appletProps}>
+						<AppletExample />
+					</LauncherContext.Provider>
+				)
+			},
 
 			this.attachShadow({ mode: "closed" }),
 		)
@@ -61,12 +50,11 @@ export class AkaiaAppletLauncher extends HTMLElement {
 declare global {
 	namespace JSX {
 		export interface IntrinsicElements {
-			[tagName]: AppletLauncherProps
+			[tagName]: AppletLauncherParams
 		}
 	}
 }
 
 export const launcherInit = () => {
-	// customElement("akaia-applet-launcher", launcherDefaultProps, AkaiaAppletLauncher);
 	if (customElements.get(tagName) === undefined) customElements.define(tagName, AkaiaAppletLauncher)
 }
