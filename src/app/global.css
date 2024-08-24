@@ -114,7 +114,7 @@
 	color: #fff;
 }
 
-leptops-island, akaia-applet-launcher {
+main > :first-child {
 	width: 100%;
 	height: 100%;
 }

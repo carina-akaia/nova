@@ -41,19 +41,20 @@
 	},
 	"typesVersions": {},
 	"scripts": {
+		"update-deps": "pnpm up -Li",
 		"add:solidui": "pnpm dlx solidui-cli@latest add",
-		"build": "tsup",
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"typecheck": "tsc --noEmit",
+		"build": "pnpm format && tsup",
 		"test": "concurrently pnpm:test:*",
 		"test:client": "vitest",
-		"prepublishOnly": "pnpm build",
-		"format": "biome format --write",
-		"lint": "biome lint",
-		"typecheck": "tsc --noEmit",
-		"update-deps": "pnpm up -Li"
+		"prepublishOnly": "pnpm build"
 	},
 	"dependencies": {
 		"@kobalte/core": "^0.12.6",
 		"@solid-primitives/refs": "^1.0.8",
+		"@unocss/preset-attributify": "^0.62.2",
 		"chart.js": "^4.4.2",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",

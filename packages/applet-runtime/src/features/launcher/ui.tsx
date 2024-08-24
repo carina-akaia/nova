@@ -7,7 +7,7 @@ const AppletExample: Component = () => {
 	const state = useContext(LauncherContext)
 
 	return (
-		<div un-w="full">
+		<div w="full" h="full" flex="~ center">
 			<h1>{"Loading" + ` ${state.account_id}'s ` + state.applet_id + ` ${state.route}...`}</h1>
 
 			<Button variant="default">Ok</Button>

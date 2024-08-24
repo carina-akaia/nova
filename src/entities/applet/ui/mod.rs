@@ -15,5 +15,8 @@ pub fn Applet(#[prop(into)] route: String) -> impl IntoView {
 		account_id.set(result);
 	});
 
-	view! { <akaia-applet-launcher account_id={account_id} applet_id={id} route={route} /> }
+	view! {
+		<style>"akaia-applet-launcher {display:\"block\";width:\"100%\";height:\"100%\";}"</style>
+		<akaia-applet-launcher account_id={account_id} applet_id={id} route={route} />
+	}
 }
