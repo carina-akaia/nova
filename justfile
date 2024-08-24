@@ -12,7 +12,11 @@ fmt:
 	(rustfmt ./src/**/*.rs)
 	(leptosfmt ./src)
 
-dev:
+build-applet-runtime:
+	(pnpm -C packages/applet-runtime build)
+
+dev: build-applet-runtime
+	(cp ./packages/applet-runtime/dist/dev.js ./public/vendor/akaia-applet-runtime.js)
 	(cargo leptos watch)
 
 build:

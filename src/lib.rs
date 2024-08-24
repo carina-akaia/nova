@@ -3,8 +3,9 @@
 use leptos::*;
 
 pub mod app;
-pub mod applets;
-pub mod core;
+
+mod entities;
+pub use entities::*;
 
 mod common;
 pub use common::*;

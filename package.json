@@ -1,34 +1,16 @@
 {
-  "name": "@akaia/nova",
-  "version": "0.0.0",
+  "name": "nova",
+  "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
-    "add:solidui": "pnpm dlx solidui-cli@latest add",
-    "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf",
   "devDependencies": {
-    "solid-devtools": "^0.29.2",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.11",
-    "vite-plugin-solid": "^2.8.2"
-  },
-  "dependencies": {
-    "@kobalte/core": "^0.12.6",
-    "@solid-primitives/refs": "^1.0.8",
-    "chart.js": "^4.4.2",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "cmdk-solid": "^1.0.1",
-    "corvu": "^0.5.1",
-    "embla-carousel-solid": "^8.0.2",
-    "solid-element": "^1.8.0",
-    "solid-js": "^1.8.11",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss": "^3.4.3",
-    "tailwindcss-animate": "^1.0.7"
+    "@biomejs/biome": "^1.8.3"
   }
 }

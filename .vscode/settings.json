@@ -4,24 +4,46 @@
 	"editor.fontFamily": "'AKAIA Alpha', monospace",
 	"editor.fontSize": 19,
 	"explorer.sortOrder": "filesFirst",
+	"editor.formatOnSave": true,
 	"rust-analyzer.procMacro.ignored": {
 		"leptos_macro": [
 			"component",
 			"server"
-		],
+		]
 	},
 	"rust-analyzer.cargo.features": [
 		"ssr",
 		"hydrate"
 	],
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
 	"cSpell.words": [
 		"actix",
+		"Anytype",
 		"attributify",
+		"biomejs",
 		"Caddyfile",
+		"cmdk",
+		"corvu",
+		"importmap",
+		"kobalte",
 		"NOFILE",
 		"nologin",
 		"reshim",
+		"solidui",
 		"Stylesheet",
+		"tsup",
+		"typecheck",
 		"unocss"
 	]
 }

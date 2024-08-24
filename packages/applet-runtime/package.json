@@ -1,0 +1,94 @@
+{
+	"name": "@akaia/applet-runtime",
+	"version": "0.1.0",
+	"description": "AKAIA Nova applet runtime",
+	"license": "MIT",
+	"author": "carina.akaia.io",
+	"contributors": [],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/akaia/nova.git"
+	},
+	"homepage": "https://github.com/akaia/nova#readme",
+	"bugs": {
+		"url": "https://github.com/akaia/nova/issues"
+	},
+	"files": [
+		"dist"
+	],
+	"private": false,
+	"sideEffects": false,
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"browser": {},
+	"exports": {
+		"solid": {
+			"development": "./dist/dev.jsx",
+			"import": "./dist/index.jsx"
+		},
+		"development": {
+			"import": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/dev.js"
+			}
+		},
+		"import": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"typesVersions": {},
+	"scripts": {
+		"add:solidui": "pnpm dlx solidui-cli@latest add",
+		"build": "tsup",
+		"test": "concurrently pnpm:test:*",
+		"test:client": "vitest",
+		"prepublishOnly": "pnpm build",
+		"format": "biome format --write",
+		"lint": "biome lint",
+		"typecheck": "tsc --noEmit",
+		"update-deps": "pnpm up -Li"
+	},
+	"dependencies": {
+		"@kobalte/core": "^0.12.6",
+		"@solid-primitives/refs": "^1.0.8",
+		"chart.js": "^4.4.2",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.1.1",
+		"cmdk-solid": "^1.0.1",
+		"corvu": "^0.5.1",
+		"embla-carousel-solid": "^8.0.2",
+		"jsdom": "^24.0.0",
+		"solid-element": "^1.8.1",
+		"solid-js": "^1.8.18",
+		"tailwind-merge": "^2.3.0",
+		"tailwindcss": "^3.4.3",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@types/node": "^20.12.12",
+		"@typescript-eslint/eslint-plugin": "^7.9.0",
+		"@typescript-eslint/parser": "^7.9.0",
+		"concurrently": "^8.2.2",
+		"esbuild": "^0.21.3",
+		"esbuild-plugin-solid": "^0.6.0",
+		"eslint": "^8.56.0",
+		"eslint-plugin-eslint-comments": "^3.2.0",
+		"eslint-plugin-no-only-tests": "^3.1.0",
+		"prettier": "3.0.0",
+		"solid-devtools": "^0.30",
+		"tsup": "^8.0.2",
+		"tsup-preset-solid": "^2.2.0",
+		"typescript": "^5.4.5",
+		"vite": "^5.2.11",
+		"vite-plugin-solid": "^2.10.2",
+		"vitest": "^1.6.0"
+	},
+	"packageManager": "pnpm@9.1.1",
+	"engines": {
+		"node": ">=22",
+		"pnpm": ">=9.0.0"
+	}
+}
