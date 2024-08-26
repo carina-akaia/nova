@@ -5,7 +5,7 @@ import {
 	WidgetContext,
 	setWidgetContextState,
 } from "./model"
-import { ExampleWidget } from "@/example.widget"
+import { ExampleWidget } from "./example"
 
 export { useWidgetContext } from "./model"
 

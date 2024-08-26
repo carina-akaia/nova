@@ -1,6 +1,7 @@
-import { Button } from "@/common/ui/components"
 import type { Component } from "solid-js"
-import { useWidgetContext } from "./entities/widget"
+
+import { Button } from "@/common/ui/components"
+import { useWidgetContext } from "@/entities/widget"
 
 export const ExampleWidget: Component = () => {
 	const ctx = useWidgetContext()
