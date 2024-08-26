@@ -1,2 +1,2 @@
-mod applet;
-pub use applet::*;
+mod app_shell;
+pub use app_shell::*;

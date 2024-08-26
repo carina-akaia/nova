@@ -1,7 +1,9 @@
 use {leptos::*, leptos_use::use_window};
 
 #[island]
-pub fn Applet(#[prop(into)] route: String) -> impl IntoView {
+pub fn AppShellWidgetViewport(
+	#[prop(into)] route: String, #[prop(into)] query: String, #[prop(into)] props: String,
+) -> impl IntoView {
 	let this = use_window();
 	let id = create_rw_signal("".to_string());
 	let account_id = create_rw_signal("akaia.near".to_string());
@@ -39,7 +41,13 @@ pub fn Applet(#[prop(into)] route: String) -> impl IntoView {
 	});
 
 	view! {
-		<style>"akaia-applet-launcher {display:\"block\";width:\"100%\";height:\"100%\";}"</style>
-		<akaia-applet-launcher account_id={account_id} applet_id={id} route={route} />
+		<akaia-widget
+			account_id={account_id}
+			widget_id={id}
+			route_path={route}
+			route_query={query}
+			props={props}
+			style="width: 100%; height: 100%;"
+		/>
 	}
 }

@@ -1,4 +1,4 @@
-import { launcherInit } from "@/features/launcher"
+import { widgetLauncherInit } from "@/entities/widget"
 
 import type { AttributifyAttributes } from "@unocss/preset-attributify"
 
@@ -9,7 +9,7 @@ declare module "solid-js" {
 }
 
 export const init = () => {
-	launcherInit()
+	widgetLauncherInit()
 }
 
 init()

@@ -1,7 +1,7 @@
 {
-	"name": "@akaia/applet-runtime",
+	"name": "@akaia/framework",
 	"version": "0.1.0",
-	"description": "AKAIA Nova applet runtime",
+	"description": "AKAIA app framework",
 	"license": "MIT",
 	"author": "carina.akaia.io",
 	"contributors": [],
@@ -19,24 +19,15 @@
 	"private": false,
 	"sideEffects": false,
 	"type": "module",
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"main": "./../../public/packages/framework/index.js",
+	"module": "./../../public/packages/framework/index.js",
+	"types": "./../../public/packages/framework/index.d.ts",
 	"browser": {},
 	"exports": {
-		"solid": {
-			"development": "./dist/dev.jsx",
-			"import": "./dist/index.jsx"
-		},
-		"development": {
-			"import": {
-				"types": "./dist/index.d.ts",
-				"default": "./dist/dev.js"
-			}
-		},
+		"solid": "./../../public/packages/framework/index.jsx",
 		"import": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+			"types": "./../../public/packages/framework/index.d.ts",
+			"default": "./../../public/packages/framework/index.js"
 		}
 	},
 	"typesVersions": {},
@@ -46,6 +37,7 @@
 		"lint": "biome lint",
 		"format": "biome format --write",
 		"typecheck": "tsc --noEmit",
+		"watch": "tsup --watch",
 		"build": "pnpm format && tsup",
 		"test": "concurrently pnpm:test:*",
 		"test:client": "vitest",
@@ -62,6 +54,7 @@
 		"corvu": "^0.5.1",
 		"embla-carousel-solid": "^8.0.2",
 		"jsdom": "^24.0.0",
+		"remeda": "^2.11.0",
 		"solid-element": "^1.8.1",
 		"solid-js": "^1.8.18",
 		"tailwind-merge": "^2.3.0",

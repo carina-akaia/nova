@@ -1,9 +1,9 @@
-mod applet_route;
+mod desktop;
 mod error;
 mod index;
 
 use {
-	self::{applet_route::AppletScreen, error::ErrorScreen, index::Dashboard},
+	self::{desktop::NovaDesktop, error::ErrorScreen, index::Dashboard},
 	crate::IMPORT_MAP,
 	leptos::*,
 	leptos_meta::*,
@@ -24,8 +24,8 @@ pub fn Nova() -> impl IntoView {
 	view! {
 		<Title text={"AKAIA"}/>
 		<Script r#type_="importmap">{IMPORT_MAP}</Script>
-		<Script id={"unocss"} src={"/static/vendor/uno_attributify.runtime.js"}/>
-		<Script r#type_="module" id={"applet-runtime"} src={"/static/vendor/akaia-applet-runtime.js"}/>
+		<Script r#type_="module" id={"framework"} src={"/static/packages/framework/index.js"}/>
+		<Script id={"unocss"} src={"/static/packages/uno_attributify.runtime.js"}/>
 		<Stylesheet id={"leptos"} href={"/app/akaia_nova.css"}/>
 		<Body attr:m={"0"} attr:h={"100vh"} attr:flex={"~ col"}/>
 
@@ -33,7 +33,7 @@ pub fn Nova() -> impl IntoView {
 			<main p={"4"} h={"100%"} flex={"~ col"} items={"center"} justify={"center"}>
 				<Routes>
 					<Route path={"/"} view={Dashboard}/>
-					<Route path={"/:applet_route"} view={AppletScreen}/>
+					<Route path={"/:widget_route"} view={NovaDesktop}/>
 					<Route path={"/error"} view={ErrorScreen}/>
 					<Route path={"/*any"} view={Dashboard}/>
 				</Routes>
