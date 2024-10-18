@@ -1,0 +1,14 @@
+[package]
+name = "akaia_cli"
+version = "0.1.0"
+edition = "2021"
+keywords.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "akaia"
+path = "src/main.rs"
+
+[dependencies]
+getargs.workspace = true
+thiserror.workspace = true

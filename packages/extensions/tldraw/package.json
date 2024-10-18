@@ -1,0 +1,79 @@
+{
+	"name": "@akaia/tldraw-extension",
+	"version": "0.1.0",
+	"description": "TLDraw app for AKAIA CommLink",
+	"license": "MIT",
+	"author": "carina.akaia.io",
+	"contributors": [],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/akaia-io/commlink.git"
+	},
+	"homepage": "https://github.com/akaia-io/commlink#readme",
+	"bugs": {
+		"url": "https://github.com/akaia-io/commlink/issues"
+	},
+	"files": ["dist"],
+	"private": false,
+	"sideEffects": false,
+	"type": "module",
+	"main": "./../../public/packages/apps/tldraw/index.js",
+	"module": "./../../public/packages/apps/tldraw/index.js",
+	"types": "./../../public/packages/apps/tldraw/index.d.ts",
+	"browser": {},
+	"exports": {
+		"solid": "./../../public/packages/apps/tldraw/index.jsx",
+		"import": {
+			"types": "./../../public/packages/apps/tldraw/index.d.ts",
+			"default": "./../../public/packages/apps/tldraw/index.js"
+		}
+	},
+	"typesVersions": {},
+	"scripts": {
+		"update-deps": "pnpm up -Li",
+		"add:solidui": "pnpm dlx solidui-cli@latest add",
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"typecheck": "tsc --noEmit",
+		"watch": "tsup --watch",
+		"build": "pnpm format && tsup",
+		"test": "concurrently pnpm:test:*",
+		"test:client": "vitest",
+		"prepublishOnly": "pnpm build"
+	},
+	"dependencies": {
+		"@akaia/framework": "workspace:*",
+		"@unocss/preset-attributify": "^0.62.2",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.1.1",
+		"jsdom": "^24.0.0",
+		"remeda": "^2.11.0",
+		"solid-element": "^1.8.1",
+		"solid-js": "^1.8.18",
+		"tailwind-merge": "^2.3.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.12.12",
+		"@typescript-eslint/eslint-plugin": "^7.9.0",
+		"@typescript-eslint/parser": "^7.9.0",
+		"concurrently": "^8.2.2",
+		"esbuild": "^0.21.3",
+		"esbuild-plugin-solid": "^0.6.0",
+		"eslint": "^8.56.0",
+		"eslint-plugin-eslint-comments": "^3.2.0",
+		"eslint-plugin-no-only-tests": "^3.1.0",
+		"prettier": "3.0.0",
+		"solid-devtools": "^0.30",
+		"tsup": "^8.0.2",
+		"tsup-preset-solid": "^2.2.0",
+		"typescript": "^5.4.5",
+		"vite": "^5.2.11",
+		"vite-plugin-solid": "^2.10.2",
+		"vitest": "^1.6.0"
+	},
+	"packageManager": "pnpm@9.1.1",
+	"engines": {
+		"node": ">=22",
+		"pnpm": ">=9.0.0"
+	}
+}

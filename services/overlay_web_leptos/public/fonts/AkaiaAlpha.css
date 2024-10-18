@@ -1,0 +1,2205 @@
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-Thin.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Thin.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtendedThin.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedThin.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-CondensedThin.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedThin.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: semi-condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedThin.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedThin.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: semi-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedThin.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedThin.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: extra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedThin.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedThin.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: ultra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedThin.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedThin.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: normal;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: normal;
+	src: url('WOFF2/AkaiaAlpha-ThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtendedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtendedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-CondensedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: condensed;
+	src: url('WOFF2/AkaiaAlpha-CondensedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: semi-condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: semi-condensed;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: semi-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: semi-expanded;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: extra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: extra-expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: ultra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: ultra-expanded;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedThinOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedThinOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ThinItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ThinItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtendedThinItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedThinItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-CondensedThinItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedThinItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: semi-condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedThinItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedThinItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: semi-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedThinItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedThinItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: extra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedThinItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedThinItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: ultra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedThinItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedThinItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtendedExtraLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedExtraLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-CondensedExtraLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedExtraLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: semi-condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedExtraLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedExtraLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: semi-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedExtraLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedExtraLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: extra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedExtraLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedExtraLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: ultra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedExtraLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedExtraLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: normal;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtendedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtendedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-CondensedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: condensed;
+	src: url('WOFF2/AkaiaAlpha-CondensedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: semi-condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: semi-condensed;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: semi-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: semi-expanded;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: extra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: extra-expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: ultra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: ultra-expanded;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedExtraLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedExtraLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtendedExtraLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedExtraLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-CondensedExtraLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedExtraLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: semi-condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedExtraLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedExtraLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: semi-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedExtraLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedExtraLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: extra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedExtraLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedExtraLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 200;
+	font-stretch: ultra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedExtraLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedExtraLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-Light.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Light.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtendedLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-CondensedLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: semi-condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: semi-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: extra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: ultra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedLight.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedLight.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-LightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-LightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	src: url('WOFF2/AkaiaAlpha-LightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-LightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtendedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtendedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-CondensedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: condensed;
+	src: url('WOFF2/AkaiaAlpha-CondensedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: semi-condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: semi-condensed;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: semi-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: semi-expanded;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: extra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: extra-expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: ultra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: ultra-expanded;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedLightOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedLightOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-LightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-LightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtendedLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-CondensedLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: semi-condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: semi-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: extra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: ultra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedLightItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedLightItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-Regular.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Regular.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-Extended.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Extended.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-Condensed.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Condensed.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: semi-condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensed.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensed.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: semi-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiExtended.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtended.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: extra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtended.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtended.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: ultra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-UltraExtended.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtended.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-Oblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Oblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	src: url('WOFF2/AkaiaAlpha-Oblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Oblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtendedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtendedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-CondensedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: condensed;
+	src: url('WOFF2/AkaiaAlpha-CondensedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: semi-condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: semi-condensed;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: semi-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: semi-expanded;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: extra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: extra-expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: ultra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: ultra-expanded;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-Italic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Italic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtendedItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-CondensedItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: semi-condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: semi-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: extra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: ultra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-Medium.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Medium.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtendedMedium.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedMedium.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-CondensedMedium.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedMedium.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: semi-condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedMedium.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedMedium.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: semi-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedMedium.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedMedium.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: extra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedMedium.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedMedium.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: ultra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedMedium.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedMedium.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-MediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-MediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: normal;
+	src: url('WOFF2/AkaiaAlpha-MediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-MediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtendedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtendedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-CondensedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: condensed;
+	src: url('WOFF2/AkaiaAlpha-CondensedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: semi-condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: semi-condensed;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: semi-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: semi-expanded;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: extra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: extra-expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: ultra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: ultra-expanded;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedMediumOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedMediumOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-MediumItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-MediumItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtendedMediumItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedMediumItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-CondensedMediumItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedMediumItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: semi-condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedMediumItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedMediumItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: semi-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedMediumItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedMediumItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: extra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedMediumItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedMediumItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: ultra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedMediumItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedMediumItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtendedSemiBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedSemiBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-CondensedSemiBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedSemiBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: semi-condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedSemiBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedSemiBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: semi-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedSemiBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedSemiBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: extra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedSemiBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedSemiBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: ultra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedSemiBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedSemiBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: normal;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtendedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtendedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-CondensedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: condensed;
+	src: url('WOFF2/AkaiaAlpha-CondensedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: semi-condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: semi-condensed;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: semi-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: semi-expanded;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: extra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: extra-expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: ultra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: ultra-expanded;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedSemiBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedSemiBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtendedSemiBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedSemiBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-CondensedSemiBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedSemiBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: semi-condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedSemiBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedSemiBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: semi-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedSemiBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedSemiBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: extra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedSemiBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedSemiBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 600;
+	font-stretch: ultra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedSemiBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedSemiBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-Bold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Bold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtendedBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-CondensedBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: semi-condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: semi-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: extra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: ultra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-BoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-BoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	src: url('WOFF2/AkaiaAlpha-BoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-BoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtendedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtendedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-CondensedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: condensed;
+	src: url('WOFF2/AkaiaAlpha-CondensedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: semi-condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: semi-condensed;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: semi-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: semi-expanded;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: extra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: extra-expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: ultra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: ultra-expanded;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-BoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-BoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtendedBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-CondensedBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: semi-condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: semi-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: extra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: ultra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtendedExtraBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedExtraBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-CondensedExtraBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedExtraBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: semi-condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedExtraBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedExtraBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: semi-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedExtraBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedExtraBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: extra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedExtraBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedExtraBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: ultra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedExtraBold.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedExtraBold.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: normal;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtendedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtendedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-CondensedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: condensed;
+	src: url('WOFF2/AkaiaAlpha-CondensedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: semi-condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: semi-condensed;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: semi-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: semi-expanded;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: extra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: extra-expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: ultra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: ultra-expanded;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedExtraBoldOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedExtraBoldOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtendedExtraBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedExtraBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-CondensedExtraBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedExtraBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: semi-condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedExtraBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedExtraBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: semi-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedExtraBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedExtraBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: extra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedExtraBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedExtraBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 800;
+	font-stretch: ultra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedExtraBoldItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedExtraBoldItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-Heavy.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-Heavy.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtendedHeavy.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedHeavy.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-CondensedHeavy.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedHeavy.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: semi-condensed;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedHeavy.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedHeavy.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: semi-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedHeavy.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedHeavy.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: extra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedHeavy.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedHeavy.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: ultra-expanded;
+	font-style: normal;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedHeavy.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedHeavy.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: normal;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-HeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-HeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: normal;
+	src: url('WOFF2/AkaiaAlpha-HeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-HeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtendedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtendedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-CondensedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: condensed;
+	src: url('WOFF2/AkaiaAlpha-CondensedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: semi-condensed;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: semi-condensed;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: semi-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: semi-expanded;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: extra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: extra-expanded;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: ultra-expanded;
+	font-style: oblique;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web Oblique';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: ultra-expanded;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedHeavyOblique.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedHeavyOblique.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-HeavyItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-HeavyItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtendedHeavyItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtendedHeavyItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-CondensedHeavyItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-CondensedHeavyItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: semi-condensed;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiCondensedHeavyItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiCondensedHeavyItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: semi-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-SemiExtendedHeavyItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-SemiExtendedHeavyItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: extra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-ExtraExtendedHeavyItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-ExtraExtendedHeavyItalic.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'AKAIA Alpha Web';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: ultra-expanded;
+	font-style: italic;
+	src: url('WOFF2/AkaiaAlpha-UltraExtendedHeavyItalic.WOFF2') format('woff2'), url('TTF/AkaiaAlpha-UltraExtendedHeavyItalic.TTF') format('truetype');
+}

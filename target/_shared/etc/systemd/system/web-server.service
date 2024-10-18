@@ -1,0 +1,39 @@
+# web-server.service
+#
+# sudo groupadd akaia
+#
+# sudo useradd --system \
+#     --gid akaia \
+#     --create-home \
+#     --home-dir /akaia \
+#     --shell /usr/sbin/nologin \
+#     --comment "AKAIA Services" \
+#     akaia
+#
+
+[Unit]
+Description=Web Server service
+After=network.target network-online.target
+Requires=network-online.target
+
+[Service]
+Type=notify
+User=akaia
+Group=akaia
+
+ExecStart=/nix/store/zbr3gfv7g7f14n3s8833w36mbsz9a69a-user-environment/bin/caddy \
+	run --environ --config \
+	/akaia/configuration/web-server/Caddyfile
+
+ExecReload=/nix/store/zbr3gfv7g7f14n3s8833w36mbsz9a69a-user-environment/bin/caddy \
+	reload --force --config \
+	/akaia/configuration/web-server/Caddyfile
+
+TimeoutStopSec=5s
+LimitNOFILE=1048576
+PrivateTmp=true
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target

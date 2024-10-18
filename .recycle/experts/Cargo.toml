@@ -1,0 +1,23 @@
+[package]
+name = "akaia-experts"
+version = "0.1.0"
+edition = "2021"
+description = "Career passport backed by bleeding edge technologies."
+readme = "README.md"
+categories = ["gui", "wasm"]
+authors.workspace = true
+keywords.workspace = true
+license.workspace = true
+
+
+[dependencies]
+# AKAIA packages
+akaia-framework.workspace = true
+
+# External packages
+log.workspace = true
+near-sdk.workspace = true
+regex.workspace = true
+reqwest.workspace = true
+unocss-classes.workspace = true
+url.workspace = true

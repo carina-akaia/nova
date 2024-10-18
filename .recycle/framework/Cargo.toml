@@ -1,0 +1,24 @@
+[package]
+name = "akaia-framework"
+version = "0.1.0"
+edition = "2021"
+authors.workspace = true
+keywords.workspace = true
+license.workspace = true
+
+
+[dependencies]
+# External packages
+leptos.workspace = true
+leptos_declarative.workspace = true
+leptos_meta.workspace = true
+leptos_query.workspace = true
+leptos_router.workspace = true
+leptos-tracked.workspace = true
+leptos-use.workspace = true
+log.workspace = true
+phosphor-leptos.workspace = true
+regex.workspace = true
+reqwest.workspace = true
+unocss-classes.workspace = true
+url.workspace = true

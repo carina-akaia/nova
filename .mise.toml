@@ -1,0 +1,9 @@
+[env]
+# supports arbitrary env vars so rtx can be used like direnv/dotenv
+# LEPTOS_RELOAD_WS_PROTOCOL = "wss"
+
+[tools]
+rust = "nightly-2024-09-23"
+erlang = "27.0"
+rebar = "3.23.0"
+gleam = "1.2.1"

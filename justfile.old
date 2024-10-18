@@ -1,0 +1,26 @@
+setup-ml:
+	(pip install -e ./infrastructure/ml/transformers/tts)
+
+setup: setup-ml
+	(cargo install --locked cargo-make cargo-expand cargo-tree)
+	(cargo instll cargo-leptos)
+	(cargo install --locked miniserve wasm-bindgen-cli trunk)
+	(cargo install --git https://github.com/bram209/leptosfmt.git)
+
+vendor:
+	(cargo vendor .cache/cargo)
+
+dev:
+	(cd packages/modules/desktop && rinf wasm --release && flutter run --release -d chrome)
+
+build:
+	(cd packages/modules/desktop && rinf wasm --release && flutter build web)
+
+# preview:
+#	(cd packages/modules/desktop && [web server init for the bundle])
+
+say:
+	(./target/aarch64-linux/bin/say.sh)
+
+dev-avatar:
+	(deno task avatar:dev)

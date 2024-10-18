@@ -1,0 +1,84 @@
+{
+	"terminal.integrated.fontFamily": "'AKAIA Alpha', monospace",
+	"terminal.integrated.fontSize": 18,
+	"editor.fontFamily": "'AKAIA Alpha', monospace",
+	"editor.fontSize": 19,
+	"explorer.sortOrder": "filesFirst",
+	"editor.formatOnSave": true,
+	"files.eol": "\n",
+	"rust-analyzer.procMacro.ignored": {
+		"leptos_macro": [
+			"component",
+			"server"
+		]
+	},
+	"rust-analyzer.cargo.features": [
+		"ssr",
+		"hydrate"
+	],
+	"_rust-analyzer.rustfmt.overrideCommand": [
+		"leptosfmt",
+		"--stdin",
+		"--rustfmt"
+	],
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.autopep8",
+	},
+	"python.analysis.typeCheckingMode": "strict",
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"unocss.include": [
+		"./packages/**/*.rs"
+	],
+	"unocss.languageIds": [
+		"rust"
+	],
+	"cSpell.words": [
+		"actix",
+		"Anytype",
+		"attributify",
+		"automake",
+		"biomejs",
+		"Caddyfile",
+		"cmdk",
+		"corvu",
+		"Dexie",
+		"icns",
+		"importmap",
+		"indxdb",
+		"kobalte",
+		"libappindicator",
+		"libatk",
+		"libgdk",
+		"libglib",
+		"libgtk",
+		"libjavascriptcoregtk",
+		"librsvg",
+		"libwebkit",
+		"NOFILE",
+		"nologin",
+		"oninput",
+		"onsubmit",
+		"reshim",
+		"solidui",
+		"Stylesheet",
+		"surrealdb",
+		"tldraw",
+		"tsup",
+		"typecheck",
+		"unocss"
+	]
+}

@@ -1,0 +1,5 @@
+[project]
+name = "akaia_commlink_tts"
+version = "0.0.1"
+
+dependencies = ["onnxruntime"]
