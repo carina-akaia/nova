@@ -1,7 +1,9 @@
 # (cargo install --git https://github.com/bram209/leptosfmt.git)
 
-#	(sudo apt-get install pkg-config libssl-dev)
-setup:
+setup-ml:
+	(pip install -e ./infrastructure/ml/transformers/tts)
+
+setup: setup-ml
 	(cargo install --locked cargo-make cargo-expand cargo-tree)
 	(cargo install cargo-leptos leptosfmt)
 	(cargo install tauri-cli --version "^2.0.0-rc")
@@ -49,3 +51,6 @@ deploy:
 	(sudo systemctl daemon-reload)
 	(sudo systemctl enable web-server)
 	(sudo systemctl restart web-server)
+
+say:
+	(./target/aarch64-linux-gnu/bin/say.sh)

@@ -1,2 +1,0 @@
-18:15:05 	Error:RKU_Write failed, err=-1
-18:15:05 	Error: RKU_WriteLBA failed, err=-3

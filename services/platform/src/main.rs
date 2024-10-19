@@ -11,7 +11,7 @@ async fn main() -> std::io::Result<()> {
 
 	let conf = get_configuration(None).await.unwrap();
 	let addr = conf.leptos_options.site_addr;
-	let routes = generate_route_list(CommLink);
+	let routes = generate_route_list(CommLinkPlatform);
 
 	println!("\n\n[ 📡 ] Listening on http://{} ...\n\n", &addr);
 
@@ -23,7 +23,11 @@ async fn main() -> std::io::Result<()> {
 			.service(Files::new("/app", format!("{site_root}/app")))
 			.service(Files::new("/static", site_root))
 			.service(favicon)
-			.leptos_routes(leptos_options.to_owned(), routes.to_owned(), CommLink)
+			.leptos_routes(
+				leptos_options.to_owned(),
+				routes.to_owned(),
+				CommLinkPlatform,
+			)
 			.app_data(web::Data::new(leptos_options.to_owned()))
 			.wrap(middleware::Compress::default())
 	})

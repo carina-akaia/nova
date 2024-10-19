@@ -1,5 +1,5 @@
 [package]
-name = "akaia_commlink"
+name = "akaia_commlink_platform"
 version = "0.1.0"
 edition = "2021"
 

@@ -13,7 +13,7 @@ use {
 };
 
 #[component]
-pub fn CommLink() -> impl IntoView {
+pub fn CommLinkPlatform() -> impl IntoView {
 	provide_meta_context();
 
 	provide_query_client_with_options_and_persister(
@@ -22,7 +22,7 @@ pub fn CommLink() -> impl IntoView {
 	);
 
 	view! {
-		<Title text={"AKAIA"}/>
+		<Title text={"CommLink"}/>
 		<Script r#type_="importmap">{IMPORT_MAP}</Script>
 		<Script r#type_="module" id={"framework"} src={"/static/packages/framework/index.js"}/>
 		<Script id={"unocss"} src={"/static/packages/uno_attributify.runtime.js"}/>
