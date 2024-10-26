@@ -1,7 +1,7 @@
 use {leptos::*, leptos_use::use_window};
 
 #[island]
-pub fn ExtensionShellViewport(
+pub fn ExtensionShell(
 	#[prop(into)] route: String, #[prop(into)] query: String, #[prop(into)] props: String,
 ) -> impl IntoView {
 	let this = use_window();

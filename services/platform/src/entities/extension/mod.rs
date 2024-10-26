@@ -1,7 +1,7 @@
 mod ui;
 
 use {
-	self::ui::ExtensionShellViewport,
+	self::ui::ExtensionShell,
 	leptos::*,
 	leptos_router::{Params, use_params, use_query_map},
 };
@@ -34,5 +34,5 @@ pub fn ExtensionShell(#[prop(into)] props: String) -> impl IntoView {
 		})
 	};
 
-	view! { <ExtensionShellViewport route={app_route} query={route_query_json()} props={props} /> }
+	view! { <ExtensionShell route={app_route} query={route_query_json()} props={props} /> }
 }

@@ -1,7 +1,7 @@
 {
-	"name": "@akaia/framework",
+	"name": "@akaia/commlink-extension-framework",
 	"version": "0.1.0",
-	"description": "AKAIA CommLink app framework",
+	"description": "AKAIA CommLink extension framework",
 	"license": "MIT",
 	"author": "carina.akaia.io",
 	"contributors": [],
