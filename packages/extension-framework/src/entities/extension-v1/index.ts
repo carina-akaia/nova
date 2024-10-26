@@ -21,7 +21,7 @@ const db = await createRxDatabase({
 
 export const install = async () => {
 	const res = await importSvelteBundle({
-		urls: ["./example.svelte" /* "./Nested.svelte" */],
+		urls: ["./static/example.svelte" /* "./Nested.svelte" */],
 		// files: [ // only one of urls or files can be provided
 		//     {
 		//         name: 'App',
@@ -30,8 +30,8 @@ export const install = async () => {
 		//         modified: true,
 		//     }
 		// ],
-		packagesUrl: "https://unpkg.com",
-		svelteUrl: "https://unpkg.com/svelte",
+		packagesUrl: "https://ga.jspm.io",
+		svelteUrl: "https://ga.jspm.io/npm:svelte@5.1.3",
 		injectedJS: "",
 		injectedCSS: "",
 
@@ -40,7 +40,7 @@ export const install = async () => {
 		},
 	})
 
-	console.log(res)
+	console.log("source:", res)
 
 	const ExtensionInstance = new res.render()
 
@@ -66,6 +66,8 @@ export const install = async () => {
 					const _extension = new ExtensionInstance({
 						target: this.attachShadow({ mode: "closed" }),
 					})
+
+					console.log(_extension)
 				}
 			},
 		)

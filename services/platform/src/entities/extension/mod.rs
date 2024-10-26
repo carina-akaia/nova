@@ -7,13 +7,13 @@ use {
 };
 
 #[derive(Params, PartialEq)]
-pub struct ExtensionShellRouteParams {
+pub struct ExtensionProviderRouteParams {
 	app_route: String,
 }
 
 #[component]
-pub fn ExtensionShell(#[prop(into)] props: String) -> impl IntoView {
-	let app_route = use_params::<ExtensionShellRouteParams>().with(|params| {
+pub fn ExtensionProvider(#[prop(into)] props: String) -> impl IntoView {
+	let app_route = use_params::<ExtensionProviderRouteParams>().with(|params| {
 		params
 			.as_ref()
 			.map(|params| params.app_route.clone())

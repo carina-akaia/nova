@@ -27,9 +27,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 // node_modules/.pnpm/dexie@4.0.8/node_modules/dexie/dist/dexie.js
 var require_dexie = __commonJS({
   "node_modules/.pnpm/dexie@4.0.8/node_modules/dexie/dist/dexie.js"(exports, module) {
+    "use strict";
     (function(global2, factory) {
       typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory() : typeof define === "function" && define.amd ? define(factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.Dexie = factory());
     })(exports, function() {
+      "use strict";
       var extendStatics2 = function(d, b) {
         extendStatics2 = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
           d2.__proto__ = b2;
@@ -58,7 +60,7 @@ var require_dexie = __commonJS({
         return __assign.apply(this, arguments);
       };
       function __spreadArray2(to, from2, pack) {
-        for (var i2 = 0, l = from2.length, ar; i2 < l; i2++) {
+        if (pack || arguments.length === 2) for (var i2 = 0, l = from2.length, ar; i2 < l; i2++) {
           if (ar || !(i2 in from2)) {
             if (!ar) ar = Array.prototype.slice.call(from2, 0, i2);
             ar[i2] = from2[i2];
@@ -1839,7 +1841,7 @@ var require_dexie = __commonJS({
           if (this.add !== void 0) {
             var term = this.add;
             if (isArray3(term)) {
-              return __spreadArray2(__spreadArray2([], isArray3(value) ? value : [], true), term).sort();
+              return __spreadArray2(__spreadArray2([], isArray3(value) ? value : [], true), term, true).sort();
             }
             if (typeof term === "number")
               return (Number(value) || 0) + term;
@@ -4491,9 +4493,9 @@ var require_dexie = __commonJS({
                   throw new Error("Keys missing");
                 req2 = req2.type === "add" || req2.type === "put" ? __assign(__assign({}, req2), { keys: keys2 }) : __assign({}, req2);
                 if (req2.type !== "delete")
-                  req2.values = __spreadArray2([], req2.values);
+                  req2.values = __spreadArray2([], req2.values, true);
                 if (req2.keys)
-                  req2.keys = __spreadArray2([], req2.keys);
+                  req2.keys = __spreadArray2([], req2.keys, true);
                 return getExistingValues(downTable, req2, keys2).then(function(existingValues) {
                   var contexts = keys2.map(function(key, i2) {
                     var existingValue = existingValues[i2];
@@ -6104,11 +6106,11 @@ function toPrimitive(t, r) {
   if ("object" != _typeof(t) || !t) return t;
   var e = t[Symbol.toPrimitive];
   if (void 0 !== e) {
-    var i2 = e.call(t, r);
+    var i2 = e.call(t, r || "default");
     if ("object" != _typeof(i2)) return i2;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
-  return (String )(t);
+  return ("string" === r ? String : Number)(t);
 }
 
 // node_modules/.pnpm/@babel+runtime@7.25.6/node_modules/@babel/runtime/helpers/esm/toPropertyKey.js
@@ -6125,7 +6127,7 @@ function _defineProperties(e, r) {
   }
 }
 function _createClass(e, r, t) {
-  return r && _defineProperties(e.prototype, r), Object.defineProperty(e, "prototype", {
+  return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", {
     writable: false
   }), e;
 }
@@ -6304,8 +6306,27 @@ function areRxDocumentArraysEqual(primaryPath, ar1, ar2) {
   }
   return true;
 }
+
+// node_modules/.pnpm/ohash@1.1.4/node_modules/ohash/dist/index.mjs
+var defaults = Object.freeze({
+  ignoreUnknown: false,
+  respectType: false,
+  respectFunctionNames: false,
+  respectFunctionProperties: false,
+  unorderedObjects: true,
+  unorderedArrays: false,
+  unorderedSets: false,
+  excludeKeys: void 0,
+  excludeValues: void 0,
+  replacer: void 0
+});
+var defaultPrototypesKeys = Object.freeze([
+  "prototype",
+  "__proto__",
+  "constructor"
+]);
 var nativeFunc = "[native code] }";
-nativeFunc.length;
+var nativeFuncLength = nativeFunc.length;
 var __defProp$1 = Object.defineProperty;
 var __defNormalProp$1 = (obj, key, value) => key in obj ? __defProp$1(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField$1 = (obj, key, value) => {
@@ -6605,7 +6626,7 @@ function nextTick() {
 function promiseWait(ms = 0) {
   return new Promise((res) => setTimeout(res, ms));
 }
-Promise.resolve(true);
+var PROMISE_RESOLVE_TRUE = Promise.resolve(true);
 var PROMISE_RESOLVE_FALSE = Promise.resolve(false);
 var PROMISE_RESOLVE_NULL = Promise.resolve(null);
 var PROMISE_RESOLVE_VOID = Promise.resolve();
@@ -6829,7 +6850,7 @@ function getProperty(object, path, value) {
     return object[path];
   }
   if (!isObject(object) || typeof path !== "string") {
-    return object ;
+    return value === void 0 ? object : value;
   }
   var pathArray = getPathSegments(path);
   if (pathArray.length === 0) {
@@ -6886,6 +6907,8 @@ function getFromMapOrCreate(map2, index, creator, ifWasThere) {
   if (typeof value === "undefined") {
     value = creator();
     map2.set(index, value);
+  } else if (ifWasThere) {
+    ifWasThere(value);
   }
   return value;
 }
@@ -7590,7 +7613,7 @@ function __awaiter(thisArg, _arguments, P, generator) {
     function step(result) {
       result.done ? resolve2(result.value) : adopt(result.value).then(fulfilled, rejected);
     }
-    step((generator = generator.apply(thisArg, [])).next());
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
   });
 }
 function __generator(thisArg, body) {
@@ -7691,7 +7714,7 @@ function __read(o, n2) {
   return ar;
 }
 function __spreadArray(to, from2, pack) {
-  if (arguments.length === 2) for (var i2 = 0, l = from2.length, ar; i2 < l; i2++) {
+  if (pack || arguments.length === 2) for (var i2 = 0, l = from2.length, ar; i2 < l; i2++) {
     if (ar || !(i2 in from2)) {
       if (!ar) ar = Array.prototype.slice.call(from2, 0, i2);
       ar[i2] = from2[i2];
@@ -8352,6 +8375,7 @@ function readableStreamLikeToAsyncGenerator(readableStream) {
           _b.trys.push([1, , 9, 10]);
           _b.label = 2;
         case 2:
+          if (false) return [3, 8];
           return [4, __await(reader.read())];
         case 3:
           _a = _b.sent(), value = _a.value, done = _a.done;
@@ -8786,10 +8810,14 @@ function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, e
     return active < concurrent ? doInnerSub(value) : buffer.push(value);
   };
   var doInnerSub = function(value) {
+    expand && subscriber.next(value);
     active++;
     var innerComplete = false;
     innerFrom(project(value, index++)).subscribe(createOperatorSubscriber(subscriber, function(innerValue) {
-      {
+      onBeforeNext === null || onBeforeNext === void 0 ? void 0 : onBeforeNext(innerValue);
+      if (expand) {
+        outerNext(innerValue);
+      } else {
         subscriber.next(innerValue);
       }
     }, function() {
@@ -8800,7 +8828,11 @@ function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, e
           active--;
           var _loop_1 = function() {
             var bufferedValue = buffer.shift();
-            if (innerSubScheduler) ; else {
+            if (innerSubScheduler) {
+              executeSchedule(subscriber, innerSubScheduler, function() {
+                return doInnerSub(bufferedValue);
+              });
+            } else {
               doInnerSub(bufferedValue);
             }
           };
@@ -8819,6 +8851,7 @@ function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, e
     checkComplete();
   }));
   return function() {
+    additionalFinalizer === null || additionalFinalizer === void 0 ? void 0 : additionalFinalizer();
   };
 }
 
@@ -9366,7 +9399,7 @@ function getProperty2(object, path, value) {
     path = path.join(".");
   }
   if (!isObject2(object) || typeof path !== "string") {
-    return object ;
+    return value === void 0 ? object : value;
   }
   const pathArray = path.split(".");
   if (pathArray.length === 0) {
@@ -9765,6 +9798,16 @@ function booleanToBooleanString(b) {
     return "0";
   }
 }
+function makeid(length = 6) {
+  let result = "";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  for (let i2 = 0; i2 < length; i2++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+var nodeIdPrefix = makeid(4);
 function splitStringToChunks(str, chunkSize) {
   const chunks = [];
   for (let i2 = 0, charsLength = str.length; i2 < charsLength; i2 += chunkSize) {
@@ -11554,6 +11597,27 @@ var Query = class {
   }
 };
 
+// node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/date/_internal.js
+var MILLIS_PER_DAY = 1e3 * 60 * 60 * 24;
+var DURATION_IN_MILLIS = {
+  week: MILLIS_PER_DAY * 7,
+  day: MILLIS_PER_DAY,
+  hour: 1e3 * 60 * 60,
+  minute: 1e3 * 60,
+  second: 1e3,
+  millisecond: 1
+};
+
+// node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/window/_internal.js
+var MILLIS_PER_UNIT = {
+  week: MILLIS_PER_DAY * 7,
+  day: MILLIS_PER_DAY,
+  hour: MILLIS_PER_DAY / 24,
+  minute: 6e4,
+  second: 1e3,
+  millisecond: 1
+};
+
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/pipeline/sort.js
 var $sort = (collection, sortKeys, options) => {
   if (isEmpty(sortKeys) || !isObject3(sortKeys))
@@ -11632,6 +11696,12 @@ function createQueryOperator(predicate) {
   };
   f.op = "query";
   return f;
+}
+function createExpressionOperator(predicate) {
+  return (obj, expr, options) => {
+    const args = computeValue(obj, expr, null, options);
+    return predicate(...args);
+  };
 }
 function $eq(a2, b, options) {
   if (isEqual(a2, b))
@@ -11767,11 +11837,14 @@ function compareType(a2, b, _) {
   return f ? f(a2) : false;
 }
 function $type(a2, b, options) {
-  return Array.isArray(b) ? b.findIndex((t) => compareType(a2, t)) >= 0 : compareType(a2, b);
+  return Array.isArray(b) ? b.findIndex((t) => compareType(a2, t, options)) >= 0 : compareType(a2, b, options);
 }
 function compare2(a2, b, f) {
   return ensureArray(a2).some((x2) => getType(x2) === getType(b) && f(x2, b));
 }
+
+// node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/array/nin.js
+var $nin2 = createExpressionOperator($nin);
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/bitwise/_internal.js
 var bitwise = (op, compute) => (obj, expr, options) => {
@@ -11787,22 +11860,40 @@ var bitwise = (op, compute) => (obj, expr, options) => {
 };
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/bitwise/bitAnd.js
-bitwise(
+var $bitAnd = bitwise(
   "$bitAnd",
   (nums) => nums.reduce((a2, b) => a2 & b, -1)
 );
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/bitwise/bitOr.js
-bitwise(
+var $bitOr = bitwise(
   "$bitOr",
   (nums) => nums.reduce((a2, b) => a2 | b, 0)
 );
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/bitwise/bitXor.js
-bitwise(
+var $bitXor = bitwise(
   "$bitXor",
   (nums) => nums.reduce((a2, b) => a2 ^ b, 0)
 );
+
+// node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/comparison/eq.js
+var $eq2 = createExpressionOperator($eq);
+
+// node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/comparison/gt.js
+var $gt2 = createExpressionOperator($gt);
+
+// node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/comparison/gte.js
+var $gte2 = createExpressionOperator($gte);
+
+// node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/comparison/lt.js
+var $lt2 = createExpressionOperator($lt);
+
+// node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/comparison/lte.js
+var $lte2 = createExpressionOperator($lte);
+
+// node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/comparison/ne.js
+var $ne2 = createExpressionOperator($ne);
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/date/dateFromString.js
 var buildMap = (letters, sign) => {
@@ -11810,11 +11901,11 @@ var buildMap = (letters, sign) => {
   letters.split("").forEach((v, i2) => h2[v] = sign * (i2 + 1));
   return h2;
 };
-({
+var TZ_LETTER_OFFSETS = {
   ...buildMap("ABCDEFGHIKLM", 1),
   ...buildMap("NOPQRSTUVWXY", -1),
   Z: 0
-});
+};
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/_internal.js
 var FIXED_POINTS = {
@@ -11843,40 +11934,40 @@ function createTrignometryOperator(f, fixedPoints = FIXED_POINTS) {
 }
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/acos.js
-createTrignometryOperator(Math.acos, {
+var $acos = createTrignometryOperator(Math.acos, {
   Infinity: Infinity,
   0: new Error()
 });
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/acosh.js
-createTrignometryOperator(Math.acosh, {
+var $acosh = createTrignometryOperator(Math.acosh, {
   Infinity: Infinity,
   0: new Error()
 });
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/asin.js
-createTrignometryOperator(Math.asin);
+var $asin = createTrignometryOperator(Math.asin);
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/asinh.js
-createTrignometryOperator(Math.asinh, {
+var $asinh = createTrignometryOperator(Math.asinh, {
   Infinity: Infinity,
   "-Infinity": -Infinity
 });
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/atan.js
-createTrignometryOperator(Math.atan);
+var $atan = createTrignometryOperator(Math.atan);
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/atanh.js
-createTrignometryOperator(Math.atanh, {
+var $atanh = createTrignometryOperator(Math.atanh, {
   1: Infinity,
   "-1": -Infinity
 });
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/cos.js
-createTrignometryOperator(Math.cos);
+var $cos = createTrignometryOperator(Math.cos);
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/cosh.js
-createTrignometryOperator(Math.cosh, {
+var $cosh = createTrignometryOperator(Math.cosh, {
   "-Infinity": Infinity,
   Infinity: Infinity
   // [Math.PI]: -1,
@@ -11884,7 +11975,7 @@ createTrignometryOperator(Math.cosh, {
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/degreesToRadians.js
 var RADIANS_FACTOR = Math.PI / 180;
-createTrignometryOperator(
+var $degreesToRadians = createTrignometryOperator(
   (n2) => n2 * RADIANS_FACTOR,
   {
     Infinity: Infinity,
@@ -11894,7 +11985,7 @@ createTrignometryOperator(
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/radiansToDegrees.js
 var DEGREES_FACTOR = 180 / Math.PI;
-createTrignometryOperator(
+var $radiansToDegrees = createTrignometryOperator(
   (n2) => n2 * DEGREES_FACTOR,
   {
     Infinity: Infinity,
@@ -11903,16 +11994,16 @@ createTrignometryOperator(
 );
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/sin.js
-createTrignometryOperator(Math.sin);
+var $sin = createTrignometryOperator(Math.sin);
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/sinh.js
-createTrignometryOperator(Math.sinh, {
+var $sinh = createTrignometryOperator(Math.sinh, {
   "-Infinity": -Infinity,
   Infinity: Infinity
 });
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/expression/trignometry/tan.js
-createTrignometryOperator(Math.tan);
+var $tan = createTrignometryOperator(Math.tan);
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/pipeline/project.js
 var $project = (collection, expr, options) => {
@@ -11960,7 +12051,8 @@ function processObject(obj, expr, options, expressionKeys, idOnlyExcluded) {
       value = obj[key];
     } else if (isString(subExpr)) {
       value = computeValue(obj, subExpr, key, options);
-    } else if (inArray([1, true], subExpr)) ; else if (subExpr instanceof Array) {
+    } else if (inArray([1, true], subExpr)) {
+    } else if (subExpr instanceof Array) {
       value = subExpr.map((v) => {
         const r = computeValue(obj, v, null, options);
         if (isNil(r))
@@ -12123,7 +12215,7 @@ var $mod2 = createQueryOperator($mod);
 var $regex2 = createQueryOperator($regex);
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/query/array/all.js
-createQueryOperator($all);
+var $all2 = createQueryOperator($all);
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/operators/query/array/elemMatch.js
 var $elemMatch2 = createQueryOperator($elemMatch);
@@ -13176,8 +13268,14 @@ function categorizeBulkWriteRows(storageInstance, primaryPath, docsInDb, bulkWri
       if (!attachmentError) {
         if (hasAttachments) {
           bulkInsertDocs.push(stripAttachmentsDataFromRow(writeRow));
+          if (onInsert) {
+            onInsert(document2);
+          }
         } else {
           bulkInsertDocs.push(writeRow);
+          if (onInsert) {
+            onInsert(document2);
+          }
         }
         newestRow = writeRow;
       }
@@ -13264,8 +13362,14 @@ function categorizeBulkWriteRows(storageInstance, primaryPath, docsInDb, bulkWri
       } else {
         if (hasAttachments) {
           bulkUpdateDocs.push(stripAttachmentsDataFromRow(updatedRow));
+          if (onUpdate) {
+            onUpdate(document2);
+          }
         } else {
           bulkUpdateDocs.push(updatedRow);
+          if (onUpdate) {
+            onUpdate(document2);
+          }
         }
         newestRow = updatedRow;
       }
@@ -14328,6 +14432,11 @@ var ChangeEventBuffer = /* @__PURE__ */ function() {
   _proto.reduceByLastOfDoc = function reduceByLastOfDoc(changeEvents) {
     this.processTasks();
     return changeEvents.slice(0);
+    var docEventMap = {};
+    changeEvents.forEach((changeEvent) => {
+      docEventMap[changeEvent.documentId] = changeEvent;
+    });
+    return Object.values(docEventMap);
   };
   _proto.destroy = function destroy() {
     this.tasks.clear();
@@ -15219,6 +15328,7 @@ function now2() {
 
 // node_modules/.pnpm/rxdb@15.34.1_rxjs@7.8.1/node_modules/rxdb/dist/esm/rx-database.js
 var USED_DATABASE_NAMES = /* @__PURE__ */ new Set();
+var DB_COUNT = 0;
 var RxDatabaseBase = /* @__PURE__ */ function() {
   function RxDatabaseBase2(name, token, storage, instanceCreationOptions, password, multiInstance, eventReduce = false, options = {}, internalStore, hashFunction, cleanupPolicy, allowSlowCount, reactivity) {
     this.idleQueue = new IdleQueue();
@@ -15248,6 +15358,7 @@ var RxDatabaseBase = /* @__PURE__ */ function() {
     this.cleanupPolicy = cleanupPolicy;
     this.allowSlowCount = allowSlowCount;
     this.reactivity = reactivity;
+    DB_COUNT++;
     if (this.name !== "pseudoInstance") {
       this.internalStore = getWrappedStorageInstance(this.asRxDatabase, internalStore, INTERNAL_STORE_SCHEMA);
       this.storageTokenDocument = ensureStorageTokenDocumentExists(this.asRxDatabase).catch((err) => this.startupErrors.push(err));
@@ -15407,6 +15518,7 @@ var RxDatabaseBase = /* @__PURE__ */ function() {
     this.destroyed = true;
     await runAsyncPluginHooks("preDestroyRxDatabase", this);
     this.eventBulks$.complete();
+    DB_COUNT--;
     this._subs.map((sub) => sub.unsubscribe());
     if (this.name === "pseudoInstance") {
       return PROMISE_RESOLVE_FALSE;
@@ -15531,8 +15643,8 @@ async function ensureNoStartupErrors(rxDatabase) {
 function isPromise2(obj) {
   return obj && typeof obj.then === "function";
 }
-Promise.resolve(false);
-Promise.resolve(true);
+var PROMISE_RESOLVED_FALSE = Promise.resolve(false);
+var PROMISE_RESOLVED_TRUE = Promise.resolve(true);
 var PROMISE_RESOLVED_VOID = Promise.resolve();
 function sleep(time, resolveWith) {
   if (!time) time = 0;
@@ -16295,7 +16407,7 @@ function addRxStorageMultiInstanceSupport(storageName, instanceCreationParams, i
   if (!instanceCreationParams.multiInstance) {
     return;
   }
-  var broadcastChannel = getBroadcastChannelReference(storageName, instanceCreationParams.databaseInstanceToken, instance.databaseName, instance);
+  var broadcastChannel = providedBroadcastChannel ? providedBroadcastChannel : getBroadcastChannelReference(storageName, instanceCreationParams.databaseInstanceToken, instance.databaseName, instance);
   var changesFromOtherInstances$ = new Subject();
   var eventListener = (msg) => {
     if (msg.storageName === storageName && msg.databaseName === instanceCreationParams.databaseName && msg.collectionName === instanceCreationParams.collectionName && msg.version === instanceCreationParams.schema.version) {
@@ -16325,7 +16437,7 @@ function addRxStorageMultiInstanceSupport(storageName, instanceCreationParams, i
     closed = true;
     sub.unsubscribe();
     broadcastChannel.removeEventListener("message", eventListener);
-    {
+    if (!providedBroadcastChannel) {
       await removeBroadcastChannelReference(instanceCreationParams.databaseInstanceToken, instance);
     }
     return oldClose();
@@ -16335,7 +16447,7 @@ function addRxStorageMultiInstanceSupport(storageName, instanceCreationParams, i
     closed = true;
     sub.unsubscribe();
     broadcastChannel.removeEventListener("message", eventListener);
-    {
+    if (!providedBroadcastChannel) {
       await removeBroadcastChannelReference(instanceCreationParams.databaseInstanceToken, instance);
     }
     return oldRemove();
@@ -16349,6 +16461,19 @@ var Dexie = globalThis[DexieSymbol] || (globalThis[DexieSymbol] = import_dexie.d
 if (import_dexie.default.semVer !== Dexie.semVer) {
   throw new Error(`Two different versions of Dexie loaded in the same app: ${import_dexie.default.semVer} and ${Dexie.semVer}`);
 }
+var {
+  liveQuery,
+  mergeRanges,
+  rangesOverlap,
+  RangeSet,
+  cmp,
+  Entity,
+  PropModSymbol,
+  PropModification,
+  replacePrefix,
+  add,
+  remove
+} = Dexie;
 
 // node_modules/.pnpm/rxdb@15.34.1_rxjs@7.8.1/node_modules/rxdb/dist/esm/plugins/storage-dexie/dexie-helper.js
 var DEXIE_DOCS_TABLE_NAME = "docs";
@@ -16871,6 +16996,7 @@ function getRxStorageDexie(settings = {}) {
 var equalFn = (a2, b) => a2 === b;
 var $PROXY = Symbol("solid-proxy");
 var $TRACK = Symbol("solid-track");
+var $DEVCOMP = Symbol("solid-dev-component");
 var signalOptions = {
   equals: equalFn
 };
@@ -16878,6 +17004,12 @@ var ERROR = null;
 var runEffects = runQueue;
 var STALE = 1;
 var PENDING = 2;
+var UNOWNED = {
+  owned: null,
+  cleanups: null,
+  context: null,
+  owner: null
+};
 var Owner = null;
 var Transition = null;
 var Scheduler = null;
@@ -16903,8 +17035,25 @@ function createSignal(value, options) {
   };
   return [readSignal.bind(s), setter];
 }
+function createRenderEffect(fn, value, options) {
+  const c = createComputation(fn, value, false, STALE);
+  if (Scheduler && Transition && Transition.running) Updates.push(c);
+  else updateComputation(c);
+}
+function createMemo(fn, value, options) {
+  options = options ? Object.assign({}, signalOptions, options) : signalOptions;
+  const c = createComputation(fn, value, true, 0);
+  c.observers = null;
+  c.observerSlots = null;
+  c.comparator = options.equals || void 0;
+  if (Scheduler && Transition && Transition.running) {
+    c.tState = STALE;
+    Updates.push(c);
+  } else updateComputation(c);
+  return readSignal.bind(c);
+}
 function batch(fn) {
-  return runUpdates(fn);
+  return runUpdates(fn, false);
 }
 function untrack(fn) {
   if (!ExternalSourceConfig && Listener === null) return fn();
@@ -16917,10 +17066,62 @@ function untrack(fn) {
     Listener = listener;
   }
 }
+function onCleanup(fn) {
+  if (Owner === null) ;
+  else if (Owner.cleanups === null) Owner.cleanups = [fn];
+  else Owner.cleanups.push(fn);
+  return fn;
+}
 function getListener() {
   return Listener;
 }
+function startTransition(fn) {
+  if (Transition && Transition.running) {
+    fn();
+    return Transition.done;
+  }
+  const l = Listener;
+  const o = Owner;
+  return Promise.resolve().then(() => {
+    Listener = l;
+    Owner = o;
+    let t;
+    if (Scheduler || SuspenseContext) {
+      t = Transition || (Transition = {
+        sources: /* @__PURE__ */ new Set(),
+        effects: [],
+        promises: /* @__PURE__ */ new Set(),
+        disposed: /* @__PURE__ */ new Set(),
+        queue: /* @__PURE__ */ new Set(),
+        running: true
+      });
+      t.done || (t.done = new Promise((res) => t.resolve = res));
+      t.running = true;
+    }
+    runUpdates(fn, false);
+    Listener = Owner = null;
+    return t ? t.done : void 0;
+  });
+}
 var [transPending, setTransPending] = /* @__PURE__ */ createSignal(false);
+function createContext(defaultValue, options) {
+  const id = Symbol("context");
+  return {
+    id,
+    Provider: createProvider(id),
+    defaultValue
+  };
+}
+function children(fn) {
+  const children2 = createMemo(fn);
+  const memo = createMemo(() => resolveChildren(children2()));
+  memo.toArray = () => {
+    const c = memo();
+    return Array.isArray(c) ? c : c != null ? [c] : [];
+  };
+  return memo;
+}
+var SuspenseContext;
 function readSignal() {
   const runningTransition = Transition && Transition.running;
   if (this.sources && (runningTransition ? this.tState : this.state)) {
@@ -16928,7 +17129,7 @@ function readSignal() {
     else {
       const updates = Updates;
       Updates = null;
-      runUpdates(() => lookUpstream(this));
+      runUpdates(() => lookUpstream(this), false);
       Updates = updates;
     }
   }
@@ -16982,7 +17183,7 @@ function writeSignal(node, value, isComp) {
           if (false) ;
           throw new Error();
         }
-      });
+      }, false);
     }
   }
   return value;
@@ -16999,7 +17200,7 @@ function updateComputation(node) {
         Listener = Owner = node;
         runComputation(node, node.tValue, time);
         Listener = Owner = null;
-      });
+      }, false);
     });
   }
 }
@@ -17037,6 +17238,49 @@ function runComputation(node, value, time) {
     node.updatedAt = time;
   }
 }
+function createComputation(fn, init2, pure, state = STALE, options) {
+  const c = {
+    fn,
+    state,
+    updatedAt: null,
+    owned: null,
+    sources: null,
+    sourceSlots: null,
+    cleanups: null,
+    value: init2,
+    owner: Owner,
+    context: Owner ? Owner.context : null,
+    pure
+  };
+  if (Transition && Transition.running) {
+    c.state = 0;
+    c.tState = state;
+  }
+  if (Owner === null) ;
+  else if (Owner !== UNOWNED) {
+    if (Transition && Transition.running && Owner.pure) {
+      if (!Owner.tOwned) Owner.tOwned = [c];
+      else Owner.tOwned.push(c);
+    } else {
+      if (!Owner.owned) Owner.owned = [c];
+      else Owner.owned.push(c);
+    }
+  }
+  if (ExternalSourceConfig && c.fn) {
+    const [track, trigger] = createSignal(void 0, {
+      equals: false
+    });
+    const ordinary = ExternalSourceConfig.factory(c.fn, trigger);
+    onCleanup(() => ordinary.dispose());
+    const triggerInTransition = () => startTransition(trigger).then(() => inTransition.dispose());
+    const inTransition = ExternalSourceConfig.factory(c.fn, triggerInTransition);
+    c.fn = (x2) => {
+      track();
+      return Transition && Transition.running ? inTransition.track(x2) : ordinary.track(x2);
+    };
+  }
+  return c;
+}
 function runTop(node) {
   const runningTransition = Transition && Transition.running;
   if ((runningTransition ? node.tState : node.state) === 0) return;
@@ -17060,7 +17304,7 @@ function runTop(node) {
     } else if ((runningTransition ? node.tState : node.state) === PENDING) {
       const updates = Updates;
       Updates = null;
-      runUpdates(() => lookUpstream(node, ancestors[0]));
+      runUpdates(() => lookUpstream(node, ancestors[0]), false);
       Updates = updates;
     }
   }
@@ -17068,7 +17312,7 @@ function runTop(node) {
 function runUpdates(fn, init2) {
   if (Updates) return fn();
   let wait = false;
-  Updates = [];
+  if (!init2) Updates = [];
   if (Effects) wait = true;
   else Effects = [];
   ExecCount++;
@@ -17114,7 +17358,7 @@ function completeUpdates(wait) {
           v.tState = 0;
         }
         setTransPending(false);
-      });
+      }, false);
     } else if (Transition.running) {
       Transition.running = false;
       Transition.effects.push.apply(Transition.effects, Effects);
@@ -17125,7 +17369,7 @@ function completeUpdates(wait) {
   }
   const e = Effects;
   Effects = null;
-  if (e.length) runUpdates(() => runEffects(e));
+  if (e.length) runUpdates(() => runEffects(e), false);
   if (res) res();
 }
 function runQueue(queue) {
@@ -17142,7 +17386,7 @@ function scheduleQueue(queue) {
         runUpdates(() => {
           Transition.running = true;
           runTop(item);
-        });
+        }, false);
         Transition && (Transition.running = false);
       });
     }
@@ -17241,6 +17485,32 @@ function handleError(err, owner = Owner) {
   });
   else runErrors(error, fns, owner);
 }
+function resolveChildren(children2) {
+  if (typeof children2 === "function" && !children2.length) return resolveChildren(children2());
+  if (Array.isArray(children2)) {
+    const results = [];
+    for (let i2 = 0; i2 < children2.length; i2++) {
+      const result = resolveChildren(children2[i2]);
+      Array.isArray(result) ? results.push.apply(results, result) : results.push(result);
+    }
+    return results;
+  }
+  return children2;
+}
+function createProvider(id, options) {
+  return function provider(props) {
+    let res;
+    createRenderEffect(() => res = untrack(() => {
+      Owner.context = {
+        ...Owner.context,
+        [id]: props.value
+      };
+      return children(() => props.children);
+    }), void 0);
+    return res;
+  };
+}
+var FALLBACK = Symbol("fallback");
 
 // node_modules/.pnpm/solid-js@1.9.2/node_modules/solid-js/store/dist/store.js
 var $RAW = Symbol("store-raw");
@@ -17451,6 +17721,7 @@ function createStore(...[store, options]) {
   }
   return [wrappedStore, setStore];
 }
+var $ROOT = Symbol("store-root");
 
 // src/entities/extension-v1/model.ts
 var initialExtensionContext = {
@@ -17460,18 +17731,19 @@ var initialExtensionContext = {
   route_query: null,
   props: null
 };
+var ExtensionContext = createContext(initialExtensionContext);
 var [extensionContextState, setExtensionContextState] = createStore(initialExtensionContext);
 
 // src/entities/extension-v1/index.ts
 var tagName = "akaia-app";
-await createRxDatabase({
+var db = await createRxDatabase({
   name: tagName,
   storage: getRxStorageDexie()
 });
 var install = async () => {
   const res = await h({
     urls: [
-      "./example.svelte"
+      "./static/example.svelte"
       /* "./Nested.svelte" */
     ],
     // files: [ // only one of urls or files can be provided
@@ -17482,15 +17754,15 @@ var install = async () => {
     //         modified: true,
     //     }
     // ],
-    packagesUrl: "https://unpkg.com",
-    svelteUrl: "https://unpkg.com/svelte",
+    packagesUrl: "https://ga.jspm.io",
+    svelteUrl: "https://ga.jspm.io/npm:svelte@5.1.3",
     injectedJS: "",
     injectedCSS: "",
     onstatus: (val) => {
       console.log(val);
     }
   });
-  console.log(res);
+  console.log("source:", res);
   const ExtensionInstance = new res.render();
   if (customElements.get(tagName) === void 0) {
     customElements.define(
@@ -17508,9 +17780,10 @@ var install = async () => {
           }
         }
         connectedCallback() {
-          new ExtensionInstance({
+          const _extension = new ExtensionInstance({
             target: this.attachShadow({ mode: "closed" })
           });
+          console.log(_extension);
         }
       }
     );
@@ -17522,6 +17795,9 @@ var init = () => {
   install();
 };
 init();
+export {
+  init
+};
 /*! Bundled license information:
 
 dexie/dist/dexie.js:
@@ -17546,5 +17822,3 @@ svelte-browser-import/dist/svelte-browser-import.es.js:
    * MIT License
    *)
 */
-
-export { init };
