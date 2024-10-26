@@ -19,14 +19,14 @@
 	"private": false,
 	"sideEffects": false,
 	"type": "module",
-	"main": "./../../public/packages/framework/index.js",
-	"module": "./../../public/packages/framework/index.js",
-	"types": "./../../public/packages/framework/index.d.ts",
+	"main": "./../../services/platform/public/packages/extension-framework/index.js",
+	"module": "./../../services/platform/public/packages/extension-framework/index.js",
+	"types": "./../../services/platform/public/packages/extension-framework/index.d.ts",
 	"browser": {},
 	"exports": {
 		"import": {
-			"types": "./../../public/packages/framework/index.d.ts",
-			"default": "./../../public/packages/framework/index.js"
+			"types": "./../../services/platform/public/packages/extension-framework/index.d.ts",
+			"default": "./../../services/platform/public/packages/extension-framework/index.js"
 		}
 	},
 	"typesVersions": {},

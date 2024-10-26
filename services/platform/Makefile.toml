@@ -1,15 +1,14 @@
 [tasks.framework_build]
 command = "pnpm"
-args = ["-C", "packages/extension-framework", "build"]
+args = ["-C", "../../packages/extension-framework", "build"]
 
 
 [tasks.framework_live_rebuild]
 command = "pnpm"
-args = ["-C", "packages/extension-framework", "watch"]
+args = ["-C", "../../packages/extension-framework", "watch"]
 
 
 [tasks.platform_devserver]
-script.pre = "cd services/platform"
 command = "cargo"
 args = ["leptos", "watch"]
 

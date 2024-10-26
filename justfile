@@ -18,13 +18,13 @@ fmt:
 	(leptosfmt ./src)
 
 build-framework:
-	(cargo make framework_build)
+	(cd ./services/platform && cargo make framework_build)
 
 dev-commlink_overlay:
 	(cd ./apps/commlink_overlay && cargo tauri dev)
 
 dev: build-framework
-	(cargo make devserver)
+	(cd ./services/platform && cargo make devserver)
 
 build-commlink_overlay:
 	(cd ./apps/commlink_overlay && cargo tauri build)
