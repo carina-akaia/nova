@@ -12,11 +12,11 @@ const preset_options: preset.PresetOptions = {
 		// default entry (index)
 		{
 			// entries with '.tsx' extension will have `solid` export condition generated
-			entry: "src/index.tsx",
+			entry: "src/index.ts",
 		},
 	],
 
-	out_dir: "../../public/packages/framework",
+	out_dir: "../../services/platform/public/packages/extension-framework",
 	drop_console: false,
 }
 

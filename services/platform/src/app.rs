@@ -24,7 +24,7 @@ pub fn CommLinkPlatform() -> impl IntoView {
 	view! {
 		<Title text={"CommLink"}/>
 		<Script r#type_="importmap">{IMPORT_MAP}</Script>
-		<Script r#type_="module" id={"framework"} src={"/static/packages/framework/index.js"}/>
+		<Script r#type_="module" id={"framework"} src={"/static/packages/extension-framework/index.js"}/>
 		<Script id={"unocss"} src={"/static/packages/uno_attributify.runtime.js"}/>
 		<Stylesheet id={"leptos"} href={"/app/akaia_commlink.css"}/>
 		<Body attr:m={"0"} attr:h={"100vh"} attr:flex={"~ col"}/>

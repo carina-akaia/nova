@@ -56,6 +56,9 @@ importers:
       surrealdb:
         specifier: ^1.0.0
         version: 1.0.6(tslib@2.7.0)(typescript@5.6.3)(ws@8.16.0)
+      svelte-browser-import:
+        specifier: ^0.0.4
+        version: 0.0.4
       tailwind-merge:
         specifier: ^2.3.0
         version: 2.5.3
@@ -2857,6 +2860,9 @@ packages:
     peerDependencies:
       tslib: ^2.6.3
       typescript: ^5.0.0
+
+  svelte-browser-import@0.0.4:
+    resolution: {integrity: sha512-zJDo/nCi6SwLJz8DqZS9GKBOXDscLLN5WCpwNqr6CFHj1p8rqq9cHWIHlSKWroFRZktOt68Ss274/mqyywfajw==}
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
@@ -6159,6 +6165,8 @@ snapshots:
       uuidv7: 1.0.2
     transitivePeerDependencies:
       - ws
+
+  svelte-browser-import@0.0.4: {}
 
   symbol-tree@3.2.4: {}
 

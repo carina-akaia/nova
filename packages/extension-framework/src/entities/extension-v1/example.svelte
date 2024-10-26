@@ -1,7 +1,9 @@
 <script>
-	import { onMount } from "svelte";
+import { onMount } from "svelte"
 
-	onMount(() => {
-		console.log("test");
-	});
+onMount(() => {
+	console.log("test")
+})
 </script>
+
+<p>Example CommLink extension written in Svelte</p>

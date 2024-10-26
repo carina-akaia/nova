@@ -20,17 +20,11 @@ fmt:
 build-framework:
 	(cargo make framework_build)
 
-dev-portal:
-	(cd ./packages/portal && dx serve --port 1420)
-
 dev-commlink_overlay:
 	(cd ./apps/commlink_overlay && cargo tauri dev)
 
 dev: build-framework
 	(cargo make devserver)
-
-build-portal:
-	(cd ./packages/portal && dx build)
 
 build-commlink_overlay:
 	(cd ./apps/commlink_overlay && cargo tauri build)

@@ -1,14 +1,15 @@
 [tasks.framework_build]
 command = "pnpm"
-args = ["-C", "packages/framework", "build"]
+args = ["-C", "packages/extension-framework", "build"]
 
 
 [tasks.framework_live_rebuild]
 command = "pnpm"
-args = ["-C", "packages/framework", "watch"]
+args = ["-C", "packages/extension-framework", "watch"]
 
 
-[tasks.gateway_devserver]
+[tasks.platform_devserver]
+script.pre = "cd services/platform"
 command = "cargo"
 args = ["leptos", "watch"]
 
@@ -16,5 +17,5 @@ args = ["leptos", "watch"]
 [tasks.devserver]
 run_task = { name = [
 	"framework_live_rebuild",
-	"gateway_devserver",
+	"platform_devserver",
 ], parallel = true }

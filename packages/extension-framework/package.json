@@ -24,7 +24,6 @@
 	"types": "./../../public/packages/framework/index.d.ts",
 	"browser": {},
 	"exports": {
-		"solid": "./../../public/packages/framework/index.jsx",
 		"import": {
 			"types": "./../../public/packages/framework/index.d.ts",
 			"default": "./../../public/packages/framework/index.js"
@@ -60,6 +59,7 @@
 		"solid-element": "^1.8.1",
 		"solid-js": "^1.8.18",
 		"surrealdb": "^1.0.0",
+		"svelte-browser-import": "^0.0.4",
 		"tailwind-merge": "^2.3.0",
 		"tailwindcss": "^3.4.3",
 		"tailwindcss-animate": "^1.0.7"

@@ -1,6 +1,6 @@
 import { render } from "solid-js/web"
-import { createRxDatabase } from 'rxdb';
-import { getRxStorageDexie } from 'rxdb/plugins/storage-dexie';
+import { createRxDatabase } from "rxdb"
+import { getRxStorageDexie } from "rxdb/plugins/storage-dexie"
 
 import {
 	type ExtensionInputs,
@@ -14,9 +14,9 @@ export { useExtensionContext } from "./model"
 const tagName = "akaia-app"
 
 const db = await createRxDatabase({
-    name: tagName,
-    storage: getRxStorageDexie()
-});
+	name: tagName,
+	storage: getRxStorageDexie(),
+})
 
 export const install = () => {
 	if (customElements.get(tagName) === undefined) {
@@ -40,7 +40,7 @@ export const install = () => {
 				connectedCallback() {
 					render(
 						() => {
-							console.log(db);
+							console.log(db)
 
 							return (
 								<ExtensionContext.Provider value={extensionContextState}>

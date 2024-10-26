@@ -1,4 +1,4 @@
-import { install } from "@/entities/extension"
+import { install } from "@/entities/extension-v1/index"
 
 import type { AttributifyAttributes } from "@unocss/preset-attributify"
 
@@ -7,8 +7,6 @@ declare module "solid-js" {
 		interface HTMLAttributes<T> extends AttributifyAttributes {}
 	}
 }
-
-export * from "@/common/ui/components"
 
 export const init = () => {
 	install()

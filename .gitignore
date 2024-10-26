@@ -1,12 +1,17 @@
 **/.DS_Store
 **/Thumbs.db
 
+# Do not ignore anything that has .gitkeep inside
+
+
 # Environment
 .env
 **.local
 
 # Artifacts and cache
 **/.target
+!**/.target/aarch64-linux-gnu/**
+!**/.target/linux-unknown-unknown/**
 **/node_modules
 **/pkg
 **/dist
