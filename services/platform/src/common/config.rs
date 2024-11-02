@@ -2,6 +2,7 @@ pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 pub const IMPORT_MAP: &str = r#"{
 	"imports": {
+		"svelte-browser-import": "https://unpkg.com/svelte-browser-import/dist/svelte-browser-import.es.js",
 		"@kobalte/core": "https://ga.jspm.io/npm:@kobalte/core@0.12.6/dist/esm/index.js",
 		"@solid-primitives/refs": "https://ga.jspm.io/npm:@solid-primitives/refs@1.0.8/dist/index.js",
 		"chart.js": "https://ga.jspm.io/npm:chart.js@4.4.4/dist/chart.js",

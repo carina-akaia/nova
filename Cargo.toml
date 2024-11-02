@@ -1,10 +1,5 @@
 [workspace]
-members = [
-	"packages/apps/experts",
-	"packages/core/cli",
-	"packages/core/framework",
-	"packages/modules/desktop",
-]
+members = ["services/platform", "system/cli"]
 resolver = "2"
 
 

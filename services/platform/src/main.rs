@@ -4,7 +4,7 @@ async fn main() -> std::io::Result<()> {
 	use {
 		actix_files::Files,
 		actix_web::*,
-		akaia_commlink::app::*,
+		akaia_commlink_platform::app::*,
 		leptos::*,
 		leptos_actix::{LeptosRoutes, generate_route_list},
 	};

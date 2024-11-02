@@ -1,0 +1,19 @@
+dev.local {
+	reverse_proxy http://localhost:3000
+}
+
+*.akaia {
+	reverse_proxy http://localhost:1337
+}
+
+http://*.akaia {
+	reverse_proxy http://localhost:1337
+}
+
+*.*.akaia {
+	reverse_proxy http://localhost:1337
+}
+
+http://*.*.akaia {
+	reverse_proxy http://localhost:1337
+}

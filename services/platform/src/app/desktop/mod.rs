@@ -1,6 +1,6 @@
-use {crate::ExtensionShell, leptos::*};
+use {crate::ExtensionProvider, leptos::*};
 
 #[component]
 pub fn CommLinkDesktop() -> impl IntoView {
-	view! { <ExtensionShell props={r#"{ "name": "akaia" }"#} /> }
+	view! { <ExtensionProvider props={r#"{ "name": "akaia" }"#} /> }
 }

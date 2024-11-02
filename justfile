@@ -18,19 +18,13 @@ fmt:
 	(leptosfmt ./src)
 
 build-framework:
-	(cargo make framework_build)
-
-dev-portal:
-	(cd ./packages/portal && dx serve --port 1420)
+	(cd ./services/platform && cargo make framework_build)
 
 dev-commlink_overlay:
 	(cd ./apps/commlink_overlay && cargo tauri dev)
 
 dev: build-framework
-	(cargo make devserver)
-
-build-portal:
-	(cd ./packages/portal && dx build)
+	(cd ./services/platform && cargo make devserver)
 
 build-commlink_overlay:
 	(cd ./apps/commlink_overlay && cargo tauri build)
@@ -45,8 +39,8 @@ build:
 
 deploy:
 	(sudo mkdir -p /akaia/configuration/web-server)
-	(sudo cp --update ./src/system/configuration/web-server/* /akaia/configuration/web-server/)
-	(sudo cp --update ./src/system/configuration/systemd/* /etc/systemd/system/)
+	(sudo cp --update system/configuration/web-server/* /akaia/configuration/web-server/)
+	(sudo cp --update .target/linux-unknown-unknown/etc/systemd/system/* /etc/systemd/system/)
 	(sudo chown -R akaia:akaia /akaia/configuration)
 	(sudo systemctl daemon-reload)
 	(sudo systemctl enable web-server)
