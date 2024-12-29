@@ -83,6 +83,7 @@
 		"nologin",
 		"nsis",
 		"oninput",
+		"onstatus",
 		"onsubmit",
 		"reshim",
 		"rxdb",

@@ -1,4 +1,4 @@
-import { install } from "@/entities/extension-v1/index"
+import { install } from "@/lib/entities/extension/index"
 
 import type { AttributifyAttributes } from "@unocss/preset-attributify"
 

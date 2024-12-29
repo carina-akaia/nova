@@ -12,3 +12,4 @@ path = "src/main.rs"
 [dependencies]
 getargs.workspace = true
 thiserror.workspace = true
+near-cli-rs.workspace = true

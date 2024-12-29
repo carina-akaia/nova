@@ -17723,7 +17723,7 @@ function createStore(...[store, options]) {
 }
 var $ROOT = Symbol("store-root");
 
-// src/entities/extension-v1/model.ts
+// src/lib/entities/extension/model.ts
 var initialExtensionContext = {
   account_id: null,
   app_id: null,
@@ -17734,18 +17734,14 @@ var initialExtensionContext = {
 var ExtensionContext = createContext(initialExtensionContext);
 var [extensionContextState, setExtensionContextState] = createStore(initialExtensionContext);
 
-// src/entities/extension-v1/index.ts
+// src/lib/entities/extension/index.ts
 var tagName = "akaia-app";
 var db = await createRxDatabase({
   name: tagName,
   storage: getRxStorageDexie()
 });
 var install = async () => {
-  const res = await h({
-    urls: [
-      "./static/example.svelte"
-      /* "./Nested.svelte" */
-    ],
+  const extension = await h({
     // files: [ // only one of urls or files can be provided
     //     {
     //         name: 'App',
@@ -17754,6 +17750,10 @@ var install = async () => {
     //         modified: true,
     //     }
     // ],
+    urls: [
+      "./static/packages/extensions/haptic/routes/+layout.svelte"
+      /* "./Nested.svelte" */
+    ],
     packagesUrl: "https://ga.jspm.io",
     svelteUrl: "https://ga.jspm.io/npm:svelte@5.1.3",
     injectedJS: "",
@@ -17762,8 +17762,9 @@ var install = async () => {
       console.log(val);
     }
   });
-  console.log("source:", res);
-  const ExtensionInstance = new res.render();
+  console.log("source:", extension);
+  const ExtensionInstance = new extension.render();
+  console.log(ExtensionInstance);
   if (customElements.get(tagName) === void 0) {
     customElements.define(
       tagName,
@@ -17780,6 +17781,7 @@ var install = async () => {
           }
         }
         connectedCallback() {
+          console.log("connected");
           const _extension = new ExtensionInstance({
             target: this.attachShadow({ mode: "closed" })
           });

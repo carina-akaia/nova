@@ -44,6 +44,7 @@ http = "1"
 llm = { git = "https://github.com/rustformers/llm", branch = "main" }
 log = "0.4"
 mime = "0.3"
+near-cli-rs = "*"
 near-sdk = "5.0.0"
 pin-project = "1.0"
 pretty_env_logger = "0.5"
