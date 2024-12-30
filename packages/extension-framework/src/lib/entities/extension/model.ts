@@ -1,5 +1,4 @@
-import { createContext, useContext } from "solid-js"
-import { createStore } from "solid-js/store"
+import { writable, type Writable } from "svelte/store"
 
 export type ExtensionInputs = {
 	account_id: string
@@ -25,9 +24,14 @@ const initialExtensionContext: ExtensionContextState = {
 	props: null,
 }
 
-export const ExtensionContext = createContext(initialExtensionContext)
+export const extensionContextStore: Writable<ExtensionContextState> =
+	writable(initialExtensionContext)
 
-export const [extensionContextState, setExtensionContextState] =
-	createStore(initialExtensionContext)
-
-export const useExtensionContext = () => useContext(ExtensionContext)
+export const setExtensionContextState = (
+	updater: (state: ExtensionContextState) => Partial<ExtensionContextState>,
+) => {
+	extensionContextStore.update((state: ExtensionContextState) => ({
+		...state,
+		...updater(state),
+	}))
+}

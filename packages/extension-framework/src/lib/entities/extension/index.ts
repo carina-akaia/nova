@@ -3,14 +3,7 @@ import { importSvelteBundle } from "svelte-browser-import"
 import { createRxDatabase } from "rxdb"
 import { getRxStorageDexie } from "rxdb/plugins/storage-dexie"
 
-import {
-	type ExtensionInputs,
-	extensionContextState,
-	ExtensionContext,
-	setExtensionContextState,
-} from "./model"
-
-export { useExtensionContext } from "./model"
+import { type ExtensionInputs, setExtensionContextState } from "./model"
 
 const tagName = "akaia-app"
 
@@ -20,32 +13,38 @@ const db = await createRxDatabase({
 })
 
 export const install = async () => {
-	const extension = await importSvelteBundle({
-		// files: [ // only one of urls or files can be provided
-		//     {
-		//         name: 'App',
-		//         type: 'svelte',
-		//         content: '...',
-		//         modified: true,
-		//     }
+	const extensionBundle = await importSvelteBundle({
+		// files: [
+		// 	// only one of urls or files can be provided
+		// 	{
+		// 		name: "App",
+		// 		type: "svelte",
+		// 		modified: true,
+
+		// 		content: `
+		// 			<script>
+		// 				import { onMount } from "svelte"
+
+		// 				onMount(() => {
+		// 					console.log("test")
+		// 				})
+		// 				</script>
+
+		// 				<p>Example CommLink extension written in Svelte</p>
+		// 		`,
+		// 	},
 		// ],
 
-		urls: ["./static/packages/extensions/haptic/routes/+layout.svelte" /* "./Nested.svelte" */],
+		urls: ["/static/packages/extensions/haptic/routes/+layout.svelte" /* "./Nested.svelte" */],
 		packagesUrl: "https://ga.jspm.io",
 		svelteUrl: "https://ga.jspm.io/npm:svelte@5.1.3",
 		injectedJS: "",
 		injectedCSS: "",
 
 		onstatus: (val: unknown) => {
-			console.log(val)
+			console.log("onStatus", val)
 		},
 	})
-
-	console.log("source:", extension)
-
-	const ExtensionInstance = new extension.render()
-
-	console.log(ExtensionInstance)
 
 	if (customElements.get(tagName) === undefined) {
 		customElements.define(
@@ -68,11 +67,17 @@ export const install = async () => {
 				connectedCallback() {
 					console.log("connected")
 
-					const _extension = new ExtensionInstance({
-						target: this.attachShadow({ mode: "closed" }),
+					const Extension = new extensionBundle.render()
+
+					console.log("Extension", Extension)
+
+					console.log("attachShadow result:", this.attachShadow({ mode: "open" }))
+
+					const extensionInstance = new Extension({
+						target: this.attachShadow({ mode: "open" }),
 					})
 
-					console.log(_extension)
+					console.log("extensionInstance", extensionInstance)
 				}
 			},
 		)

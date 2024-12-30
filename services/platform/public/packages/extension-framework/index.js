@@ -84,8 +84,8 @@ var require_dexie = __commonJS({
       }
       var getProto = Object.getPrototypeOf;
       var _hasOwn = {}.hasOwnProperty;
-      function hasOwn(obj, prop) {
-        return _hasOwn.call(obj, prop);
+      function hasOwn(obj, prop2) {
+        return _hasOwn.call(obj, prop2);
       }
       function props(proto, extension) {
         if (typeof extension === "function")
@@ -95,8 +95,8 @@ var require_dexie = __commonJS({
         });
       }
       var defineProperty = Object.defineProperty;
-      function setProp(obj, prop, functionOrGetSet, options) {
-        defineProperty(obj, prop, extend(functionOrGetSet && hasOwn(functionOrGetSet, "get") && typeof functionOrGetSet.get === "function" ? { get: functionOrGetSet.get, set: functionOrGetSet.set, configurable: true } : { value: functionOrGetSet, configurable: true, writable: true }, options));
+      function setProp(obj, prop2, functionOrGetSet, options) {
+        defineProperty(obj, prop2, extend(functionOrGetSet && hasOwn(functionOrGetSet, "get") && typeof functionOrGetSet.get === "function" ? { get: functionOrGetSet.get, set: functionOrGetSet.set, configurable: true } : { value: functionOrGetSet, configurable: true, writable: true }, options));
       }
       function derive(Child) {
         return {
@@ -110,10 +110,10 @@ var require_dexie = __commonJS({
         };
       }
       var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-      function getPropertyDescriptor(obj, prop) {
-        var pd = getOwnPropertyDescriptor(obj, prop);
+      function getPropertyDescriptor(obj, prop2) {
+        var pd = getOwnPropertyDescriptor(obj, prop2);
         var proto;
-        return pd || (proto = getProto(obj)) && getPropertyDescriptor(proto, prop);
+        return pd || (proto = getProto(obj)) && getPropertyDescriptor(proto, prop2);
       }
       var _slice = [].slice;
       function slice(args, start, end) {
@@ -270,9 +270,9 @@ var require_dexie = __commonJS({
           var proto = getProto(x2);
           rv = proto === Object.prototype ? {} : Object.create(proto);
           circularRefs.set(x2, rv);
-          for (var prop in x2) {
-            if (hasOwn(x2, prop)) {
-              rv[prop] = innerDeepClone(x2[prop]);
+          for (var prop2 in x2) {
+            if (hasOwn(x2, prop2)) {
+              rv[prop2] = innerDeepClone(x2[prop2]);
             }
           }
         }
@@ -617,7 +617,7 @@ var require_dexie = __commonJS({
             var possibleAwait = !psd.global && (psd !== PSD || microTaskId !== totalEchoes);
             var cleanup = possibleAwait && !decrementExpectedAwaits();
             var rv = new DexiePromise(function(resolve2, reject) {
-              propagateToListener(_this, new Listener2(nativeAwaitCompatibleWrap(onFulfilled, psd, possibleAwait, cleanup), nativeAwaitCompatibleWrap(onRejected, psd, possibleAwait, cleanup), resolve2, reject, psd));
+              propagateToListener(_this, new Listener(nativeAwaitCompatibleWrap(onFulfilled, psd, possibleAwait, cleanup), nativeAwaitCompatibleWrap(onRejected, psd, possibleAwait, cleanup), resolve2, reject, psd));
             });
             if (this._consoleTask)
               rv._consoleTask = this._consoleTask;
@@ -638,7 +638,7 @@ var require_dexie = __commonJS({
       props(DexiePromise.prototype, {
         then: thenProp,
         _then: function(onFulfilled, onRejected) {
-          propagateToListener(this, new Listener2(null, null, onFulfilled, onRejected, PSD));
+          propagateToListener(this, new Listener(null, null, onFulfilled, onRejected, PSD));
         },
         catch: function(onRejected) {
           if (arguments.length === 1)
@@ -674,7 +674,7 @@ var require_dexie = __commonJS({
       if (typeof Symbol !== "undefined" && Symbol.toStringTag)
         setProp(DexiePromise.prototype, Symbol.toStringTag, "Dexie.Promise");
       globalPSD.env = snapShot();
-      function Listener2(onFulfilled, onRejected, resolve2, reject, zone) {
+      function Listener(onFulfilled, onRejected, resolve2, reject, zone) {
         this.onFulfilled = typeof onFulfilled === "function" ? onFulfilled : null;
         this.onRejected = typeof onRejected === "function" ? onRejected : null;
         this.resolve = resolve2;
@@ -1353,22 +1353,22 @@ var require_dexie = __commonJS({
             console.warn("The query ".concat(JSON.stringify(indexOrCrit), " on ").concat(this.name, " would benefit from a ") + "compound index [".concat(keyPaths.join("+"), "]"));
           var idxByName = this.schema.idxByName;
           var idb = this.db._deps.indexedDB;
-          function equals(a2, b) {
+          function equals3(a2, b) {
             return idb.cmp(a2, b) === 0;
           }
           var _a2 = keyPaths.reduce(function(_a3, keyPath) {
             var prevIndex = _a3[0], prevFilterFn = _a3[1];
-            var index = idxByName[keyPath];
+            var index2 = idxByName[keyPath];
             var value = indexOrCrit[keyPath];
             return [
-              prevIndex || index,
-              prevIndex || !index ? combine(prevFilterFn, index && index.multi ? function(x2) {
-                var prop = getByKeyPath(x2, keyPath);
-                return isArray3(prop) && prop.some(function(item) {
-                  return equals(value, item);
+              prevIndex || index2,
+              prevIndex || !index2 ? combine(prevFilterFn, index2 && index2.multi ? function(x2) {
+                var prop2 = getByKeyPath(x2, keyPath);
+                return isArray3(prop2) && prop2.some(function(item) {
+                  return equals3(value, item);
                 });
               } : function(x2) {
-                return equals(value, getByKeyPath(x2, keyPath));
+                return equals3(value, getByKeyPath(x2, keyPath));
               }) : prevFilterFn
             ];
           }, [null, null]), idx = _a2[0], filterFunction = _a2[1];
@@ -1395,8 +1395,8 @@ var require_dexie = __commonJS({
         Table2.prototype.toCollection = function() {
           return new this.db.Collection(new this.db.WhereClause(this));
         };
-        Table2.prototype.orderBy = function(index) {
-          return new this.db.Collection(new this.db.WhereClause(this, isArray3(index) ? "[".concat(index.join("+"), "]") : index));
+        Table2.prototype.orderBy = function(index2) {
+          return new this.db.Collection(new this.db.WhereClause(this, isArray3(index2) ? "[".concat(index2.join("+"), "]") : index2));
         };
         Table2.prototype.reverse = function() {
           return this.toCollection().reverse();
@@ -1757,20 +1757,20 @@ var require_dexie = __commonJS({
       function getIndexOrStore(ctx, coreSchema) {
         if (ctx.isPrimKey)
           return coreSchema.primaryKey;
-        var index = coreSchema.getIndexByKeyPath(ctx.index);
-        if (!index)
+        var index2 = coreSchema.getIndexByKeyPath(ctx.index);
+        if (!index2)
           throw new exceptions.Schema("KeyPath " + ctx.index + " on object store " + coreSchema.name + " is not indexed");
-        return index;
+        return index2;
       }
       function openCursor(ctx, coreTable, trans) {
-        var index = getIndexOrStore(ctx, coreTable.schema);
+        var index2 = getIndexOrStore(ctx, coreTable.schema);
         return coreTable.openCursor({
           trans,
           values: !ctx.keysOnly,
           reverse: ctx.dir === "prev",
           unique: !!ctx.unique,
           query: {
-            index,
+            index: index2,
             range: ctx.range
           }
         });
@@ -1963,13 +1963,13 @@ var require_dexie = __commonJS({
             var ctx = _this._ctx;
             if (ctx.dir === "next" && isPlainKeyRange(ctx, true) && ctx.limit > 0) {
               var valueMapper_1 = ctx.valueMapper;
-              var index = getIndexOrStore(ctx, ctx.table.core.schema);
+              var index2 = getIndexOrStore(ctx, ctx.table.core.schema);
               return ctx.table.core.query({
                 trans,
                 limit: ctx.limit,
                 values: true,
                 query: {
-                  index,
+                  index: index2,
                   range: ctx.range
                 }
               }).then(function(_a2) {
@@ -2103,13 +2103,13 @@ var require_dexie = __commonJS({
           var ctx = this._ctx;
           if (ctx.dir === "next" && isPlainKeyRange(ctx, true) && ctx.limit > 0) {
             return this._read(function(trans) {
-              var index = getIndexOrStore(ctx, ctx.table.core.schema);
+              var index2 = getIndexOrStore(ctx, ctx.table.core.schema);
               return ctx.table.core.query({
                 trans,
                 values: false,
                 limit: ctx.limit,
                 query: {
-                  index,
+                  index: index2,
                   range: ctx.range
                 }
               });
@@ -2142,11 +2142,11 @@ var require_dexie = __commonJS({
           var ctx = this._ctx, idx = ctx.index && ctx.table.schema.idxByName[ctx.index];
           if (!idx || !idx.multi)
             return this;
-          var set = {};
+          var set2 = {};
           addFilter(this._ctx, function(cursor) {
             var strKey = cursor.primaryKey.toString();
-            var found = hasOwn(set, strKey);
-            set[strKey] = true;
+            var found = hasOwn(set2, strKey);
+            set2[strKey] = true;
             return !found;
           });
           return this;
@@ -2536,56 +2536,56 @@ var require_dexie = __commonJS({
           }, [str], "");
         };
         WhereClause2.prototype.anyOfIgnoreCase = function() {
-          var set = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
-          if (set.length === 0)
+          var set2 = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
+          if (set2.length === 0)
             return emptyCollection(this);
           return addIgnoreCaseAlgorithm(this, function(x2, a2) {
             return a2.indexOf(x2) !== -1;
-          }, set, "");
+          }, set2, "");
         };
         WhereClause2.prototype.startsWithAnyOfIgnoreCase = function() {
-          var set = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
-          if (set.length === 0)
+          var set2 = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
+          if (set2.length === 0)
             return emptyCollection(this);
           return addIgnoreCaseAlgorithm(this, function(x2, a2) {
             return a2.some(function(n2) {
               return x2.indexOf(n2) === 0;
             });
-          }, set, maxString);
+          }, set2, maxString);
         };
         WhereClause2.prototype.anyOf = function() {
           var _this = this;
-          var set = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
+          var set2 = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
           var compare3 = this._cmp;
           try {
-            set.sort(compare3);
+            set2.sort(compare3);
           } catch (e) {
             return fail(this, INVALID_KEY_ARGUMENT);
           }
-          if (set.length === 0)
+          if (set2.length === 0)
             return emptyCollection(this);
           var c = new this.Collection(this, function() {
-            return createRange(set[0], set[set.length - 1]);
+            return createRange(set2[0], set2[set2.length - 1]);
           });
           c._ondirectionchange = function(direction) {
             compare3 = direction === "next" ? _this._ascending : _this._descending;
-            set.sort(compare3);
+            set2.sort(compare3);
           };
           var i2 = 0;
           c._addAlgorithm(function(cursor, advance, resolve2) {
             var key = cursor.key;
-            while (compare3(key, set[i2]) > 0) {
+            while (compare3(key, set2[i2]) > 0) {
               ++i2;
-              if (i2 === set.length) {
+              if (i2 === set2.length) {
                 advance(resolve2);
                 return false;
               }
             }
-            if (compare3(key, set[i2]) === 0) {
+            if (compare3(key, set2[i2]) === 0) {
               return true;
             } else {
               advance(function() {
-                cursor.continue(set[i2]);
+                cursor.continue(set2[i2]);
               });
               return false;
             }
@@ -2596,18 +2596,18 @@ var require_dexie = __commonJS({
           return this.inAnyRange([[minKey, value], [value, this.db._maxKey]], { includeLowers: false, includeUppers: false });
         };
         WhereClause2.prototype.noneOf = function() {
-          var set = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
-          if (set.length === 0)
+          var set2 = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
+          if (set2.length === 0)
             return new this.Collection(this);
           try {
-            set.sort(this._ascending);
+            set2.sort(this._ascending);
           } catch (e) {
             return fail(this, INVALID_KEY_ARGUMENT);
           }
-          var ranges = set.reduce(function(res, val) {
+          var ranges = set2.reduce(function(res, val) {
             return res ? res.concat([[res[res.length - 1][1], val]]) : [[minKey, val]];
           }, null);
-          ranges.push([set[set.length - 1], this.db._maxKey]);
+          ranges.push([set2[set2.length - 1], this.db._maxKey]);
           return this.inAnyRange(ranges, { includeLowers: false, includeUppers: false });
         };
         WhereClause2.prototype.inAnyRange = function(ranges, options) {
@@ -2640,30 +2640,30 @@ var require_dexie = __commonJS({
           function rangeSorter(a2, b) {
             return sortDirection(a2[0], b[0]);
           }
-          var set;
+          var set2;
           try {
-            set = ranges.reduce(addRange2, []);
-            set.sort(rangeSorter);
+            set2 = ranges.reduce(addRange2, []);
+            set2.sort(rangeSorter);
           } catch (ex) {
             return fail(this, INVALID_KEY_ARGUMENT);
           }
           var rangePos = 0;
           var keyIsBeyondCurrentEntry = includeUppers ? function(key) {
-            return ascending(key, set[rangePos][1]) > 0;
+            return ascending(key, set2[rangePos][1]) > 0;
           } : function(key) {
-            return ascending(key, set[rangePos][1]) >= 0;
+            return ascending(key, set2[rangePos][1]) >= 0;
           };
           var keyIsBeforeCurrentEntry = includeLowers ? function(key) {
-            return descending(key, set[rangePos][0]) > 0;
+            return descending(key, set2[rangePos][0]) > 0;
           } : function(key) {
-            return descending(key, set[rangePos][0]) >= 0;
+            return descending(key, set2[rangePos][0]) >= 0;
           };
           function keyWithinCurrentRange(key) {
             return !keyIsBeyondCurrentEntry(key) && !keyIsBeforeCurrentEntry(key);
           }
           var checkKey = keyIsBeyondCurrentEntry;
           var c = new this.Collection(this, function() {
-            return createRange(set[0][0], set[set.length - 1][1], !includeLowers, !includeUppers);
+            return createRange(set2[0][0], set2[set2.length - 1][1], !includeLowers, !includeUppers);
           });
           c._ondirectionchange = function(direction) {
             if (direction === "next") {
@@ -2673,27 +2673,27 @@ var require_dexie = __commonJS({
               checkKey = keyIsBeforeCurrentEntry;
               sortDirection = descending;
             }
-            set.sort(rangeSorter);
+            set2.sort(rangeSorter);
           };
           c._addAlgorithm(function(cursor, advance, resolve2) {
             var key = cursor.key;
             while (checkKey(key)) {
               ++rangePos;
-              if (rangePos === set.length) {
+              if (rangePos === set2.length) {
                 advance(resolve2);
                 return false;
               }
             }
             if (keyWithinCurrentRange(key)) {
               return true;
-            } else if (_this._cmp(key, set[rangePos][1]) === 0 || _this._cmp(key, set[rangePos][0]) === 0) {
+            } else if (_this._cmp(key, set2[rangePos][1]) === 0 || _this._cmp(key, set2[rangePos][0]) === 0) {
               return false;
             } else {
               advance(function() {
                 if (sortDirection === ascending)
-                  cursor.continue(set[rangePos][0]);
+                  cursor.continue(set2[rangePos][0]);
                 else
-                  cursor.continue(set[rangePos][1]);
+                  cursor.continue(set2[rangePos][1]);
               });
               return false;
             }
@@ -2701,26 +2701,26 @@ var require_dexie = __commonJS({
           return c;
         };
         WhereClause2.prototype.startsWithAnyOf = function() {
-          var set = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
-          if (!set.every(function(s) {
+          var set2 = getArrayOf.apply(NO_CHAR_ARRAY, arguments);
+          if (!set2.every(function(s) {
             return typeof s === "string";
           })) {
             return fail(this, "startsWithAnyOf() only works with strings");
           }
-          if (set.length === 0)
+          if (set2.length === 0)
             return emptyCollection(this);
-          return this.inAnyRange(set.map(function(str) {
+          return this.inAnyRange(set2.map(function(str) {
             return [str, str + maxString];
           }));
         };
         return WhereClause2;
       }();
       function createWhereClauseConstructor(db2) {
-        return makeClassConstructor(WhereClause.prototype, function WhereClause2(table, index, orCollection) {
+        return makeClassConstructor(WhereClause.prototype, function WhereClause2(table, index2, orCollection) {
           this.db = db2;
           this._ctx = {
             table,
-            index: index === ":id" ? null : index,
+            index: index2 === ":id" ? null : index2,
             or: orCollection
           };
           this._cmp = this._ascending = cmp2;
@@ -2739,17 +2739,17 @@ var require_dexie = __commonJS({
         });
       }
       function eventRejectHandler(reject) {
-        return wrap(function(event) {
-          preventDefault(event);
-          reject(event.target.error);
+        return wrap(function(event2) {
+          preventDefault2(event2);
+          reject(event2.target.error);
           return false;
         });
       }
-      function preventDefault(event) {
-        if (event.stopPropagation)
-          event.stopPropagation();
-        if (event.preventDefault)
-          event.preventDefault();
+      function preventDefault2(event2) {
+        if (event2.stopPropagation)
+          event2.stopPropagation();
+        if (event2.preventDefault)
+          event2.preventDefault();
       }
       var DEXIE_STORAGE_MUTATED_EVENT_NAME = "storagemutated";
       var STORAGE_MUTATED_DOM_EVENT_NAME = "x-storagemutated-1";
@@ -2804,11 +2804,11 @@ var require_dexie = __commonJS({
           assert2(this._completion._state === null);
           idbtrans = this.idbtrans = idbtrans || (this.db.core ? this.db.core.transaction(this.storeNames, this.mode, { durability: this.chromeTransactionDurability }) : idbdb.transaction(this.storeNames, this.mode, { durability: this.chromeTransactionDurability }));
           idbtrans.onerror = wrap(function(ev) {
-            preventDefault(ev);
+            preventDefault2(ev);
             _this._reject(idbtrans.error);
           });
           idbtrans.onabort = wrap(function(ev) {
-            preventDefault(ev);
+            preventDefault2(ev);
             _this.active && _this._reject(new exceptions.Abort(idbtrans.error));
             _this.active = false;
             _this.on("abort").fire(ev);
@@ -2971,8 +2971,8 @@ var require_dexie = __commonJS({
           primKey,
           indexes,
           mappedClass: null,
-          idxByName: arrayToObject(indexes, function(index) {
-            return [index.name, index];
+          idxByName: arrayToObject(indexes, function(index2) {
+            return [index2.name, index2];
           })
         };
       }
@@ -3052,8 +3052,8 @@ var require_dexie = __commonJS({
                   },
                   indexes: arrayify(store.indexNames).map(function(indexName) {
                     return store.index(indexName);
-                  }).map(function(index) {
-                    var name = index.name, unique2 = index.unique, multiEntry = index.multiEntry, keyPath2 = index.keyPath;
+                  }).map(function(index2) {
+                    var name = index2.name, unique2 = index2.unique, multiEntry = index2.multiEntry, keyPath2 = index2.keyPath;
                     var compound2 = isArray3(keyPath2);
                     var result2 = {
                       name,
@@ -3091,7 +3091,7 @@ var require_dexie = __commonJS({
         }
         function createDbCoreTable(tableSchema) {
           var tableName = tableSchema.name;
-          function mutate(_a3) {
+          function mutate2(_a3) {
             var trans = _a3.trans, type6 = _a3.type, keys2 = _a3.keys, values = _a3.values, range = _a3.range;
             return new Promise(function(resolve2, reject) {
               resolve2 = wrap(resolve2);
@@ -3110,9 +3110,9 @@ var require_dexie = __commonJS({
               var reqs = [];
               var failures = [];
               var numFailures = 0;
-              var errorHandler = function(event) {
+              var errorHandler = function(event2) {
                 ++numFailures;
-                preventDefault(event);
+                preventDefault2(event2);
               };
               if (type6 === "deleteRange") {
                 if (range.type === 4)
@@ -3135,8 +3135,8 @@ var require_dexie = __commonJS({
                   }
                 }
               }
-              var done = function(event) {
-                var lastResult = event.target.result;
+              var done = function(event2) {
+                var lastResult = event2.target.result;
                 reqs.forEach(function(req2, i3) {
                   return req2.error != null && (failures[i3] = req2.error);
                 });
@@ -3149,9 +3149,9 @@ var require_dexie = __commonJS({
                   lastResult
                 });
               };
-              req.onerror = function(event) {
-                errorHandler(event);
-                done(event);
+              req.onerror = function(event2) {
+                errorHandler(event2);
+                done(event2);
               };
               req.onsuccess = done;
             });
@@ -3160,11 +3160,11 @@ var require_dexie = __commonJS({
             var trans = _a3.trans, values = _a3.values, query2 = _a3.query, reverse = _a3.reverse, unique2 = _a3.unique;
             return new Promise(function(resolve2, reject) {
               resolve2 = wrap(resolve2);
-              var index = query2.index, range = query2.range;
+              var index2 = query2.index, range = query2.range;
               var store = trans.objectStore(tableName);
-              var source = index.isPrimaryKey ? store : store.index(index.name);
+              var source2 = index2.isPrimaryKey ? store : store.index(index2.name);
               var direction = reverse ? unique2 ? "prevunique" : "prev" : unique2 ? "nextunique" : "next";
-              var req = values || !("openKeyCursor" in source) ? source.openCursor(makeIDBKeyRange(range), direction) : source.openKeyCursor(makeIDBKeyRange(range), direction);
+              var req = values || !("openKeyCursor" in source2) ? source2.openCursor(makeIDBKeyRange(range), direction) : source2.openKeyCursor(makeIDBKeyRange(range), direction);
               req.onerror = eventRejectHandler(reject);
               req.onsuccess = wrap(function(ev) {
                 var cursor = req.result;
@@ -3242,23 +3242,23 @@ var require_dexie = __commonJS({
                 resolve2 = wrap(resolve2);
                 var trans = request.trans, values = request.values, limit = request.limit, query2 = request.query;
                 var nonInfinitLimit = limit === Infinity ? void 0 : limit;
-                var index = query2.index, range = query2.range;
+                var index2 = query2.index, range = query2.range;
                 var store = trans.objectStore(tableName);
-                var source = index.isPrimaryKey ? store : store.index(index.name);
+                var source2 = index2.isPrimaryKey ? store : store.index(index2.name);
                 var idbKeyRange = makeIDBKeyRange(range);
                 if (limit === 0)
                   return resolve2({ result: [] });
                 if (hasGetAll2) {
-                  var req = values ? source.getAll(idbKeyRange, nonInfinitLimit) : source.getAllKeys(idbKeyRange, nonInfinitLimit);
-                  req.onsuccess = function(event) {
-                    return resolve2({ result: event.target.result });
+                  var req = values ? source2.getAll(idbKeyRange, nonInfinitLimit) : source2.getAllKeys(idbKeyRange, nonInfinitLimit);
+                  req.onsuccess = function(event2) {
+                    return resolve2({ result: event2.target.result });
                   };
                   req.onerror = eventRejectHandler(reject);
                 } else {
                   var count_1 = 0;
-                  var req_1 = values || !("openKeyCursor" in source) ? source.openCursor(idbKeyRange) : source.openKeyCursor(idbKeyRange);
+                  var req_1 = values || !("openKeyCursor" in source2) ? source2.openCursor(idbKeyRange) : source2.openKeyCursor(idbKeyRange);
                   var result_1 = [];
-                  req_1.onsuccess = function(event) {
+                  req_1.onsuccess = function(event2) {
                     var cursor = req_1.result;
                     if (!cursor)
                       return resolve2({ result: result_1 });
@@ -3275,7 +3275,7 @@ var require_dexie = __commonJS({
           return {
             name: tableName,
             schema: tableSchema,
-            mutate,
+            mutate: mutate2,
             getMany: function(_a3) {
               var trans = _a3.trans, keys2 = _a3.keys;
               return new Promise(function(resolve2, reject) {
@@ -3286,8 +3286,8 @@ var require_dexie = __commonJS({
                 var keyCount = 0;
                 var callbackCount = 0;
                 var req;
-                var successHandler = function(event) {
-                  var req2 = event.target;
+                var successHandler = function(event2) {
+                  var req2 = event2.target;
                   if ((result[req2._pos] = req2.result) != null)
                     ;
                   if (++callbackCount === keyCount)
@@ -3314,8 +3314,8 @@ var require_dexie = __commonJS({
                 resolve2 = wrap(resolve2);
                 var store = trans.objectStore(tableName);
                 var req = store.get(key);
-                req.onsuccess = function(event) {
-                  return resolve2(event.target.result);
+                req.onsuccess = function(event2) {
+                  return resolve2(event2.target.result);
                 };
                 req.onerror = eventRejectHandler(reject);
               });
@@ -3324,12 +3324,12 @@ var require_dexie = __commonJS({
             openCursor: openCursor2,
             count: function(_a3) {
               var query2 = _a3.query, trans = _a3.trans;
-              var index = query2.index, range = query2.range;
+              var index2 = query2.index, range = query2.range;
               return new Promise(function(resolve2, reject) {
                 var store = trans.objectStore(tableName);
-                var source = index.isPrimaryKey ? store : store.index(index.name);
+                var source2 = index2.isPrimaryKey ? store : store.index(index2.name);
                 var idbKeyRange = makeIDBKeyRange(range);
-                var req = idbKeyRange ? source.count(idbKeyRange) : source.count();
+                var req = idbKeyRange ? source2.count(idbKeyRange) : source2.count();
                 req.onsuccess = wrap(function(ev) {
                   return resolve2(ev.target.result);
                 });
@@ -3578,10 +3578,10 @@ var require_dexie = __commonJS({
             }
           });
         });
-        function runQueue2() {
-          return queue.length ? DexiePromise.resolve(queue.shift()(trans.idbtrans)).then(runQueue2) : DexiePromise.resolve();
+        function runQueue() {
+          return queue.length ? DexiePromise.resolve(queue.shift()(trans.idbtrans)).then(runQueue) : DexiePromise.resolve();
         }
-        return runQueue2().then(function() {
+        return runQueue().then(function() {
           createMissingTables(globalSchema, idbUpgradeTrans);
         });
       }
@@ -3670,8 +3670,8 @@ var require_dexie = __commonJS({
           for (var j = 0; j < store.indexNames.length; ++j) {
             var idbindex = store.index(store.indexNames[j]);
             keyPath = idbindex.keyPath;
-            var index = createIndexSpec(idbindex.name, keyPath, !!idbindex.unique, !!idbindex.multiEntry, false, keyPath && typeof keyPath !== "string", false);
-            indexes.push(index);
+            var index2 = createIndexSpec(idbindex.name, keyPath, !!idbindex.unique, !!idbindex.multiEntry, false, keyPath && typeof keyPath !== "string", false);
+            indexes.push(index2);
           }
           globalSchema[storeName] = createTableSchema(storeName, primKey, indexes);
         });
@@ -3715,11 +3715,11 @@ var require_dexie = __commonJS({
         }
       }
       function parseIndexSyntax(primKeyAndIndexes) {
-        return primKeyAndIndexes.split(",").map(function(index, indexNum) {
-          index = index.trim();
-          var name = index.replace(/([&*]|\+\+)/g, "");
+        return primKeyAndIndexes.split(",").map(function(index2, indexNum) {
+          index2 = index2.trim();
+          var name = index2.replace(/([&*]|\+\+)/g, "");
           var keyPath = /^\[/.test(name) ? name.match(/^\[(.*)\]$/)[1].split("+") : name;
-          return createIndexSpec(name, keyPath || null, /\&/.test(index), /\*/.test(index), /\+\+/.test(index), isArray3(keyPath), indexNum === 0);
+          return createIndexSpec(name, keyPath || null, /\&/.test(index2), /\*/.test(index2), /\+\+/.test(index2), isArray3(keyPath), indexNum === 0);
         });
       }
       var Version = function() {
@@ -3935,33 +3935,33 @@ var require_dexie = __commonJS({
         return false;
       }
       function getRangeSetIterator(node) {
-        var state = isEmptyRange(node) ? null : { s: 0, n: node };
+        var state2 = isEmptyRange(node) ? null : { s: 0, n: node };
         return {
           next: function(key) {
             var keyProvided = arguments.length > 0;
-            while (state) {
-              switch (state.s) {
+            while (state2) {
+              switch (state2.s) {
                 case 0:
-                  state.s = 1;
+                  state2.s = 1;
                   if (keyProvided) {
-                    while (state.n.l && cmp2(key, state.n.from) < 0)
-                      state = { up: state, n: state.n.l, s: 1 };
+                    while (state2.n.l && cmp2(key, state2.n.from) < 0)
+                      state2 = { up: state2, n: state2.n.l, s: 1 };
                   } else {
-                    while (state.n.l)
-                      state = { up: state, n: state.n.l, s: 1 };
+                    while (state2.n.l)
+                      state2 = { up: state2, n: state2.n.l, s: 1 };
                   }
                 case 1:
-                  state.s = 2;
-                  if (!keyProvided || cmp2(key, state.n.to) <= 0)
-                    return { value: state.n, done: false };
+                  state2.s = 2;
+                  if (!keyProvided || cmp2(key, state2.n.to) <= 0)
+                    return { value: state2.n, done: false };
                 case 2:
-                  if (state.n.r) {
-                    state.s = 3;
-                    state = { up: state, n: state.n.r, s: 0 };
+                  if (state2.n.r) {
+                    state2.s = 3;
+                    state2 = { up: state2, n: state2.n.r, s: 0 };
                     continue;
                   }
                 case 3:
-                  state = state.up;
+                  state2 = state2.up;
               }
             }
             return { done: true };
@@ -4069,38 +4069,38 @@ var require_dexie = __commonJS({
         }
       }
       function dexieOpen(db2) {
-        var state = db2._state;
+        var state2 = db2._state;
         var indexedDB2 = db2._deps.indexedDB;
-        if (state.isBeingOpened || db2.idbdb)
-          return state.dbReadyPromise.then(function() {
-            return state.dbOpenError ? rejection(state.dbOpenError) : db2;
+        if (state2.isBeingOpened || db2.idbdb)
+          return state2.dbReadyPromise.then(function() {
+            return state2.dbOpenError ? rejection(state2.dbOpenError) : db2;
           });
-        state.isBeingOpened = true;
-        state.dbOpenError = null;
-        state.openComplete = false;
-        var openCanceller = state.openCanceller;
+        state2.isBeingOpened = true;
+        state2.dbOpenError = null;
+        state2.openComplete = false;
+        var openCanceller = state2.openCanceller;
         var nativeVerToOpen = Math.round(db2.verno * 10);
         var schemaPatchMode = false;
         function throwIfCancelled() {
-          if (state.openCanceller !== openCanceller)
+          if (state2.openCanceller !== openCanceller)
             throw new exceptions.DatabaseClosed("db.open() was cancelled");
         }
-        var resolveDbReady = state.dbReadyResolve, upgradeTransaction = null, wasCreated = false;
+        var resolveDbReady = state2.dbReadyResolve, upgradeTransaction = null, wasCreated = false;
         var tryOpenDB = function() {
           return new DexiePromise(function(resolve2, reject) {
             throwIfCancelled();
             if (!indexedDB2)
               throw new exceptions.MissingAPI();
             var dbName = db2.name;
-            var req = state.autoSchema || !nativeVerToOpen ? indexedDB2.open(dbName) : indexedDB2.open(dbName, nativeVerToOpen);
+            var req = state2.autoSchema || !nativeVerToOpen ? indexedDB2.open(dbName) : indexedDB2.open(dbName, nativeVerToOpen);
             if (!req)
               throw new exceptions.MissingAPI();
             req.onerror = eventRejectHandler(reject);
             req.onblocked = wrap(db2._fireOnBlocked);
             req.onupgradeneeded = wrap(function(e) {
               upgradeTransaction = req.transaction;
-              if (state.autoSchema && !db2._options.allowEmptyDB) {
-                req.onerror = preventDefault;
+              if (state2.autoSchema && !db2._options.allowEmptyDB) {
+                req.onerror = preventDefault2;
                 upgradeTransaction.abort();
                 req.result.close();
                 var delreq = indexedDB2.deleteDatabase(dbName);
@@ -4125,7 +4125,7 @@ var require_dexie = __commonJS({
               if (objectStoreNames.length > 0)
                 try {
                   var tmpTrans = idbdb.transaction(safariMultiStoreFix(objectStoreNames), "readonly");
-                  if (state.autoSchema)
+                  if (state2.autoSchema)
                     readGlobalSchema(db2, idbdb, tmpTrans);
                   else {
                     adjustToExistingIndexNames(db2, db2._dbSchema, tmpTrans);
@@ -4142,7 +4142,7 @@ var require_dexie = __commonJS({
                 }
               connections.push(db2);
               idbdb.onversionchange = wrap(function(ev) {
-                state.vcFired = true;
+                state2.vcFired = true;
                 db2.on("versionchange").fire(ev);
               });
               idbdb.onclose = wrap(function(ev) {
@@ -4155,8 +4155,8 @@ var require_dexie = __commonJS({
           }).catch(function(err) {
             switch (err === null || err === void 0 ? void 0 : err.name) {
               case "UnknownError":
-                if (state.PR1398_maxLoop > 0) {
-                  state.PR1398_maxLoop--;
+                if (state2.PR1398_maxLoop > 0) {
+                  state2.PR1398_maxLoop--;
                   console.warn("Dexie: Workaround for Chrome UnknownError on open()");
                   return tryOpenDB();
                 }
@@ -4176,35 +4176,35 @@ var require_dexie = __commonJS({
           (typeof navigator === "undefined" ? DexiePromise.resolve() : idbReady()).then(tryOpenDB)
         ]).then(function() {
           throwIfCancelled();
-          state.onReadyBeingFired = [];
+          state2.onReadyBeingFired = [];
           return DexiePromise.resolve(vip(function() {
             return db2.on.ready.fire(db2.vip);
           })).then(function fireRemainders() {
-            if (state.onReadyBeingFired.length > 0) {
-              var remainders_1 = state.onReadyBeingFired.reduce(promisableChain, nop);
-              state.onReadyBeingFired = [];
+            if (state2.onReadyBeingFired.length > 0) {
+              var remainders_1 = state2.onReadyBeingFired.reduce(promisableChain, nop);
+              state2.onReadyBeingFired = [];
               return DexiePromise.resolve(vip(function() {
                 return remainders_1(db2.vip);
               })).then(fireRemainders);
             }
           });
         }).finally(function() {
-          if (state.openCanceller === openCanceller) {
-            state.onReadyBeingFired = null;
-            state.isBeingOpened = false;
+          if (state2.openCanceller === openCanceller) {
+            state2.onReadyBeingFired = null;
+            state2.isBeingOpened = false;
           }
         }).catch(function(err) {
-          state.dbOpenError = err;
+          state2.dbOpenError = err;
           try {
             upgradeTransaction && upgradeTransaction.abort();
           } catch (_a2) {
           }
-          if (openCanceller === state.openCanceller) {
+          if (openCanceller === state2.openCanceller) {
             db2._close();
           }
           return rejection(err);
         }).finally(function() {
-          state.openComplete = true;
+          state2.openComplete = true;
           resolveDbReady();
         }).then(function() {
           if (wasCreated) {
@@ -4230,8 +4230,8 @@ var require_dexie = __commonJS({
         }, onSuccess = step(callNext), onError = step(doThrow);
         function step(getNext) {
           return function(val) {
-            var next = getNext(val), value = next.value;
-            return next.done ? value : !value || typeof value.then !== "function" ? isArray3(value) ? Promise.all(value).then(onSuccess, onError) : onSuccess(value) : value.then(onSuccess, onError);
+            var next2 = getNext(val), value = next2.value;
+            return next2.done ? value : !value || typeof value.then !== "function" ? isArray3(value) ? Promise.all(value).then(onSuccess, onError) : onSuccess(value) : value.then(onSuccess, onError);
           };
         }
         return step(callNext)();
@@ -4340,8 +4340,8 @@ var require_dexie = __commonJS({
           var primaryKey = addVirtualIndexes(schema.primaryKey.keyPath, 0, schema.primaryKey);
           indexLookup[":id"] = [primaryKey];
           for (var _i = 0, _a2 = schema.indexes; _i < _a2.length; _i++) {
-            var index = _a2[_i];
-            addVirtualIndexes(index.keyPath, 0, index);
+            var index2 = _a2[_i];
+            addVirtualIndexes(index2.keyPath, 0, index2);
           }
           function findBestIndex(keyPath) {
             var result2 = indexLookup[getKeyPathAlias(keyPath)];
@@ -4357,10 +4357,10 @@ var require_dexie = __commonJS({
             };
           }
           function translateRequest(req) {
-            var index2 = req.query.index;
-            return index2.isVirtual ? __assign(__assign({}, req), { query: {
-              index: index2.lowLevelIndex,
-              range: translateRange(req.query.range, index2.keyTail)
+            var index3 = req.query.index;
+            return index3.isVirtual ? __assign(__assign({}, req), { query: {
+              index: index3.lowLevelIndex,
+              range: translateRange(req.query.range, index3.keyTail)
             } }) : req;
           }
           var result = __assign(__assign({}, table), { schema: __assign(__assign({}, schema), { primaryKey, indexes: allVirtualIndexes, getIndexByKeyPath: findBestIndex }), count: function(req) {
@@ -4417,28 +4417,28 @@ var require_dexie = __commonJS({
       function getObjectDiff(a2, b, rv, prfx) {
         rv = rv || {};
         prfx = prfx || "";
-        keys(a2).forEach(function(prop) {
-          if (!hasOwn(b, prop)) {
-            rv[prfx + prop] = void 0;
+        keys(a2).forEach(function(prop2) {
+          if (!hasOwn(b, prop2)) {
+            rv[prfx + prop2] = void 0;
           } else {
-            var ap = a2[prop], bp = b[prop];
+            var ap = a2[prop2], bp = b[prop2];
             if (typeof ap === "object" && typeof bp === "object" && ap && bp) {
               var apTypeName = toStringTag(ap);
               var bpTypeName = toStringTag(bp);
               if (apTypeName !== bpTypeName) {
-                rv[prfx + prop] = b[prop];
+                rv[prfx + prop2] = b[prop2];
               } else if (apTypeName === "Object") {
-                getObjectDiff(ap, bp, rv, prfx + prop + ".");
+                getObjectDiff(ap, bp, rv, prfx + prop2 + ".");
               } else if (ap !== bp) {
-                rv[prfx + prop] = b[prop];
+                rv[prfx + prop2] = b[prop2];
               }
             } else if (ap !== bp)
-              rv[prfx + prop] = b[prop];
+              rv[prfx + prop2] = b[prop2];
           }
         });
-        keys(b).forEach(function(prop) {
-          if (!hasOwn(a2, prop)) {
-            rv[prfx + prop] = b[prop];
+        keys(b).forEach(function(prop2) {
+          if (!hasOwn(a2, prop2)) {
+            rv[prfx + prop2] = b[prop2];
           }
         });
         return rv;
@@ -4657,8 +4657,8 @@ var require_dexie = __commonJS({
             var schema = table.schema;
             var primaryKey = schema.primaryKey, indexes = schema.indexes;
             var extractKey = primaryKey.extractKey, outbound = primaryKey.outbound;
-            var indexesWithAutoIncPK = primaryKey.autoIncrement && indexes.filter(function(index) {
-              return index.compound && index.keyPath.includes(primaryKey.keyPath);
+            var indexesWithAutoIncPK = primaryKey.autoIncrement && indexes.filter(function(index2) {
+              return index2.compound && index2.keyPath.includes(primaryKey.keyPath);
             });
             var tableClone = __assign(__assign({}, table), { mutate: function(req) {
               var trans = req.trans;
@@ -4702,8 +4702,8 @@ var require_dexie = __commonJS({
                       var idxVals = req.values.map(function(v) {
                         return idx.extractKey(v);
                       });
-                      var pkPos = idx.keyPath.findIndex(function(prop) {
-                        return prop === primaryKey.keyPath;
+                      var pkPos = idx.keyPath.findIndex(function(prop2) {
+                        return prop2 === primaryKey.keyPath;
                       });
                       res.results.forEach(function(pk) {
                         return idxVals[pkPos] = pk;
@@ -4718,9 +4718,9 @@ var require_dexie = __commonJS({
             } });
             var getRange = function(_a2) {
               var _b, _c;
-              var _d = _a2.query, index = _d.index, range = _d.range;
+              var _d = _a2.query, index2 = _d.index, range = _d.range;
               return [
-                index,
+                index2,
                 new RangeSet2((_b = range.lower) !== null && _b !== void 0 ? _b : core.MIN_KEY, (_c = range.upper) !== null && _c !== void 0 ? _c : core.MAX_KEY)
               ];
             };
@@ -4870,13 +4870,13 @@ var require_dexie = __commonJS({
       function applyOptimisticOps(result, req, ops, table, cacheEntry, immutable) {
         if (!ops || ops.length === 0)
           return result;
-        var index = req.query.index;
-        var multiEntry = index.multiEntry;
+        var index2 = req.query.index;
+        var multiEntry = index2.multiEntry;
         var queryRange = req.query.range;
         var primaryKey = table.schema.primaryKey;
         var extractPrimKey = primaryKey.extractKey;
-        var extractIndex = index.extractKey;
-        var extractLowLevelIndex = (index.lowLevelIndex || index).extractKey;
+        var extractIndex = index2.extractKey;
+        var extractLowLevelIndex = (index2.lowLevelIndex || index2).extractKey;
         var finalResult = ops.reduce(function(result2, op) {
           var modifedResult = result2;
           var includedValues = [];
@@ -5238,10 +5238,10 @@ var require_dexie = __commonJS({
       };
       function vipify(target, vipDb) {
         return new Proxy(target, {
-          get: function(target2, prop, receiver) {
-            if (prop === "db")
+          get: function(target2, prop2, receiver) {
+            if (prop2 === "db")
               return vipDb;
-            return Reflect.get(target2, prop, receiver);
+            return Reflect.get(target2, prop2, receiver);
           }
         });
       }
@@ -5269,7 +5269,7 @@ var require_dexie = __commonJS({
           this._allTables = {};
           this.idbdb = null;
           this._novip = this;
-          var state = {
+          var state2 = {
             dbOpenError: null,
             isBeingOpened: false,
             onReadyBeingFired: null,
@@ -5282,26 +5282,26 @@ var require_dexie = __commonJS({
             PR1398_maxLoop: 3,
             autoOpen: options.autoOpen
           };
-          state.dbReadyPromise = new DexiePromise(function(resolve2) {
-            state.dbReadyResolve = resolve2;
+          state2.dbReadyPromise = new DexiePromise(function(resolve2) {
+            state2.dbReadyResolve = resolve2;
           });
-          state.openCanceller = new DexiePromise(function(_, reject) {
-            state.cancelOpen = reject;
+          state2.openCanceller = new DexiePromise(function(_, reject) {
+            state2.cancelOpen = reject;
           });
-          this._state = state;
+          this._state = state2;
           this.name = name;
           this.on = Events(this, "populate", "blocked", "versionchange", "close", { ready: [promisableChain, nop] });
           this.on.ready.subscribe = override(this.on.ready.subscribe, function(subscribe) {
             return function(subscriber, bSticky) {
               Dexie3.vip(function() {
-                var state2 = _this._state;
-                if (state2.openComplete) {
-                  if (!state2.dbOpenError)
+                var state3 = _this._state;
+                if (state3.openComplete) {
+                  if (!state3.dbOpenError)
                     DexiePromise.resolve().then(subscriber);
                   if (bSticky)
                     subscribe(subscriber);
-                } else if (state2.onReadyBeingFired) {
-                  state2.onReadyBeingFired.push(subscriber);
+                } else if (state3.onReadyBeingFired) {
+                  state3.onReadyBeingFired.push(subscriber);
                   if (bSticky)
                     subscribe(subscriber);
                 } else {
@@ -5352,21 +5352,21 @@ var require_dexie = __commonJS({
           this.use(virtualIndexMiddleware);
           this.use(hooksMiddleware);
           var vipDB = new Proxy(this, {
-            get: function(_, prop, receiver) {
-              if (prop === "_vip")
+            get: function(_, prop2, receiver) {
+              if (prop2 === "_vip")
                 return true;
-              if (prop === "table")
+              if (prop2 === "table")
                 return function(tableName) {
                   return vipify(_this.table(tableName), vipDB);
                 };
-              var rv = Reflect.get(_, prop, receiver);
+              var rv = Reflect.get(_, prop2, receiver);
               if (rv instanceof Table)
                 return vipify(rv, vipDB);
-              if (prop === "tables")
+              if (prop2 === "tables")
                 return rv.map(function(t) {
                   return vipify(t, vipDB);
                 });
-              if (prop === "_createTransaction")
+              if (prop2 === "_createTransaction")
                 return function() {
                   var tx = rv.apply(this, arguments);
                   return vipify(tx, vipDB);
@@ -5416,20 +5416,20 @@ var require_dexie = __commonJS({
           }).then(fn);
         };
         Dexie3.prototype.use = function(_a2) {
-          var stack = _a2.stack, create5 = _a2.create, level = _a2.level, name = _a2.name;
+          var stack2 = _a2.stack, create5 = _a2.create, level = _a2.level, name = _a2.name;
           if (name)
-            this.unuse({ stack, name });
-          var middlewares = this._middlewares[stack] || (this._middlewares[stack] = []);
-          middlewares.push({ stack, create: create5, level: level == null ? 10 : level, name });
+            this.unuse({ stack: stack2, name });
+          var middlewares = this._middlewares[stack2] || (this._middlewares[stack2] = []);
+          middlewares.push({ stack: stack2, create: create5, level: level == null ? 10 : level, name });
           middlewares.sort(function(a2, b) {
             return a2.level - b.level;
           });
           return this;
         };
         Dexie3.prototype.unuse = function(_a2) {
-          var stack = _a2.stack, name = _a2.name, create5 = _a2.create;
-          if (stack && this._middlewares[stack]) {
-            this._middlewares[stack] = this._middlewares[stack].filter(function(mw) {
+          var stack2 = _a2.stack, name = _a2.name, create5 = _a2.create;
+          if (stack2 && this._middlewares[stack2]) {
+            this._middlewares[stack2] = this._middlewares[stack2].filter(function(mw) {
               return create5 ? mw.create !== create5 : name ? mw.name !== name : false;
             });
           }
@@ -5445,7 +5445,7 @@ var require_dexie = __commonJS({
           );
         };
         Dexie3.prototype._close = function() {
-          var state = this._state;
+          var state2 = this._state;
           var idx = connections.indexOf(this);
           if (idx >= 0)
             connections.splice(idx, 1);
@@ -5456,30 +5456,30 @@ var require_dexie = __commonJS({
             }
             this.idbdb = null;
           }
-          if (!state.isBeingOpened) {
-            state.dbReadyPromise = new DexiePromise(function(resolve2) {
-              state.dbReadyResolve = resolve2;
+          if (!state2.isBeingOpened) {
+            state2.dbReadyPromise = new DexiePromise(function(resolve2) {
+              state2.dbReadyResolve = resolve2;
             });
-            state.openCanceller = new DexiePromise(function(_, reject) {
-              state.cancelOpen = reject;
+            state2.openCanceller = new DexiePromise(function(_, reject) {
+              state2.cancelOpen = reject;
             });
           }
         };
         Dexie3.prototype.close = function(_a2) {
           var _b = _a2 === void 0 ? { disableAutoOpen: true } : _a2, disableAutoOpen = _b.disableAutoOpen;
-          var state = this._state;
+          var state2 = this._state;
           if (disableAutoOpen) {
-            if (state.isBeingOpened) {
-              state.cancelOpen(new exceptions.DatabaseClosed());
+            if (state2.isBeingOpened) {
+              state2.cancelOpen(new exceptions.DatabaseClosed());
             }
             this._close();
-            state.autoOpen = false;
-            state.dbOpenError = new exceptions.DatabaseClosed();
+            state2.autoOpen = false;
+            state2.dbOpenError = new exceptions.DatabaseClosed();
           } else {
             this._close();
-            state.autoOpen = this._options.autoOpen || state.isBeingOpened;
-            state.openComplete = false;
-            state.dbOpenError = null;
+            state2.autoOpen = this._options.autoOpen || state2.isBeingOpened;
+            state2.openComplete = false;
+            state2.dbOpenError = null;
           }
         };
         Dexie3.prototype.delete = function(closeOptions) {
@@ -5488,7 +5488,7 @@ var require_dexie = __commonJS({
             closeOptions = { disableAutoOpen: true };
           }
           var hasInvalidArguments = arguments.length > 0 && typeof arguments[0] !== "object";
-          var state = this._state;
+          var state2 = this._state;
           return new DexiePromise(function(resolve2, reject) {
             var doDelete = function() {
               _this.close(closeOptions);
@@ -5502,8 +5502,8 @@ var require_dexie = __commonJS({
             };
             if (hasInvalidArguments)
               throw new exceptions.InvalidArgument("Invalid closeOptions argument to db.delete()");
-            if (state.isBeingOpened) {
-              state.dbReadyPromise.then(doDelete);
+            if (state2.isBeingOpened) {
+              state2.dbReadyPromise.then(doDelete);
             } else {
               doDelete();
             }
@@ -5880,8 +5880,8 @@ var require_dexie = __commonJS({
         });
       }
       if (typeof addEventListener !== "undefined") {
-        addEventListener("pagehide", function(event) {
-          if (!Dexie$1.disableBfCache && event.persisted) {
+        addEventListener("pagehide", function(event2) {
+          if (!Dexie$1.disableBfCache && event2.persisted) {
             if (debug)
               console.debug("Dexie: handling persisted pagehide");
             bc === null || bc === void 0 ? void 0 : bc.close();
@@ -5891,8 +5891,8 @@ var require_dexie = __commonJS({
             }
           }
         });
-        addEventListener("pageshow", function(event) {
-          if (!Dexie$1.disableBfCache && event.persisted) {
+        addEventListener("pageshow", function(event2) {
+          if (!Dexie$1.disableBfCache && event2.persisted) {
             if (debug)
               console.debug("Dexie: handling persisted pageshow");
             createBC();
@@ -6179,8 +6179,8 @@ function uniqueArray(arrArg) {
 // node_modules/.pnpm/rxdb@15.34.1_rxjs@7.8.1/node_modules/rxdb/dist/esm/plugins/utils/utils-revision.js
 function getHeightOfRevision(revision) {
   var useChars = "";
-  for (var index = 0; index < revision.length; index++) {
-    var char = revision[index];
+  for (var index2 = 0; index2 < revision.length; index2++) {
+    var char = revision[index2];
     if (char === "-") {
       return parseInt(useChars, 10);
     }
@@ -6613,8 +6613,8 @@ function jsSha256(input) {
 async function nativeSha256(input) {
   var data = new TextEncoder().encode(input);
   var hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  var hash = Array.prototype.map.call(new Uint8Array(hashBuffer), (x2) => ("00" + x2.toString(16)).slice(-2)).join("");
-  return hash;
+  var hash2 = Array.prototype.map.call(new Uint8Array(hashBuffer), (x2) => ("00" + x2.toString(16)).slice(-2)).join("");
+  return hash2;
 }
 var canUseCryptoSubtle = typeof crypto !== "undefined" && typeof crypto.subtle !== "undefined" && typeof crypto.subtle.digest === "function";
 var defaultHashSha256 = canUseCryptoSubtle ? nativeSha256 : jsSha256;
@@ -6649,7 +6649,7 @@ function requestIdlePromise(timeout = void 0) {
   return idlePromiseQueue;
 }
 function promiseSeries(tasks, initial) {
-  return tasks.reduce((current, next) => current.then(next), Promise.resolve(initial));
+  return tasks.reduce((current, next2) => current.then(next2), Promise.resolve(initial));
 }
 
 // node_modules/.pnpm/rxdb@15.34.1_rxjs@7.8.1/node_modules/rxdb/dist/esm/plugins/utils/utils-regex.js
@@ -6658,11 +6658,11 @@ var REGEX_ALL_DOTS = /\./g;
 // node_modules/.pnpm/rxdb@15.34.1_rxjs@7.8.1/node_modules/rxdb/dist/esm/plugins/utils/utils-string.js
 var COUCH_NAME_CHARS = "abcdefghijklmnopqrstuvwxyz";
 function randomCouchString(length = 10) {
-  var text = "";
+  var text2 = "";
   for (var i2 = 0; i2 < length; i2++) {
-    text += COUCH_NAME_CHARS.charAt(Math.floor(Math.random() * COUCH_NAME_CHARS.length));
+    text2 += COUCH_NAME_CHARS.charAt(Math.floor(Math.random() * COUCH_NAME_CHARS.length));
   }
-  return text;
+  return text2;
 }
 function ucfirst(str) {
   str += "";
@@ -6832,8 +6832,8 @@ function getPathSegments(path) {
 }
 function isStringIndex(object, key) {
   if (typeof key !== "number" && Array.isArray(object)) {
-    var index = Number.parseInt(key, 10);
-    return Number.isInteger(index) && object[index] === object[key];
+    var index2 = Number.parseInt(key, 10);
+    return Number.isInteger(index2) && object[index2] === object[key];
   }
   return false;
 }
@@ -6856,15 +6856,15 @@ function getProperty(object, path, value) {
   if (pathArray.length === 0) {
     return value;
   }
-  for (var index = 0; index < pathArray.length; index++) {
-    var key = pathArray[index];
+  for (var index2 = 0; index2 < pathArray.length; index2++) {
+    var key = pathArray[index2];
     if (isStringIndex(object, key)) {
-      object = index === pathArray.length - 1 ? void 0 : null;
+      object = index2 === pathArray.length - 1 ? void 0 : null;
     } else {
       object = object[key];
     }
     if (object === void 0 || object === null) {
-      if (index !== pathArray.length - 1) {
+      if (index2 !== pathArray.length - 1) {
         return value;
       }
       break;
@@ -6881,13 +6881,13 @@ function setProperty(object, path, value) {
   }
   var root = object;
   var pathArray = getPathSegments(path);
-  for (var index = 0; index < pathArray.length; index++) {
-    var key = pathArray[index];
+  for (var index2 = 0; index2 < pathArray.length; index2++) {
+    var key = pathArray[index2];
     assertNotStringIndex(object, key);
-    if (index === pathArray.length - 1) {
+    if (index2 === pathArray.length - 1) {
       object[key] = value;
     } else if (!isObject(object[key])) {
-      object[key] = typeof pathArray[index + 1] === "number" ? [] : {};
+      object[key] = typeof pathArray[index2 + 1] === "number" ? [] : {};
     }
     object = object[key];
   }
@@ -6902,11 +6902,11 @@ function getFromMapOrThrow(map2, key) {
   }
   return val;
 }
-function getFromMapOrCreate(map2, index, creator, ifWasThere) {
-  var value = map2.get(index);
+function getFromMapOrCreate(map2, index2, creator, ifWasThere) {
+  var value = map2.get(index2);
   if (typeof value === "undefined") {
     value = creator();
-    map2.set(index, value);
+    map2.set(index2, value);
   } else if (ifWasThere) {
     ifWasThere(value);
   }
@@ -7369,8 +7369,8 @@ function fillWithDefaultSettings(schemaObj) {
   appendToArray(schemaObj.required, finalFields);
   schemaObj.required = schemaObj.required.filter((field) => !field.includes(".")).filter((elem, pos, arr) => arr.indexOf(elem) === pos);
   schemaObj.version = schemaObj.version || 0;
-  var useIndexes = schemaObj.indexes.map((index) => {
-    var arIndex = isMaybeReadonlyArray(index) ? index.slice(0) : [index];
+  var useIndexes = schemaObj.indexes.map((index2) => {
+    var arIndex = isMaybeReadonlyArray(index2) ? index2.slice(0) : [index2];
     if (!arIndex.includes(primaryPath)) {
       arIndex.push(primaryPath);
     }
@@ -7389,8 +7389,8 @@ function fillWithDefaultSettings(schemaObj) {
     });
   }
   var hasIndex = /* @__PURE__ */ new Set();
-  useIndexes.filter((index) => {
-    var indexStr = index.join(",");
+  useIndexes.filter((index2) => {
+    var indexStr = index2.join(",");
     if (hasIndex.has(indexStr)) {
       return false;
     } else {
@@ -7533,7 +7533,7 @@ var RxSchema = /* @__PURE__ */ function() {
   }]);
 }();
 function getIndexes(jsonSchema) {
-  return (jsonSchema.indexes || []).map((index) => isMaybeReadonlyArray(index) ? index : [index]);
+  return (jsonSchema.indexes || []).map((index2) => isMaybeReadonlyArray(index2) ? index2 : [index2]);
 }
 function createRxSchema(jsonSchema, hashFunction, runPreCreateHooks = true) {
   if (runPreCreateHooks) {
@@ -7553,15 +7553,15 @@ function isFunction(value) {
 }
 
 // node_modules/.pnpm/rxjs@7.8.1/node_modules/rxjs/dist/esm5/internal/util/lift.js
-function hasLift(source) {
-  return isFunction(source === null || source === void 0 ? void 0 : source.lift);
+function hasLift(source2) {
+  return isFunction(source2 === null || source2 === void 0 ? void 0 : source2.lift);
 }
-function operate(init2) {
-  return function(source) {
-    if (hasLift(source)) {
-      return source.lift(function(liftedSource) {
+function operate(init3) {
+  return function(source2) {
+    if (hasLift(source2)) {
+      return source2.lift(function(liftedSource) {
         try {
-          return init2(liftedSource, this);
+          return init3(liftedSource, this);
         } catch (err) {
           this.error(err);
         }
@@ -7823,8 +7823,8 @@ var UnsubscriptionError = createErrorClass(function(_super) {
 // node_modules/.pnpm/rxjs@7.8.1/node_modules/rxjs/dist/esm5/internal/util/arrRemove.js
 function arrRemove(arr, item) {
   if (arr) {
-    var index = arr.indexOf(item);
-    0 <= index && arr.splice(index, 1);
+    var index2 = arr.indexOf(item);
+    0 <= index2 && arr.splice(index2, 1);
   }
 }
 
@@ -7903,19 +7903,19 @@ var Subscription = function() {
       }
     }
   };
-  Subscription2.prototype.add = function(teardown) {
+  Subscription2.prototype.add = function(teardown2) {
     var _a;
-    if (teardown && teardown !== this) {
+    if (teardown2 && teardown2 !== this) {
       if (this.closed) {
-        execFinalizer(teardown);
+        execFinalizer(teardown2);
       } else {
-        if (teardown instanceof Subscription2) {
-          if (teardown.closed || teardown._hasParent(this)) {
+        if (teardown2 instanceof Subscription2) {
+          if (teardown2.closed || teardown2._hasParent(this)) {
             return;
           }
-          teardown._addParent(this);
+          teardown2._addParent(this);
         }
-        (this._finalizers = (_a = this._finalizers) !== null && _a !== void 0 ? _a : []).push(teardown);
+        (this._finalizers = (_a = this._finalizers) !== null && _a !== void 0 ? _a : []).push(teardown2);
       }
     }
   };
@@ -7935,11 +7935,11 @@ var Subscription = function() {
       arrRemove(_parentage, parent);
     }
   };
-  Subscription2.prototype.remove = function(teardown) {
+  Subscription2.prototype.remove = function(teardown2) {
     var _finalizers = this._finalizers;
-    _finalizers && arrRemove(_finalizers, teardown);
-    if (teardown instanceof Subscription2) {
-      teardown._removeParent(this);
+    _finalizers && arrRemove(_finalizers, teardown2);
+    if (teardown2 instanceof Subscription2) {
+      teardown2._removeParent(this);
     }
   };
   Subscription2.EMPTY = function() {
@@ -7977,15 +7977,15 @@ var timeoutProvider = {
     for (var _i = 2; _i < arguments.length; _i++) {
       args[_i - 2] = arguments[_i];
     }
-    var delegate = timeoutProvider.delegate;
-    if (delegate === null || delegate === void 0 ? void 0 : delegate.setTimeout) {
-      return delegate.setTimeout.apply(delegate, __spreadArray([handler, timeout], __read(args)));
+    var delegate2 = timeoutProvider.delegate;
+    if (delegate2 === null || delegate2 === void 0 ? void 0 : delegate2.setTimeout) {
+      return delegate2.setTimeout.apply(delegate2, __spreadArray([handler, timeout], __read(args)));
     }
     return setTimeout.apply(void 0, __spreadArray([handler, timeout], __read(args)));
   },
   clearTimeout: function(handle) {
-    var delegate = timeoutProvider.delegate;
-    return ((delegate === null || delegate === void 0 ? void 0 : delegate.clearTimeout) || clearTimeout)(handle);
+    var delegate2 = timeoutProvider.delegate;
+    return ((delegate2 === null || delegate2 === void 0 ? void 0 : delegate2.clearTimeout) || clearTimeout)(handle);
   },
   delegate: void 0
 };
@@ -8067,8 +8067,8 @@ var Subscriber = function(_super) {
     }
     return _this;
   }
-  Subscriber2.create = function(next, error, complete) {
-    return new SafeSubscriber(next, error, complete);
+  Subscriber2.create = function(next2, error, complete) {
+    return new SafeSubscriber(next2, error, complete);
   };
   Subscriber2.prototype.next = function(value) {
     if (this.isStopped) {
@@ -8258,8 +8258,8 @@ var Observable = function() {
     var _this = this;
     var subscriber = isSubscriber(observerOrNext) ? observerOrNext : new SafeSubscriber(observerOrNext, error, complete);
     errorContext(function() {
-      var _a = _this, operator = _a.operator, source = _a.source;
-      subscriber.add(operator ? operator.call(subscriber, source) : source ? _this._subscribe(subscriber) : _this._trySubscribe(subscriber));
+      var _a = _this, operator = _a.operator, source2 = _a.source;
+      subscriber.add(operator ? operator.call(subscriber, source2) : source2 ? _this._subscribe(subscriber) : _this._trySubscribe(subscriber));
     });
     return subscriber;
   };
@@ -8270,14 +8270,14 @@ var Observable = function() {
       sink.error(err);
     }
   };
-  Observable2.prototype.forEach = function(next, promiseCtor) {
+  Observable2.prototype.forEach = function(next2, promiseCtor) {
     var _this = this;
     promiseCtor = getPromiseCtor(promiseCtor);
     return new promiseCtor(function(resolve2, reject) {
       var subscriber = new SafeSubscriber({
         next: function(value) {
           try {
-            next(value);
+            next2(value);
           } catch (err) {
             reject(err);
             subscriber.unsubscribe();
@@ -8644,8 +8644,8 @@ function observeOn(scheduler, delay) {
   if (delay === void 0) {
     delay = 0;
   }
-  return operate(function(source, subscriber) {
-    source.subscribe(createOperatorSubscriber(subscriber, function(value) {
+  return operate(function(source2, subscriber) {
+    source2.subscribe(createOperatorSubscriber(subscriber, function(value) {
       return executeSchedule(subscriber, scheduler, function() {
         return subscriber.next(value);
       }, delay);
@@ -8666,9 +8666,9 @@ function subscribeOn(scheduler, delay) {
   if (delay === void 0) {
     delay = 0;
   }
-  return operate(function(source, subscriber) {
+  return operate(function(source2, subscriber) {
     subscriber.add(scheduler.schedule(function() {
-      return source.subscribe(subscriber);
+      return source2.subscribe(subscriber);
     }, delay));
   });
 }
@@ -8787,19 +8787,19 @@ function from(input, scheduler) {
 
 // node_modules/.pnpm/rxjs@7.8.1/node_modules/rxjs/dist/esm5/internal/operators/map.js
 function map(project, thisArg) {
-  return operate(function(source, subscriber) {
-    var index = 0;
-    source.subscribe(createOperatorSubscriber(subscriber, function(value) {
-      subscriber.next(project.call(thisArg, value, index++));
+  return operate(function(source2, subscriber) {
+    var index2 = 0;
+    source2.subscribe(createOperatorSubscriber(subscriber, function(value) {
+      subscriber.next(project.call(thisArg, value, index2++));
     }));
   });
 }
 
 // node_modules/.pnpm/rxjs@7.8.1/node_modules/rxjs/dist/esm5/internal/operators/mergeInternals.js
-function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, expand, innerSubScheduler, additionalFinalizer) {
+function mergeInternals(source2, subscriber, project, concurrent, onBeforeNext, expand, innerSubScheduler, additionalFinalizer) {
   var buffer = [];
   var active = 0;
-  var index = 0;
+  var index2 = 0;
   var isComplete = false;
   var checkComplete = function() {
     if (isComplete && !buffer.length && !active) {
@@ -8813,7 +8813,7 @@ function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, e
     expand && subscriber.next(value);
     active++;
     var innerComplete = false;
-    innerFrom(project(value, index++)).subscribe(createOperatorSubscriber(subscriber, function(innerValue) {
+    innerFrom(project(value, index2++)).subscribe(createOperatorSubscriber(subscriber, function(innerValue) {
       onBeforeNext === null || onBeforeNext === void 0 ? void 0 : onBeforeNext(innerValue);
       if (expand) {
         outerNext(innerValue);
@@ -8846,7 +8846,7 @@ function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, e
       }
     }));
   };
-  source.subscribe(createOperatorSubscriber(subscriber, outerNext, function() {
+  source2.subscribe(createOperatorSubscriber(subscriber, outerNext, function() {
     isComplete = true;
     checkComplete();
   }));
@@ -8869,8 +8869,8 @@ function mergeMap(project, resultSelector, concurrent) {
   } else if (typeof resultSelector === "number") {
     concurrent = resultSelector;
   }
-  return operate(function(source, subscriber) {
-    return mergeInternals(source, subscriber, project, concurrent);
+  return operate(function(source2, subscriber) {
+    return mergeInternals(source2, subscriber, project, concurrent);
   });
 }
 
@@ -9025,17 +9025,17 @@ var Subject = function(_super) {
     observable2.source = this;
     return observable2;
   };
-  Subject2.create = function(destination, source) {
-    return new AnonymousSubject(destination, source);
+  Subject2.create = function(destination, source2) {
+    return new AnonymousSubject(destination, source2);
   };
   return Subject2;
 }(Observable);
 var AnonymousSubject = function(_super) {
   __extends(AnonymousSubject2, _super);
-  function AnonymousSubject2(destination, source) {
+  function AnonymousSubject2(destination, source2) {
     var _this = _super.call(this) || this;
     _this.destination = destination;
-    _this.source = source;
+    _this.source = source2;
     return _this;
   }
   AnonymousSubject2.prototype.next = function(value) {
@@ -9077,10 +9077,10 @@ function distinctUntilChanged(comparator, keySelector) {
     keySelector = identity;
   }
   comparator = comparator !== null && comparator !== void 0 ? comparator : defaultCompare;
-  return operate(function(source, subscriber) {
+  return operate(function(source2, subscriber) {
     var previousKey;
     var first = true;
-    source.subscribe(createOperatorSubscriber(subscriber, function(value) {
+    source2.subscribe(createOperatorSubscriber(subscriber, function(value) {
       var currentKey = keySelector(value);
       if (first || !comparator(previousKey, currentKey)) {
         first = false;
@@ -9096,10 +9096,10 @@ function defaultCompare(a2, b) {
 
 // node_modules/.pnpm/rxjs@7.8.1/node_modules/rxjs/dist/esm5/internal/operators/filter.js
 function filter(predicate, thisArg) {
-  return operate(function(source, subscriber) {
-    var index = 0;
-    source.subscribe(createOperatorSubscriber(subscriber, function(value) {
-      return predicate.call(thisArg, value, index++) && subscriber.next(value);
+  return operate(function(source2, subscriber) {
+    var index2 = 0;
+    source2.subscribe(createOperatorSubscriber(subscriber, function(value) {
+      return predicate.call(thisArg, value, index2++) && subscriber.next(value);
     }));
   });
 }
@@ -9113,8 +9113,8 @@ function merge() {
   var scheduler = popScheduler(args);
   var concurrent = popNumber(args, Infinity);
   args = argsOrArgArray(args);
-  return operate(function(source, subscriber) {
-    mergeAll(concurrent)(from(__spreadArray([source], __read(args)), scheduler)).subscribe(subscriber);
+  return operate(function(source2, subscriber) {
+    mergeAll(concurrent)(from(__spreadArray([source2], __read(args)), scheduler)).subscribe(subscriber);
   });
 }
 
@@ -9251,7 +9251,7 @@ function share(options) {
       reset2();
       conn === null || conn === void 0 ? void 0 : conn.unsubscribe();
     };
-    return operate(function(source, subscriber) {
+    return operate(function(source2, subscriber) {
       refCount++;
       if (!hasErrored && !hasCompleted) {
         cancelReset();
@@ -9282,21 +9282,21 @@ function share(options) {
             dest.complete();
           }
         });
-        innerFrom(source).subscribe(connection);
+        innerFrom(source2).subscribe(connection);
       }
     })(wrapperSource);
   };
 }
-function handleReset(reset2, on) {
+function handleReset(reset2, on2) {
   var args = [];
   for (var _i = 2; _i < arguments.length; _i++) {
     args[_i - 2] = arguments[_i];
   }
-  if (on === true) {
+  if (on2 === true) {
     reset2();
     return;
   }
-  if (on === false) {
+  if (on2 === false) {
     return;
   }
   var onSubscriber = new SafeSubscriber({
@@ -9305,7 +9305,7 @@ function handleReset(reset2, on) {
       reset2();
     }
   });
-  return innerFrom(on.apply(void 0, __spreadArray([], __read(args)))).subscribe(onSubscriber);
+  return innerFrom(on2.apply(void 0, __spreadArray([], __read(args)))).subscribe(onSubscriber);
 }
 
 // node_modules/.pnpm/rxjs@7.8.1/node_modules/rxjs/dist/esm5/internal/operators/shareReplay.js
@@ -9335,8 +9335,8 @@ function startWith() {
     values[_i] = arguments[_i];
   }
   var scheduler = popScheduler(values);
-  return operate(function(source, subscriber) {
-    (scheduler ? concat(values, source, scheduler) : concat(values, source)).subscribe(subscriber);
+  return operate(function(source2, subscriber) {
+    (scheduler ? concat(values, source2, scheduler) : concat(values, source2)).subscribe(subscriber);
   });
 }
 
@@ -9405,15 +9405,15 @@ function getProperty2(object, path, value) {
   if (pathArray.length === 0) {
     return value;
   }
-  for (let index = 0; index < pathArray.length; index++) {
-    const key = pathArray[index];
+  for (let index2 = 0; index2 < pathArray.length; index2++) {
+    const key = pathArray[index2];
     if (isStringIndex2(object, key)) {
-      object = index === pathArray.length - 1 ? void 0 : null;
+      object = index2 === pathArray.length - 1 ? void 0 : null;
     } else {
       object = object[key];
     }
     if (object === void 0 || object === null) {
-      if (index !== pathArray.length - 1) {
+      if (index2 !== pathArray.length - 1) {
         return value;
       }
       break;
@@ -9423,8 +9423,8 @@ function getProperty2(object, path, value) {
 }
 function isStringIndex2(object, key) {
   if (typeof key !== "number" && Array.isArray(object)) {
-    const index = Number.parseInt(key, 10);
-    return Number.isInteger(index) && object[index] === object[key];
+    const index2 = Number.parseInt(key, 10);
+    return Number.isInteger(index2) && object[index2] === object[key];
   }
   return false;
 }
@@ -9901,8 +9901,8 @@ function calculateActionName(input) {
   const resolvedActionId = resolveInput(input);
   return orderedActionList[resolvedActionId];
 }
-function runAction(action, queryParams, changeEvent, previousResults, keyDocumentMap) {
-  const fn = actionFunctions[action];
+function runAction(action2, queryParams, changeEvent, previousResults, keyDocumentMap) {
+  const fn = actionFunctions[action2];
   fn({
     queryParams,
     changeEvent,
@@ -9933,10 +9933,10 @@ function getQueryPlan(schema, query) {
   var optimalSortIndexCompareString = optimalSortIndex.filter((f) => !sortIrrelevevantFields.has(f)).join(",");
   var currentBestQuality = -1;
   var currentBestQueryPlan;
-  indexes.forEach((index) => {
+  indexes.forEach((index2) => {
     var inclusiveEnd = true;
     var inclusiveStart = true;
-    var opts = index.map((indexField) => {
+    var opts = index2.map((indexField) => {
       var matcher = selector[indexField];
       var operators = matcher ? Object.keys(matcher) : [];
       var matcherOpts = {};
@@ -9980,13 +9980,13 @@ function getQueryPlan(schema, query) {
     var startKeys = opts.map((opt) => opt.startKey);
     var endKeys = opts.map((opt) => opt.endKey);
     var queryPlan = {
-      index,
+      index: index2,
       startKeys,
       endKeys,
       inclusiveEnd,
       inclusiveStart,
-      sortSatisfiedByIndex: !hasDescSorting && optimalSortIndexCompareString === index.filter((f) => !sortIrrelevevantFields.has(f)).join(","),
-      selectorSatisfiedByIndex: isSelectorSatisfiedByIndex(index, query.selector, startKeys, endKeys)
+      sortSatisfiedByIndex: !hasDescSorting && optimalSortIndexCompareString === index2.filter((f) => !sortIrrelevevantFields.has(f)).join(","),
+      selectorSatisfiedByIndex: isSelectorSatisfiedByIndex(index2, query.selector, startKeys, endKeys)
     };
     var quality = rateQueryPlan(schema, query, queryPlan);
     if (quality >= currentBestQuality || query.index) {
@@ -10004,10 +10004,10 @@ function getQueryPlan(schema, query) {
 var LOGICAL_OPERATORS = /* @__PURE__ */ new Set(["$eq", "$gt", "$gte", "$lt", "$lte"]);
 var LOWER_BOUND_LOGICAL_OPERATORS = /* @__PURE__ */ new Set(["$eq", "$gt", "$gte"]);
 var UPPER_BOUND_LOGICAL_OPERATORS = /* @__PURE__ */ new Set(["$eq", "$lt", "$lte"]);
-function isSelectorSatisfiedByIndex(index, selector, startKeys, endKeys) {
+function isSelectorSatisfiedByIndex(index2, selector, startKeys, endKeys) {
   var selectorEntries = Object.entries(selector);
   var hasNonMatchingOperator = selectorEntries.find(([fieldName2, operation2]) => {
-    if (!index.includes(fieldName2)) {
+    if (!index2.includes(fieldName2)) {
       return true;
     }
     var hasNonLogicOperator = Object.entries(operation2).find(([op, _value]) => !LOGICAL_OPERATORS.has(op));
@@ -10022,7 +10022,7 @@ function isSelectorSatisfiedByIndex(index, selector, startKeys, endKeys) {
   var satisfieldLowerBound = [];
   var lowerOperatorFieldNames = /* @__PURE__ */ new Set();
   for (var [fieldName, operation] of Object.entries(selector)) {
-    if (!index.includes(fieldName)) {
+    if (!index2.includes(fieldName)) {
       return false;
     }
     var lowerLogicOps = Object.keys(operation).filter((key) => LOWER_BOUND_LOGICAL_OPERATORS.has(key));
@@ -10044,7 +10044,7 @@ function isSelectorSatisfiedByIndex(index, selector, startKeys, endKeys) {
   var satisfieldUpperBound = [];
   var upperOperatorFieldNames = /* @__PURE__ */ new Set();
   for (var [_fieldName, _operation] of Object.entries(selector)) {
-    if (!index.includes(_fieldName)) {
+    if (!index2.includes(_fieldName)) {
       return false;
     }
     var upperLogicOps = Object.keys(_operation).filter((key) => UPPER_BOUND_LOGICAL_OPERATORS.has(key));
@@ -10064,12 +10064,12 @@ function isSelectorSatisfiedByIndex(index, selector, startKeys, endKeys) {
     }
   }
   var i2 = 0;
-  for (var _fieldName2 of index) {
-    for (var set of [lowerOperatorFieldNames, upperOperatorFieldNames]) {
-      if (!set.has(_fieldName2) && set.size > 0) {
+  for (var _fieldName2 of index2) {
+    for (var set2 of [lowerOperatorFieldNames, upperOperatorFieldNames]) {
+      if (!set2.has(_fieldName2) && set2.size > 0) {
         return false;
       }
-      set.delete(_fieldName2);
+      set2.delete(_fieldName2);
     }
     var startKey = startKeys[i2];
     var endKey = endKeys[i2];
@@ -10153,11 +10153,11 @@ var OBJECT_TAG = "[object Object]";
 var OBJECT_TYPE_RE = /^\[object ([a-zA-Z0-9]+)\]$/;
 var DEFAULT_HASH_FUNCTION = (value) => {
   const s = stringify(value);
-  let hash = 0;
+  let hash2 = 0;
   let i2 = s.length;
   while (i2)
-    hash = (hash << 5) - hash ^ s.charCodeAt(--i2);
-  return hash >>> 0;
+    hash2 = (hash2 << 5) - hash2 ^ s.charCodeAt(--i2);
+  return hash2 >>> 0;
 };
 var JS_SIMPLE_TYPES = /* @__PURE__ */ new Set([
   "null",
@@ -10231,7 +10231,7 @@ var truthy = (arg, strict = true) => !!arg || strict && arg === "";
 var isEmpty = (x2) => isNil(x2) || isString(x2) && !x2 || x2 instanceof Array && x2.length === 0 || isObject3(x2) && Object.keys(x2).length === 0;
 var isMissing = (v) => v === MISSING;
 var ensureArray = (x2) => x2 instanceof Array ? x2 : [x2];
-var has = (obj, prop) => !!obj && Object.prototype.hasOwnProperty.call(obj, prop);
+var has = (obj, prop2) => !!obj && Object.prototype.hasOwnProperty.call(obj, prop2);
 var isTypedArray = (v) => typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView(v);
 var INSTANCE_CLONE = [isDate, isRegExp, isTypedArray];
 var cloneInternal = (val, refs) => {
@@ -10497,21 +10497,21 @@ function groupBy(collection, keyFn, hashFunction = DEFAULT_HASH_FUNCTION) {
   for (let i2 = 0; i2 < collection.length; i2++) {
     const obj = collection[i2];
     const key = keyFn(obj, i2);
-    const hash = hashCode(key, hashFunction);
-    if (hash === null) {
+    const hash2 = hashCode(key, hashFunction);
+    if (hash2 === null) {
       if (result.has(null)) {
         result.get(null).push(obj);
       } else {
         result.set(null, [obj]);
       }
     } else {
-      const existingKey = lookup.has(hash) ? lookup.get(hash).find((k) => isEqual(k, key)) : null;
+      const existingKey = lookup.has(hash2) ? lookup.get(hash2).find((k) => isEqual(k, key)) : null;
       if (isNil(existingKey)) {
         result.set(key, [obj]);
-        if (lookup.has(hash)) {
-          lookup.get(hash).push(key);
+        if (lookup.has(hash2)) {
+          lookup.get(hash2).push(key);
         } else {
-          lookup.set(hash, [key]);
+          lookup.set(hash2, [key]);
         }
       } else {
         result.get(existingKey).push(obj);
@@ -10588,7 +10588,7 @@ function resolve(obj, selector, options) {
 function resolveGraph(obj, selector, options) {
   const names = selector.split(".");
   const key = names[0];
-  const next = names.slice(1).join(".");
+  const next2 = names.slice(1).join(".");
   const isIndex = /^\d+$/.exec(key) !== null;
   const hasNext = names.length > 1;
   let result;
@@ -10597,7 +10597,7 @@ function resolveGraph(obj, selector, options) {
     if (isIndex) {
       result = getValue(obj, Number(key));
       if (hasNext) {
-        result = resolveGraph(result, next, options);
+        result = resolveGraph(result, next2, options);
       }
       result = [result];
     } else {
@@ -10617,7 +10617,7 @@ function resolveGraph(obj, selector, options) {
   } else {
     value = getValue(obj, key);
     if (hasNext) {
-      value = resolveGraph(value, next, options);
+      value = resolveGraph(value, next2, options);
     }
     if (value === void 0)
       return void 0;
@@ -10647,7 +10647,7 @@ var NUMBER_RE = /^\d+$/;
 function walk(obj, selector, fn, options) {
   const names = selector.split(".");
   const key = names[0];
-  const next = names.slice(1).join(".");
+  const next2 = names.slice(1).join(".");
   if (names.length === 1) {
     if (isObject3(obj) || isArray2(obj) && NUMBER_RE.test(key)) {
       fn(obj, key);
@@ -10661,9 +10661,9 @@ function walk(obj, selector, fn, options) {
       return;
     const isNextArrayIndex = !!(names.length > 1 && NUMBER_RE.test(names[1]));
     if (item instanceof Array && options?.descendArray && !isNextArrayIndex) {
-      item.forEach((e) => walk(e, next, fn, options));
+      item.forEach((e) => walk(e, next2, fn, options));
     } else {
-      walk(item, next, fn, options);
+      walk(item, next2, fn, options);
     }
   }
 }
@@ -10935,9 +10935,9 @@ function useOperators(type5, operators) {
   }
 }
 function getOperator(type5, operator, options) {
-  const { context: ctx, useGlobalContext: fallback } = options || {};
+  const { context: ctx, useGlobalContext: fallback2 } = options || {};
   const fn = ctx ? ctx.getOperator(type5, operator) : null;
-  return !fn && fallback ? GLOBAL_CONTEXT.getOperator(type5, operator) : fn;
+  return !fn && fallback2 ? GLOBAL_CONTEXT.getOperator(type5, operator) : fn;
 }
 var systemVariables = {
   $$ROOT(_obj, _expr, options) {
@@ -11091,17 +11091,17 @@ function redact(obj, expr, options) {
 }
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/lazy.js
-function Lazy(source) {
-  return source instanceof Iterator2 ? source : new Iterator2(source);
+function Lazy(source2) {
+  return source2 instanceof Iterator2 ? source2 : new Iterator2(source2);
 }
 function compose(...iterators) {
-  let index = 0;
+  let index2 = 0;
   return Lazy(() => {
-    while (index < iterators.length) {
-      const o = iterators[index].next();
+    while (index2 < iterators.length) {
+      const o = iterators[index2].next();
       if (!o.done)
         return o;
-      index++;
+      index2++;
     }
     return { done: true };
   });
@@ -11117,14 +11117,14 @@ function dropItem(array, i2) {
 var DONE = new Error();
 function createCallback(nextFn, iteratees, buffer) {
   let done = false;
-  let index = -1;
+  let index2 = -1;
   let bufferIndex = 0;
   return function(storeResult) {
     try {
       outer:
         while (!done) {
           let o = nextFn();
-          index++;
+          index2++;
           let i2 = -1;
           const size = iteratees.length;
           let innerDone = false;
@@ -11132,10 +11132,10 @@ function createCallback(nextFn, iteratees, buffer) {
             const r = iteratees[i2];
             switch (r.action) {
               case 0:
-                o = r.func(o, index);
+                o = r.func(o, index2);
                 break;
               case 1:
-                if (!r.func(o, index))
+                if (!r.func(o, index2))
                   continue outer;
                 break;
               case 2:
@@ -11175,32 +11175,32 @@ var Iterator2 = class {
    *    Function - call to return the next value
    * @param {Function} fn An optional transformation function
    */
-  constructor(source) {
+  constructor(source2) {
     this.iteratees = [];
     this.yieldedValues = [];
     this.isDone = false;
     let nextVal;
-    if (source instanceof Function) {
-      source = { next: source };
+    if (source2 instanceof Function) {
+      source2 = { next: source2 };
     }
-    if (isGenerator(source)) {
-      const src = source;
+    if (isGenerator(source2)) {
+      const src = source2;
       nextVal = () => {
         const o = src.next();
         if (o.done)
           throw DONE;
         return o.value;
       };
-    } else if (source instanceof Array) {
-      const data = source;
+    } else if (source2 instanceof Array) {
+      const data = source2;
       const size = data.length;
-      let index = 0;
+      let index2 = 0;
       nextVal = () => {
-        if (index < size)
-          return data[index++];
+        if (index2 < size)
+          return data[index2++];
         throw DONE;
       };
-    } else if (!(source instanceof Function)) {
+    } else if (!(source2 instanceof Function)) {
       throw new MingoError(
         `Lazy must be initialized with an array, generator, or function.`
       );
@@ -11210,11 +11210,11 @@ var Iterator2 = class {
   /**
    * Add an iteratee to this lazy sequence
    */
-  push(action, value) {
+  push(action2, value) {
     if (typeof value === "function") {
-      this.iteratees.push({ action, func: value });
+      this.iteratees.push({ action: action2, func: value });
     } else if (typeof value === "number") {
-      this.iteratees.push({ action, count: value });
+      this.iteratees.push({ action: action2, count: value });
     }
     return this;
   }
@@ -11258,11 +11258,11 @@ var Iterator2 = class {
    * @param {Callback<Source, RawArray>} fn Tranform function of type (Array) => (Any)
    */
   transform(fn) {
-    const self2 = this;
+    const self3 = this;
     let iter;
     return Lazy(() => {
       if (!iter) {
-        iter = Lazy(fn(self2.value()));
+        iter = Lazy(fn(self3.value()));
       }
       return iter.next();
     });
@@ -11380,8 +11380,8 @@ var Aggregator = class {
 
 // node_modules/.pnpm/mingo@6.4.15/node_modules/mingo/dist/esm/cursor.js
 var Cursor = class {
-  constructor(source, predicate, projection, options) {
-    this.source = source;
+  constructor(source2, predicate, projection, options) {
+    this.source = source2;
     this.predicate = predicate;
     this.projection = projection;
     this.options = options;
@@ -12312,8 +12312,8 @@ function normalizeMangoQuery(schema, mangoQuery) {
         });
         var currentFieldsAmount = -1;
         var currentBestIndexForSort;
-        schema.indexes.forEach((index) => {
-          var useIndex = isMaybeReadonlyArray(index) ? index : [index];
+        schema.indexes.forEach((index2) => {
+          var useIndex = isMaybeReadonlyArray(index2) ? index2 : [index2];
           var firstWrongIndex = useIndex.findIndex((indexField) => !fieldsWithLogicalOperator.has(indexField));
           if (firstWrongIndex > 0 && firstWrongIndex > currentFieldsAmount) {
             currentFieldsAmount = firstWrongIndex;
@@ -12567,13 +12567,13 @@ var DocumentCache = /* @__PURE__ */ function() {
     changes$.subscribe((events) => {
       this.tasks.add(() => {
         var cacheItemByDocId = this.cacheItemByDocId;
-        for (var index = 0; index < events.length; index++) {
-          var event = events[index];
-          var cacheItem = cacheItemByDocId.get(event.documentId);
+        for (var index2 = 0; index2 < events.length; index2++) {
+          var event2 = events[index2];
+          var cacheItem = cacheItemByDocId.get(event2.documentId);
           if (cacheItem) {
-            var documentData = event.documentData;
+            var documentData = event2.documentData;
             if (!documentData) {
-              documentData = event.previousDocumentData;
+              documentData = event2.previousDocumentData;
             }
             cacheItem[1] = documentData;
           }
@@ -12630,8 +12630,8 @@ function getCachedRxDocumentMonad(docCache) {
   var fn = (docsData) => {
     var ret = new Array(docsData.length);
     var registryTasks = [];
-    for (var index = 0; index < docsData.length; index++) {
-      var docData = docsData[index];
+    for (var index2 = 0; index2 < docsData.length; index2++) {
+      var docData = docsData[index2];
       var docId = docData[primaryPath];
       var revisionHeight = getHeightOfRevision(docData._rev);
       var byRev = void 0;
@@ -12654,7 +12654,7 @@ function getCachedRxDocumentMonad(docCache) {
           registryTasks.push(cachedRxDocument);
         }
       }
-      ret[index] = cachedRxDocument;
+      ret[index2] = cachedRxDocument;
     }
     if (registryTasks.length > 0 && registry) {
       docCache.tasks.add(() => {
@@ -12898,7 +12898,7 @@ var RxQueryBase = /* @__PURE__ */ function() {
   _proto.incrementalRemove = function incrementalRemove() {
     return runQueryUpdateFunction(this.asRxQuery, (doc) => doc.incrementalRemove());
   };
-  _proto.update = function update(_updateObj) {
+  _proto.update = function update2(_updateObj) {
     throw pluginMissing("update");
   };
   _proto.patch = function patch(_patch) {
@@ -13280,13 +13280,13 @@ function categorizeBulkWriteRows(storageInstance, primaryPath, docsInDb, bulkWri
         newestRow = writeRow;
       }
       if (!insertedIsDeleted) {
-        var event = {
+        var event2 = {
           documentId: docId,
           operation: "INSERT",
           documentData: hasAttachments ? stripAttachmentsDataFromDocument(document2) : document2,
           previousDocumentData: hasAttachments && previous ? stripAttachmentsDataFromDocument(previous) : previous
         };
-        eventBulkEvents.push(event);
+        eventBulkEvents.push(event2);
       }
     } else {
       var revInDb = documentInDb._rev;
@@ -13469,13 +13469,13 @@ function getWrappedStorageInstance(database, storageInstance, rxJsonSchema) {
       var databaseToken = database.token;
       var toStorageWriteRows = new Array(rows.length);
       var time = now();
-      for (var index = 0; index < rows.length; index++) {
-        var writeRow = rows[index];
+      for (var index2 = 0; index2 < rows.length; index2++) {
+        var writeRow = rows[index2];
         var document2 = flatCloneDocWithMeta(writeRow.document);
         document2._meta.lwt = time;
         var previous = writeRow.previous;
         document2._rev = createRevision(databaseToken, previous);
-        toStorageWriteRows[index] = {
+        toStorageWriteRows[index2] = {
           document: document2,
           previous
         };
@@ -13611,8 +13611,8 @@ function getWrittenDocumentsFromBulkWriteResponse(primaryPath, writeRows, respon
   var ret = [];
   if (response.error.length > 0) {
     var errorIds = /* @__PURE__ */ new Set();
-    for (var index = 0; index < response.error.length; index++) {
-      var error = response.error[index];
+    for (var index2 = 0; index2 < response.error.length; index2++) {
+      var error = response.error[index2];
       errorIds.add(error.documentId);
     }
     for (var _index = 0; _index < writeRows.length; _index++) {
@@ -14061,7 +14061,7 @@ function getDocumentProperty(doc, objPath) {
     if (typeof valueObj !== "object" || valueObj === null || Array.isArray(valueObj)) {
       return overwritable.deepFreezeWhenDevMode(valueObj);
     }
-    var proxy = new Proxy(
+    var proxy2 = new Proxy(
       /**
        * In dev-mode, the _data is deep-frozen
        * so we have to flat clone here so that
@@ -14100,7 +14100,7 @@ function getDocumentProperty(doc, objPath) {
         }
       }
     );
-    return proxy;
+    return proxy2;
   });
 }
 
@@ -14383,9 +14383,9 @@ var ChangeEventBuffer = /* @__PURE__ */ function() {
     }
     var counterBase = counterBefore + 1;
     var eventCounterMap = this.eventCounterMap;
-    for (var index = 0; index < events.length; index++) {
-      var event = events[index];
-      eventCounterMap.set(event, counterBase + index);
+    for (var index2 = 0; index2 < events.length; index2++) {
+      var event2 = events[index2];
+      eventCounterMap.set(event2, counterBase + index2);
     }
   };
   _proto.getCounter = function getCounter() {
@@ -14564,8 +14564,8 @@ var RxCollectionBase = /* @__PURE__ */ function() {
     });
     var listenToRemoveSub = this.database.internalStore.changeStream().pipe(filter((bulk) => {
       var key = this.name + "-" + this.schema.version;
-      var found = bulk.events.find((event) => {
-        return event.documentData.context === "collection" && event.documentData.key === key && event.operation === "DELETE";
+      var found = bulk.events.find((event2) => {
+        return event2.documentData.context === "collection" && event2.documentData.key === key && event2.operation === "DELETE";
       });
       return !!found;
     })).subscribe(async () => {
@@ -14579,15 +14579,15 @@ var RxCollectionBase = /* @__PURE__ */ function() {
       var rawEvents = eventBulk.events;
       var collectionName = this.name;
       var deepFreezeWhenDevMode = overwritable.deepFreezeWhenDevMode;
-      for (var index = 0; index < rawEvents.length; index++) {
-        var event = rawEvents[index];
-        events[index] = {
-          documentId: event.documentId,
+      for (var index2 = 0; index2 < rawEvents.length; index2++) {
+        var event2 = rawEvents[index2];
+        events[index2] = {
+          documentId: event2.documentId,
           collectionName,
           isLocal: false,
-          operation: event.operation,
-          documentData: deepFreezeWhenDevMode(event.documentData),
-          previousDocumentData: deepFreezeWhenDevMode(event.previousDocumentData)
+          operation: event2.operation,
+          documentData: deepFreezeWhenDevMode(event2.documentData),
+          previousDocumentData: deepFreezeWhenDevMode(event2.previousDocumentData)
         };
       }
       var changeEventBulk = {
@@ -14662,10 +14662,10 @@ var RxCollectionBase = /* @__PURE__ */ function() {
     } else {
       insertRows = new Array(docsData.length);
       var _schema = this.schema;
-      for (var index = 0; index < docsData.length; index++) {
-        var docData = docsData[index];
+      for (var index2 = 0; index2 < docsData.length; index2++) {
+        var docData = docsData[index2];
         var useDocData = fillObjectDataBeforeInsert(_schema, docData);
-        insertRows[index] = {
+        insertRows[index2] = {
           document: useDocData
         };
       }
@@ -15309,12 +15309,12 @@ function removeTooOldValues(obliviousSet) {
   const olderThen = now2() - obliviousSet.ttl;
   const iterator2 = obliviousSet.map[Symbol.iterator]();
   while (true) {
-    const next = iterator2.next().value;
-    if (!next) {
+    const next2 = iterator2.next().value;
+    if (!next2) {
       return;
     }
-    const value = next[0];
-    const time = next[1];
+    const value = next2[0];
+    const time = next2[1];
     if (time < olderThen) {
       obliviousSet.map.delete(value);
     } else {
@@ -15674,19 +15674,19 @@ function microSeconds() {
 var microSeconds2 = microSeconds;
 var type = "native";
 function create(channelName) {
-  var state = {
+  var state2 = {
     time: microSeconds(),
     messagesCallback: null,
     bc: new BroadcastChannel(channelName),
     subFns: []
     // subscriberFunctions
   };
-  state.bc.onmessage = function(msgEvent) {
-    if (state.messagesCallback) {
-      state.messagesCallback(msgEvent.data);
+  state2.bc.onmessage = function(msgEvent) {
+    if (state2.messagesCallback) {
+      state2.messagesCallback(msgEvent.data);
     }
   };
-  return state;
+  return state2;
 }
 function close(channelState) {
   channelState.bc.close();
@@ -15904,7 +15904,7 @@ function cleanOldMessages(channelState) {
 function create2(channelName, options) {
   options = fillOptionsWithDefaults(options);
   return createDatabase(channelName).then(function(db2) {
-    var state = {
+    var state2 = {
       closed: false,
       lastCursorId: 0,
       channelName,
@@ -15923,47 +15923,47 @@ function create2(channelName, options) {
       db: db2
     };
     db2.onclose = function() {
-      state.closed = true;
+      state2.closed = true;
       if (options.idb.onclose) options.idb.onclose();
     };
-    _readLoop(state);
-    return state;
+    _readLoop(state2);
+    return state2;
   });
 }
-function _readLoop(state) {
-  if (state.closed) return;
-  readNewMessages(state).then(function() {
-    return sleep(state.options.idb.fallbackInterval);
+function _readLoop(state2) {
+  if (state2.closed) return;
+  readNewMessages(state2).then(function() {
+    return sleep(state2.options.idb.fallbackInterval);
   }).then(function() {
-    return _readLoop(state);
+    return _readLoop(state2);
   });
 }
-function _filterMessage(msgObj, state) {
-  if (msgObj.uuid === state.uuid) return false;
-  if (state.eMIs.has(msgObj.id)) return false;
-  if (msgObj.data.time < state.messagesCallbackTime) return false;
+function _filterMessage(msgObj, state2) {
+  if (msgObj.uuid === state2.uuid) return false;
+  if (state2.eMIs.has(msgObj.id)) return false;
+  if (msgObj.data.time < state2.messagesCallbackTime) return false;
   return true;
 }
-function readNewMessages(state) {
-  if (state.closed) return PROMISE_RESOLVED_VOID;
-  if (!state.messagesCallback) return PROMISE_RESOLVED_VOID;
-  return getMessagesHigherThan(state.db, state.lastCursorId).then(function(newerMessages) {
+function readNewMessages(state2) {
+  if (state2.closed) return PROMISE_RESOLVED_VOID;
+  if (!state2.messagesCallback) return PROMISE_RESOLVED_VOID;
+  return getMessagesHigherThan(state2.db, state2.lastCursorId).then(function(newerMessages) {
     var useMessages = newerMessages.filter(function(msgObj) {
       return !!msgObj;
     }).map(function(msgObj) {
-      if (msgObj.id > state.lastCursorId) {
-        state.lastCursorId = msgObj.id;
+      if (msgObj.id > state2.lastCursorId) {
+        state2.lastCursorId = msgObj.id;
       }
       return msgObj;
     }).filter(function(msgObj) {
-      return _filterMessage(msgObj, state);
+      return _filterMessage(msgObj, state2);
     }).sort(function(msgObjA, msgObjB) {
       return msgObjA.time - msgObjB.time;
     });
     useMessages.forEach(function(msgObj) {
-      if (state.messagesCallback) {
-        state.eMIs.add(msgObj.id);
-        state.messagesCallback(msgObj.data);
+      if (state2.messagesCallback) {
+        state2.eMIs.add(msgObj.id);
+        state2.messagesCallback(msgObj.data);
       }
     });
     return PROMISE_RESOLVED_VOID;
@@ -16063,21 +16063,21 @@ function create3(channelName, options) {
   }
   var uuid = randomToken();
   var eMIs = new ObliviousSet(options.localstorage.removeTimeout);
-  var state = {
+  var state2 = {
     channelName,
     uuid,
     eMIs
     // emittedMessagesIds
   };
-  state.listener = addStorageEventListener(channelName, function(msgObj) {
-    if (!state.messagesCallback) return;
+  state2.listener = addStorageEventListener(channelName, function(msgObj) {
+    if (!state2.messagesCallback) return;
     if (msgObj.uuid === uuid) return;
     if (!msgObj.token || eMIs.has(msgObj.token)) return;
-    if (msgObj.data.time && msgObj.data.time < state.messagesCallbackTime) return;
+    if (msgObj.data.time && msgObj.data.time < state2.messagesCallbackTime) return;
     eMIs.add(msgObj.token);
-    state.messagesCallback(msgObj.data);
+    state2.messagesCallback(msgObj.data);
   });
-  return state;
+  return state2;
 }
 function close3(channelState) {
   removeStorageEventListener(channelState.listener);
@@ -16122,13 +16122,13 @@ var microSeconds5 = microSeconds;
 var type4 = "simulate";
 var SIMULATE_CHANNELS = /* @__PURE__ */ new Set();
 function create4(channelName) {
-  var state = {
+  var state2 = {
     time: microSeconds5(),
     name: channelName,
     messagesCallback: null
   };
-  SIMULATE_CHANNELS.add(state);
-  return state;
+  SIMULATE_CHANNELS.add(state2);
+  return state2;
 }
 function close4(channelState) {
   SIMULATE_CHANNELS["delete"](channelState);
@@ -16268,7 +16268,7 @@ BroadcastChannel2.prototype = {
     };
     _addListenerObject(this, type5, listenObj);
   },
-  removeEventListener: function removeEventListener(type5, fn) {
+  removeEventListener: function removeEventListener2(type5, fn) {
     var obj = this._addEL[type5].find(function(obj2) {
       return obj2.fn === fn;
     });
@@ -16376,9 +16376,9 @@ function _stopListening(channel) {
 // node_modules/.pnpm/rxdb@15.34.1_rxjs@7.8.1/node_modules/rxdb/dist/esm/rx-storage-multiinstance.js
 var BROADCAST_CHANNEL_BY_TOKEN = /* @__PURE__ */ new Map();
 function getBroadcastChannelReference(storageName, databaseInstanceToken, databaseName, refObject) {
-  var state = BROADCAST_CHANNEL_BY_TOKEN.get(databaseInstanceToken);
-  if (!state) {
-    state = {
+  var state2 = BROADCAST_CHANNEL_BY_TOKEN.get(databaseInstanceToken);
+  if (!state2) {
+    state2 = {
       /**
        * We have to use the databaseName instead of the databaseInstanceToken
        * in the BroadcastChannel name because different instances must end with the same
@@ -16387,20 +16387,20 @@ function getBroadcastChannelReference(storageName, databaseInstanceToken, databa
       bc: new BroadcastChannel2(["RxDB:", storageName, databaseName].join("|")),
       refs: /* @__PURE__ */ new Set()
     };
-    BROADCAST_CHANNEL_BY_TOKEN.set(databaseInstanceToken, state);
+    BROADCAST_CHANNEL_BY_TOKEN.set(databaseInstanceToken, state2);
   }
-  state.refs.add(refObject);
-  return state.bc;
+  state2.refs.add(refObject);
+  return state2.bc;
 }
 function removeBroadcastChannelReference(databaseInstanceToken, refObject) {
-  var state = BROADCAST_CHANNEL_BY_TOKEN.get(databaseInstanceToken);
-  if (!state) {
+  var state2 = BROADCAST_CHANNEL_BY_TOKEN.get(databaseInstanceToken);
+  if (!state2) {
     return;
   }
-  state.refs.delete(refObject);
-  if (state.refs.size === 0) {
+  state2.refs.delete(refObject);
+  if (state2.refs.size === 0) {
     BROADCAST_CHANNEL_BY_TOKEN.delete(databaseInstanceToken);
-    return state.bc.close();
+    return state2.bc.close();
   }
 }
 function addRxStorageMultiInstanceSupport(storageName, instanceCreationParams, instance, providedBroadcastChannel) {
@@ -16484,7 +16484,7 @@ var DEXIE_STATE_DB_BY_NAME = /* @__PURE__ */ new Map();
 var REF_COUNT_PER_DEXIE_DB = /* @__PURE__ */ new Map();
 function getDexieDbWithTables(databaseName, collectionName, settings, schema) {
   var dexieDbName = "rxdb-dexie-" + databaseName + "--" + schema.version + "--" + collectionName;
-  var state = getFromMapOrCreate(DEXIE_STATE_DB_BY_NAME, dexieDbName, () => {
+  var state2 = getFromMapOrCreate(DEXIE_STATE_DB_BY_NAME, dexieDbName, () => {
     var value = (async () => {
       var useSettings = flatClone(settings);
       useSettings.autoOpen = false;
@@ -16503,18 +16503,18 @@ function getDexieDbWithTables(databaseName, collectionName, settings, schema) {
         booleanIndexes: getBooleanIndexes(schema)
       };
     })();
-    DEXIE_STATE_DB_BY_NAME.set(dexieDbName, state);
-    REF_COUNT_PER_DEXIE_DB.set(state, 0);
+    DEXIE_STATE_DB_BY_NAME.set(dexieDbName, state2);
+    REF_COUNT_PER_DEXIE_DB.set(state2, 0);
     return value;
   });
-  return state;
+  return state2;
 }
 async function closeDexieDb(statePromise) {
-  var state = await statePromise;
+  var state2 = await statePromise;
   var prevCount = REF_COUNT_PER_DEXIE_DB.get(statePromise);
   var newCount = prevCount - 1;
   if (newCount === 0) {
-    state.dexieDb.close();
+    state2.dexieDb.close();
     REF_COUNT_PER_DEXIE_DB.delete(statePromise);
   } else {
     REF_COUNT_PER_DEXIE_DB.set(statePromise, newCount);
@@ -16610,8 +16610,8 @@ function getDexieStoreSchema(rxJsonSchema) {
   parts.push([primaryKey]);
   parts.push(["_deleted", primaryKey]);
   if (rxJsonSchema.indexes) {
-    rxJsonSchema.indexes.forEach((index) => {
-      var arIndex = toArray(index);
+    rxJsonSchema.indexes.forEach((index2) => {
+      var arIndex = toArray(index2);
       parts.push(arIndex);
     });
   }
@@ -16632,9 +16632,9 @@ function getDexieStoreSchema(rxJsonSchema) {
   return dexieSchema;
 }
 async function getDocsInDb(internals, docIds) {
-  var state = await internals;
-  var docsInDb = await state.dexieTable.bulkGet(docIds);
-  return docsInDb.map((d) => fromDexieToStorage(state.booleanIndexes, d));
+  var state2 = await internals;
+  var docsInDb = await state2.dexieTable.bulkGet(docIds);
+  return docsInDb.map((d) => fromDexieToStorage(state2.booleanIndexes, d));
 }
 function attachmentObjectId(documentId, attachmentId) {
   return documentId + "||" + attachmentId;
@@ -16645,8 +16645,8 @@ function getBooleanIndexes(schema) {
   if (!schema.indexes) {
     return ret;
   }
-  schema.indexes.forEach((index) => {
-    var fields = toArray(index);
+  schema.indexes.forEach((index2) => {
+    var fields = toArray(index2);
     fields.forEach((field) => {
       if (checkedFields.has(field)) {
         return;
@@ -16698,7 +16698,7 @@ function getKeyRangeByQueryPlan(booleanIndexes, queryPlan, IDBKeyRange2) {
   return keyRange;
 }
 async function dexieQuery(instance, preparedQuery) {
-  var state = await instance.internals;
+  var state2 = await instance.internals;
   var query = preparedQuery.query;
   var skip = query.skip ? query.skip : 0;
   var limit = query.limit ? query.limit : Infinity;
@@ -16708,22 +16708,22 @@ async function dexieQuery(instance, preparedQuery) {
   if (!queryPlan.selectorSatisfiedByIndex) {
     queryMatcher = getQueryMatcher(instance.schema, preparedQuery.query);
   }
-  var keyRange = getKeyRangeByQueryPlan(state.booleanIndexes, queryPlan, state.dexieDb._options.IDBKeyRange);
+  var keyRange = getKeyRangeByQueryPlan(state2.booleanIndexes, queryPlan, state2.dexieDb._options.IDBKeyRange);
   var queryPlanFields = queryPlan.index;
   var rows = [];
-  await state.dexieDb.transaction("r", state.dexieTable, async (dexieTx) => {
+  await state2.dexieDb.transaction("r", state2.dexieTable, async (dexieTx) => {
     var tx = dexieTx.idbtrans;
     var store = tx.objectStore(DEXIE_DOCS_TABLE_NAME);
-    var index;
+    var index2;
     var indexName;
     indexName = "[" + queryPlanFields.map((field) => dexieReplaceIfStartsWithPipe(field)).join("+") + "]";
-    index = store.index(indexName);
-    var cursorReq = index.openCursor(keyRange);
+    index2 = store.index(indexName);
+    var cursorReq = index2.openCursor(keyRange);
     await new Promise((res) => {
       cursorReq.onsuccess = function(e) {
         var cursor = e.target.result;
         if (cursor) {
-          var docData = fromDexieToStorage(state.booleanIndexes, cursor.value);
+          var docData = fromDexieToStorage(state2.booleanIndexes, cursor.value);
           if (!queryMatcher || queryMatcher(docData)) {
             rows.push(docData);
           }
@@ -16748,19 +16748,19 @@ async function dexieQuery(instance, preparedQuery) {
   };
 }
 async function dexieCount(instance, preparedQuery) {
-  var state = await instance.internals;
+  var state2 = await instance.internals;
   var queryPlan = preparedQuery.queryPlan;
   var queryPlanFields = queryPlan.index;
-  var keyRange = getKeyRangeByQueryPlan(state.booleanIndexes, queryPlan, state.dexieDb._options.IDBKeyRange);
+  var keyRange = getKeyRangeByQueryPlan(state2.booleanIndexes, queryPlan, state2.dexieDb._options.IDBKeyRange);
   var count = -1;
-  await state.dexieDb.transaction("r", state.dexieTable, async (dexieTx) => {
+  await state2.dexieDb.transaction("r", state2.dexieTable, async (dexieTx) => {
     var tx = dexieTx.idbtrans;
     var store = tx.objectStore(DEXIE_DOCS_TABLE_NAME);
-    var index;
+    var index2;
     var indexName;
     indexName = "[" + queryPlanFields.map((field) => dexieReplaceIfStartsWithPipe(field)).join("+") + "]";
-    index = store.index(indexName);
-    var request = index.count(keyRange);
+    index2 = store.index(indexName);
+    var request = index2.count(keyRange);
     count = await new Promise((res, rej) => {
       request.onsuccess = function() {
         res(request.result);
@@ -16806,7 +16806,7 @@ var RxStorageInstanceDexie = /* @__PURE__ */ function() {
         });
       }
     });
-    var state = await this.internals;
+    var state2 = await this.internals;
     var ret = {
       error: []
     };
@@ -16821,7 +16821,7 @@ var RxStorageInstanceDexie = /* @__PURE__ */ function() {
     }
     var documentKeys = documentWrites.map((writeRow) => writeRow.document[this.primaryPath]);
     var categorized;
-    await state.dexieDb.transaction("rw", state.dexieTable, state.dexieAttachmentsTable, async () => {
+    await state2.dexieDb.transaction("rw", state2.dexieTable, state2.dexieAttachmentsTable, async () => {
       var docsInDbMap = /* @__PURE__ */ new Map();
       var docsInDbWithInternals = await getDocsInDb(this.internals, documentKeys);
       docsInDbWithInternals.forEach((docWithDexieInternals) => {
@@ -16840,9 +16840,9 @@ var RxStorageInstanceDexie = /* @__PURE__ */ function() {
       categorized.bulkUpdateDocs.forEach((row) => {
         bulkPutDocs.push(row.document);
       });
-      bulkPutDocs = bulkPutDocs.map((d) => fromStorageToDexie(state.booleanIndexes, d));
+      bulkPutDocs = bulkPutDocs.map((d) => fromStorageToDexie(state2.booleanIndexes, d));
       if (bulkPutDocs.length > 0) {
-        await state.dexieTable.bulkPut(bulkPutDocs);
+        await state2.dexieTable.bulkPut(bulkPutDocs);
       }
       var putAttachments = [];
       categorized.attachmentsAdd.forEach((attachment) => {
@@ -16857,8 +16857,8 @@ var RxStorageInstanceDexie = /* @__PURE__ */ function() {
           data: attachment.attachmentData.data
         });
       });
-      await state.dexieAttachmentsTable.bulkPut(putAttachments);
-      await state.dexieAttachmentsTable.bulkDelete(categorized.attachmentsRemove.map((attachment) => attachmentObjectId(attachment.documentId, attachment.attachmentId)));
+      await state2.dexieAttachmentsTable.bulkPut(putAttachments);
+      await state2.dexieAttachmentsTable.bulkDelete(categorized.attachmentsRemove.map((attachment) => attachmentObjectId(attachment.documentId, attachment.attachmentId)));
     });
     categorized = ensureNotFalsy(categorized);
     if (categorized.eventBulk.events.length > 0) {
@@ -16874,9 +16874,9 @@ var RxStorageInstanceDexie = /* @__PURE__ */ function() {
   };
   _proto.findDocumentsById = async function findDocumentsById(ids, deleted) {
     ensureNotClosed(this);
-    var state = await this.internals;
+    var state2 = await this.internals;
     var ret = [];
-    await state.dexieDb.transaction("r", state.dexieTable, async () => {
+    await state2.dexieDb.transaction("r", state2.dexieTable, async () => {
       var docsInDb = await getDocsInDb(this.internals, ids);
       docsInDb.forEach((documentInDb) => {
         if (documentInDb && (!documentInDb._deleted || deleted)) {
@@ -16911,26 +16911,26 @@ var RxStorageInstanceDexie = /* @__PURE__ */ function() {
   };
   _proto.cleanup = async function cleanup(minimumDeletedTime) {
     ensureNotClosed(this);
-    var state = await this.internals;
-    await state.dexieDb.transaction("rw", state.dexieTable, async () => {
+    var state2 = await this.internals;
+    await state2.dexieDb.transaction("rw", state2.dexieTable, async () => {
       var maxDeletionTime = now() - minimumDeletedTime;
-      var toRemove = await state.dexieTable.where("_meta.lwt").below(maxDeletionTime).toArray();
+      var toRemove = await state2.dexieTable.where("_meta.lwt").below(maxDeletionTime).toArray();
       var removeIds = [];
       toRemove.forEach((doc) => {
         if (doc._deleted === "1") {
           removeIds.push(doc[this.primaryPath]);
         }
       });
-      await state.dexieTable.bulkDelete(removeIds);
+      await state2.dexieTable.bulkDelete(removeIds);
     });
     return true;
   };
   _proto.getAttachmentData = async function getAttachmentData(documentId, attachmentId, _digest) {
     ensureNotClosed(this);
-    var state = await this.internals;
+    var state2 = await this.internals;
     var id = attachmentObjectId(documentId, attachmentId);
-    return await state.dexieDb.transaction("r", state.dexieAttachmentsTable, async () => {
-      var attachment = await state.dexieAttachmentsTable.get(id);
+    return await state2.dexieDb.transaction("r", state2.dexieAttachmentsTable, async () => {
+      var attachment = await state2.dexieAttachmentsTable.get(id);
       if (attachment) {
         return attachment.data;
       } else {
@@ -16940,8 +16940,8 @@ var RxStorageInstanceDexie = /* @__PURE__ */ function() {
   };
   _proto.remove = async function remove2() {
     ensureNotClosed(this);
-    var state = await this.internals;
-    await state.dexieTable.clear();
+    var state2 = await this.internals;
+    await state2.dexieTable.clear();
     return this.close();
   };
   _proto.close = function close6() {
@@ -16992,736 +16992,2136 @@ function getRxStorageDexie(settings = {}) {
   return storage;
 }
 
-// node_modules/.pnpm/solid-js@1.9.2/node_modules/solid-js/dist/solid.js
-var equalFn = (a2, b) => a2 === b;
-var $PROXY = Symbol("solid-proxy");
-var $TRACK = Symbol("solid-track");
-var $DEVCOMP = Symbol("solid-dev-component");
-var signalOptions = {
-  equals: equalFn
+// ../../node_modules/.pnpm/esm-env@1.2.1/node_modules/esm-env/dev-fallback.js
+var node_env = globalThis.process?.env?.NODE_ENV;
+if (!node_env) {
+  console.warn("If bundling, conditions should include development or production. If not bundling, conditions or NODE_ENV should include development or production. See https://www.npmjs.com/package/esm-env for tips on setting conditions in popular bundlers and runtimes.");
+}
+var dev_fallback_default = node_env && !node_env.toLowerCase().includes("prod");
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/shared/utils.js
+var is_array = Array.isArray;
+var array_from = Array.from;
+var object_keys = Object.keys;
+var define_property = Object.defineProperty;
+var get_descriptor = Object.getOwnPropertyDescriptor;
+var object_prototype = Object.prototype;
+var array_prototype = Array.prototype;
+var noop2 = () => {
 };
-var ERROR = null;
-var runEffects = runQueue;
-var STALE = 1;
-var PENDING = 2;
-var UNOWNED = {
-  owned: null,
-  cleanups: null,
-  context: null,
-  owner: null
-};
-var Owner = null;
-var Transition = null;
-var Scheduler = null;
-var ExternalSourceConfig = null;
-var Listener = null;
-var Updates = null;
-var Effects = null;
-var ExecCount = 0;
-function createSignal(value, options) {
-  options = options ? Object.assign({}, signalOptions, options) : signalOptions;
-  const s = {
-    value,
-    observers: null,
-    observerSlots: null,
-    comparator: options.equals || void 0
-  };
-  const setter = (value2) => {
-    if (typeof value2 === "function") {
-      if (Transition && Transition.running && Transition.sources.has(s)) value2 = value2(s.tValue);
-      else value2 = value2(s.value);
-    }
-    return writeSignal(s, value2);
-  };
-  return [readSignal.bind(s), setter];
-}
-function createRenderEffect(fn, value, options) {
-  const c = createComputation(fn, value, false, STALE);
-  if (Scheduler && Transition && Transition.running) Updates.push(c);
-  else updateComputation(c);
-}
-function createMemo(fn, value, options) {
-  options = options ? Object.assign({}, signalOptions, options) : signalOptions;
-  const c = createComputation(fn, value, true, 0);
-  c.observers = null;
-  c.observerSlots = null;
-  c.comparator = options.equals || void 0;
-  if (Scheduler && Transition && Transition.running) {
-    c.tState = STALE;
-    Updates.push(c);
-  } else updateComputation(c);
-  return readSignal.bind(c);
-}
-function batch(fn) {
-  return runUpdates(fn, false);
-}
-function untrack(fn) {
-  if (!ExternalSourceConfig && Listener === null) return fn();
-  const listener = Listener;
-  Listener = null;
-  try {
-    if (ExternalSourceConfig) return ExternalSourceConfig.untrack(fn);
-    return fn();
-  } finally {
-    Listener = listener;
+function run_all(arr) {
+  for (var i2 = 0; i2 < arr.length; i2++) {
+    arr[i2]();
   }
 }
-function onCleanup(fn) {
-  if (Owner === null) ;
-  else if (Owner.cleanups === null) Owner.cleanups = [fn];
-  else Owner.cleanups.push(fn);
-  return fn;
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/constants.js
+var DERIVED = 1 << 1;
+var EFFECT = 1 << 2;
+var RENDER_EFFECT = 1 << 3;
+var BLOCK_EFFECT = 1 << 4;
+var BRANCH_EFFECT = 1 << 5;
+var ROOT_EFFECT = 1 << 6;
+var BOUNDARY_EFFECT = 1 << 7;
+var UNOWNED = 1 << 8;
+var DISCONNECTED = 1 << 9;
+var CLEAN = 1 << 10;
+var DIRTY = 1 << 11;
+var MAYBE_DIRTY = 1 << 12;
+var INERT = 1 << 13;
+var DESTROYED = 1 << 14;
+var EFFECT_RAN = 1 << 15;
+var EFFECT_TRANSPARENT = 1 << 16;
+var LEGACY_DERIVED_PROP = 1 << 17;
+var INSPECT_EFFECT = 1 << 18;
+var HEAD_EFFECT = 1 << 19;
+var EFFECT_HAS_DERIVED = 1 << 20;
+var STATE_SYMBOL = Symbol("$state");
+var STATE_SYMBOL_METADATA = Symbol("$state metadata");
+var LEGACY_PROPS = Symbol("legacy props");
+var LOADING_ATTR_SYMBOL = Symbol("");
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dom/task.js
+var is_micro_task_queued = false;
+var is_idle_task_queued = false;
+var current_queued_micro_tasks = [];
+var current_queued_idle_tasks = [];
+function process_micro_tasks() {
+  is_micro_task_queued = false;
+  const tasks = current_queued_micro_tasks.slice();
+  current_queued_micro_tasks = [];
+  run_all(tasks);
 }
-function getListener() {
-  return Listener;
+function process_idle_tasks() {
+  is_idle_task_queued = false;
+  const tasks = current_queued_idle_tasks.slice();
+  current_queued_idle_tasks = [];
+  run_all(tasks);
 }
-function startTransition(fn) {
-  if (Transition && Transition.running) {
-    fn();
-    return Transition.done;
+function flush_tasks() {
+  if (is_micro_task_queued) {
+    process_micro_tasks();
   }
-  const l = Listener;
-  const o = Owner;
-  return Promise.resolve().then(() => {
-    Listener = l;
-    Owner = o;
-    let t;
-    if (Scheduler || SuspenseContext) {
-      t = Transition || (Transition = {
-        sources: /* @__PURE__ */ new Set(),
-        effects: [],
-        promises: /* @__PURE__ */ new Set(),
-        disposed: /* @__PURE__ */ new Set(),
-        queue: /* @__PURE__ */ new Set(),
-        running: true
-      });
-      t.done || (t.done = new Promise((res) => t.resolve = res));
-      t.running = true;
-    }
-    runUpdates(fn, false);
-    Listener = Owner = null;
-    return t ? t.done : void 0;
-  });
-}
-var [transPending, setTransPending] = /* @__PURE__ */ createSignal(false);
-function createContext(defaultValue, options) {
-  const id = Symbol("context");
-  return {
-    id,
-    Provider: createProvider(id),
-    defaultValue
-  };
-}
-function children(fn) {
-  const children2 = createMemo(fn);
-  const memo = createMemo(() => resolveChildren(children2()));
-  memo.toArray = () => {
-    const c = memo();
-    return Array.isArray(c) ? c : c != null ? [c] : [];
-  };
-  return memo;
-}
-var SuspenseContext;
-function readSignal() {
-  const runningTransition = Transition && Transition.running;
-  if (this.sources && (runningTransition ? this.tState : this.state)) {
-    if ((runningTransition ? this.tState : this.state) === STALE) updateComputation(this);
-    else {
-      const updates = Updates;
-      Updates = null;
-      runUpdates(() => lookUpstream(this), false);
-      Updates = updates;
-    }
+  if (is_idle_task_queued) {
+    process_idle_tasks();
   }
-  if (Listener) {
-    const sSlot = this.observers ? this.observers.length : 0;
-    if (!Listener.sources) {
-      Listener.sources = [this];
-      Listener.sourceSlots = [sSlot];
-    } else {
-      Listener.sources.push(this);
-      Listener.sourceSlots.push(sSlot);
-    }
-    if (!this.observers) {
-      this.observers = [Listener];
-      this.observerSlots = [Listener.sources.length - 1];
-    } else {
-      this.observers.push(Listener);
-      this.observerSlots.push(Listener.sources.length - 1);
-    }
-  }
-  if (runningTransition && Transition.sources.has(this)) return this.tValue;
-  return this.value;
 }
-function writeSignal(node, value, isComp) {
-  let current = Transition && Transition.running && Transition.sources.has(node) ? node.tValue : node.value;
-  if (!node.comparator || !node.comparator(current, value)) {
-    if (Transition) {
-      const TransitionRunning = Transition.running;
-      if (TransitionRunning || !isComp && Transition.sources.has(node)) {
-        Transition.sources.add(node);
-        node.tValue = value;
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/warnings.js
+var bold = "font-weight: bold";
+var normal = "font-weight: normal";
+function hydration_mismatch(location2) {
+  if (dev_fallback_default) {
+    console.warn(`%c[svelte] hydration_mismatch
+%c${location2 ? `Hydration failed because the initial UI does not match what was rendered on the server. The error occurred near ${location2}` : "Hydration failed because the initial UI does not match what was rendered on the server"}
+https://svelte.dev/e/hydration_mismatch`, bold, normal);
+  } else {
+    console.warn(`https://svelte.dev/e/hydration_mismatch`);
+  }
+}
+function lifecycle_double_unmount() {
+  if (dev_fallback_default) {
+    console.warn(`%c[svelte] lifecycle_double_unmount
+%cTried to unmount a component that was not mounted
+https://svelte.dev/e/lifecycle_double_unmount`, bold, normal);
+  } else {
+    console.warn(`https://svelte.dev/e/lifecycle_double_unmount`);
+  }
+}
+function state_proxy_equality_mismatch(operator) {
+  if (dev_fallback_default) {
+    console.warn(`%c[svelte] state_proxy_equality_mismatch
+%cReactive \`$state(...)\` proxies and the values they proxy have different identities. Because of this, comparisons with \`${operator}\` will produce unexpected results
+https://svelte.dev/e/state_proxy_equality_mismatch`, bold, normal);
+  } else {
+    console.warn(`https://svelte.dev/e/state_proxy_equality_mismatch`);
+  }
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/constants.js
+var EACH_INDEX_REACTIVE = 1 << 1;
+var EACH_IS_CONTROLLED = 1 << 2;
+var EACH_IS_ANIMATED = 1 << 3;
+var EACH_ITEM_IMMUTABLE = 1 << 4;
+var PROPS_IS_RUNES = 1 << 1;
+var PROPS_IS_UPDATED = 1 << 2;
+var PROPS_IS_BINDABLE = 1 << 3;
+var PROPS_IS_LAZY_INITIAL = 1 << 4;
+var TRANSITION_OUT = 1 << 1;
+var TRANSITION_GLOBAL = 1 << 2;
+var TEMPLATE_USE_IMPORT_NODE = 1 << 1;
+var HYDRATION_START = "[";
+var HYDRATION_END = "]";
+var HYDRATION_ERROR = {};
+var ELEMENT_PRESERVE_ATTRIBUTE_CASE = 1 << 1;
+var UNINITIALIZED = Symbol();
+var FILENAME = Symbol("filename");
+var HMR = Symbol("hmr");
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dev/ownership.js
+var ADD_OWNER = Symbol("ADD_OWNER");
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/reactivity/equality.js
+function equals(value) {
+  return value === this.v;
+}
+function safe_not_equal(a2, b) {
+  return a2 != a2 ? b == b : a2 !== b || a2 !== null && typeof a2 === "object" || typeof a2 === "function";
+}
+function safe_equals(value) {
+  return !safe_not_equal(value, this.v);
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/errors.js
+function derived_references_self() {
+  if (dev_fallback_default) {
+    const error = new Error(`derived_references_self
+A derived value cannot reference itself recursively
+https://svelte.dev/e/derived_references_self`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/derived_references_self`);
+  }
+}
+function effect_update_depth_exceeded() {
+  if (dev_fallback_default) {
+    const error = new Error(`effect_update_depth_exceeded
+Maximum update depth exceeded. This can happen when a reactive block or effect repeatedly sets a new value. Svelte limits the number of nested updates to prevent infinite loops
+https://svelte.dev/e/effect_update_depth_exceeded`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/effect_update_depth_exceeded`);
+  }
+}
+function hydration_failed() {
+  if (dev_fallback_default) {
+    const error = new Error(`hydration_failed
+Failed to hydrate the application
+https://svelte.dev/e/hydration_failed`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/hydration_failed`);
+  }
+}
+function rune_outside_svelte(rune) {
+  if (dev_fallback_default) {
+    const error = new Error(`rune_outside_svelte
+The \`${rune}\` rune is only available inside \`.svelte\` and \`.svelte.js/ts\` files
+https://svelte.dev/e/rune_outside_svelte`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/rune_outside_svelte`);
+  }
+}
+function state_unsafe_local_read() {
+  if (dev_fallback_default) {
+    const error = new Error(`state_unsafe_local_read
+Reading state that was created inside the same derived is forbidden. Consider using \`untrack\` to read locally created state
+https://svelte.dev/e/state_unsafe_local_read`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/state_unsafe_local_read`);
+  }
+}
+function state_unsafe_mutation() {
+  if (dev_fallback_default) {
+    const error = new Error(`state_unsafe_mutation
+Updating state inside a derived or a template expression is forbidden. If the value should not be reactive, declare it without \`$state\`
+https://svelte.dev/e/state_unsafe_mutation`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/state_unsafe_mutation`);
+  }
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/flags/index.js
+var legacy_mode_flag = false;
+var tracing_mode_flag = false;
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dev/tracing.js
+var tracing_expressions = null;
+function get_stack(label) {
+  let error = Error();
+  const stack2 = error.stack;
+  if (stack2) {
+    const lines = stack2.split("\n");
+    const new_lines = ["\n"];
+    for (let i2 = 0; i2 < lines.length; i2++) {
+      const line = lines[i2];
+      if (line === "Error") {
+        continue;
       }
-      if (!TransitionRunning) node.value = value;
-    } else node.value = value;
-    if (node.observers && node.observers.length) {
-      runUpdates(() => {
-        for (let i2 = 0; i2 < node.observers.length; i2 += 1) {
-          const o = node.observers[i2];
-          const TransitionRunning = Transition && Transition.running;
-          if (TransitionRunning && Transition.disposed.has(o)) continue;
-          if (TransitionRunning ? !o.tState : !o.state) {
-            if (o.pure) Updates.push(o);
-            else Effects.push(o);
-            if (o.observers) markDownstream(o);
+      if (line.includes("validate_each_keys")) {
+        return null;
+      }
+      if (line.includes("svelte/src/internal")) {
+        continue;
+      }
+      new_lines.push(line);
+    }
+    if (new_lines.length === 1) {
+      return null;
+    }
+    define_property(error, "stack", {
+      value: new_lines.join("\n")
+    });
+    define_property(error, "name", {
+      // 'Error' suffix is required for stack traces to be rendered properly
+      value: `${label}Error`
+    });
+  }
+  return error;
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/reactivity/sources.js
+var inspect_effects = /* @__PURE__ */ new Set();
+function set_inspect_effects(v) {
+  inspect_effects = v;
+}
+function source(v, stack2) {
+  var signal = {
+    f: 0,
+    // TODO ideally we could skip this altogether, but it causes type errors
+    v,
+    reactions: null,
+    equals,
+    version: 0
+  };
+  if (dev_fallback_default && tracing_mode_flag) {
+    signal.created = stack2 ?? get_stack("CreatedAt");
+    signal.debug = null;
+  }
+  return signal;
+}
+// @__NO_SIDE_EFFECTS__
+function mutable_source(initial_value, immutable = false) {
+  const s = source(initial_value);
+  if (!immutable) {
+    s.equals = safe_equals;
+  }
+  if (legacy_mode_flag && component_context !== null && component_context.l !== null) {
+    (component_context.l.s ??= []).push(s);
+  }
+  return s;
+}
+function set(source2, value) {
+  if (active_reaction !== null && is_runes() && (active_reaction.f & (DERIVED | BLOCK_EFFECT)) !== 0 && // If the source was created locally within the current derived, then
+  // we allow the mutation.
+  (derived_sources === null || !derived_sources.includes(source2))) {
+    state_unsafe_mutation();
+  }
+  return internal_set(source2, value);
+}
+function internal_set(source2, value) {
+  if (!source2.equals(value)) {
+    source2.v = value;
+    source2.version = increment_version();
+    if (dev_fallback_default && tracing_mode_flag) {
+      source2.updated = get_stack("UpdatedAt");
+    }
+    mark_reactions(source2, DIRTY);
+    if (is_runes() && active_effect !== null && (active_effect.f & CLEAN) !== 0 && (active_effect.f & BRANCH_EFFECT) === 0) {
+      if (new_deps !== null && new_deps.includes(source2)) {
+        set_signal_status(active_effect, DIRTY);
+        schedule_effect(active_effect);
+      } else {
+        if (untracked_writes === null) {
+          set_untracked_writes([source2]);
+        } else {
+          untracked_writes.push(source2);
+        }
+      }
+    }
+    if (dev_fallback_default && inspect_effects.size > 0) {
+      const inspects = Array.from(inspect_effects);
+      var previously_flushing_effect = is_flushing_effect;
+      set_is_flushing_effect(true);
+      try {
+        for (const effect2 of inspects) {
+          if ((effect2.f & CLEAN) !== 0) {
+            set_signal_status(effect2, MAYBE_DIRTY);
           }
-          if (!TransitionRunning) o.state = STALE;
-          else o.tState = STALE;
+          if (check_dirtiness(effect2)) {
+            update_effect(effect2);
+          }
         }
-        if (Updates.length > 1e6) {
-          Updates = [];
-          if (false) ;
-          throw new Error();
-        }
-      }, false);
+      } finally {
+        set_is_flushing_effect(previously_flushing_effect);
+      }
+      inspect_effects.clear();
     }
   }
   return value;
 }
-function updateComputation(node) {
-  if (!node.fn) return;
-  cleanNode(node);
-  const time = ExecCount;
-  runComputation(node, Transition && Transition.running && Transition.sources.has(node) ? node.tValue : node.value, time);
-  if (Transition && !Transition.running && Transition.sources.has(node)) {
-    queueMicrotask(() => {
-      runUpdates(() => {
-        Transition && (Transition.running = true);
-        Listener = Owner = node;
-        runComputation(node, node.tValue, time);
-        Listener = Owner = null;
-      }, false);
-    });
-  }
-}
-function runComputation(node, value, time) {
-  let nextValue;
-  const owner = Owner, listener = Listener;
-  Listener = Owner = node;
-  try {
-    nextValue = node.fn(value);
-  } catch (err) {
-    if (node.pure) {
-      if (Transition && Transition.running) {
-        node.tState = STALE;
-        node.tOwned && node.tOwned.forEach(cleanNode);
-        node.tOwned = void 0;
+function mark_reactions(signal, status) {
+  var reactions = signal.reactions;
+  if (reactions === null) return;
+  var runes = is_runes();
+  var length = reactions.length;
+  for (var i2 = 0; i2 < length; i2++) {
+    var reaction = reactions[i2];
+    var flags = reaction.f;
+    if ((flags & DIRTY) !== 0) continue;
+    if (!runes && reaction === active_effect) continue;
+    if (dev_fallback_default && (flags & INSPECT_EFFECT) !== 0) {
+      inspect_effects.add(reaction);
+      continue;
+    }
+    set_signal_status(reaction, status);
+    if ((flags & (CLEAN | UNOWNED)) !== 0) {
+      if ((flags & DERIVED) !== 0) {
+        mark_reactions(
+          /** @type {Derived} */
+          reaction,
+          MAYBE_DIRTY
+        );
       } else {
-        node.state = STALE;
-        node.owned && node.owned.forEach(cleanNode);
-        node.owned = null;
+        schedule_effect(
+          /** @type {Effect} */
+          reaction
+        );
       }
     }
-    node.updatedAt = time + 1;
-    return handleError(err);
-  } finally {
-    Listener = listener;
-    Owner = owner;
-  }
-  if (!node.updatedAt || node.updatedAt <= time) {
-    if (node.updatedAt != null && "observers" in node) {
-      writeSignal(node, nextValue, true);
-    } else if (Transition && Transition.running && node.pure) {
-      Transition.sources.add(node);
-      node.tValue = nextValue;
-    } else node.value = nextValue;
-    node.updatedAt = time;
   }
 }
-function createComputation(fn, init2, pure, state = STALE, options) {
-  const c = {
-    fn,
-    state,
-    updatedAt: null,
-    owned: null,
-    sources: null,
-    sourceSlots: null,
-    cleanups: null,
-    value: init2,
-    owner: Owner,
-    context: Owner ? Owner.context : null,
-    pure
-  };
-  if (Transition && Transition.running) {
-    c.state = 0;
-    c.tState = state;
-  }
-  if (Owner === null) ;
-  else if (Owner !== UNOWNED) {
-    if (Transition && Transition.running && Owner.pure) {
-      if (!Owner.tOwned) Owner.tOwned = [c];
-      else Owner.tOwned.push(c);
-    } else {
-      if (!Owner.owned) Owner.owned = [c];
-      else Owner.owned.push(c);
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/reactivity/deriveds.js
+function destroy_derived_children(derived3) {
+  var children = derived3.children;
+  if (children !== null) {
+    derived3.children = null;
+    for (var i2 = 0; i2 < children.length; i2 += 1) {
+      var child2 = children[i2];
+      if ((child2.f & DERIVED) !== 0) {
+        destroy_derived(
+          /** @type {Derived} */
+          child2
+        );
+      } else {
+        destroy_effect(
+          /** @type {Effect} */
+          child2
+        );
+      }
     }
   }
-  if (ExternalSourceConfig && c.fn) {
-    const [track, trigger] = createSignal(void 0, {
-      equals: false
+}
+var stack = [];
+function get_derived_parent_effect(derived3) {
+  var parent = derived3.parent;
+  while (parent !== null) {
+    if ((parent.f & DERIVED) === 0) {
+      return (
+        /** @type {Effect} */
+        parent
+      );
+    }
+    parent = parent.parent;
+  }
+  return null;
+}
+function execute_derived(derived3) {
+  var value;
+  var prev_active_effect = active_effect;
+  set_active_effect(get_derived_parent_effect(derived3));
+  if (dev_fallback_default) {
+    let prev_inspect_effects = inspect_effects;
+    set_inspect_effects(/* @__PURE__ */ new Set());
+    try {
+      if (stack.includes(derived3)) {
+        derived_references_self();
+      }
+      stack.push(derived3);
+      destroy_derived_children(derived3);
+      value = update_reaction(derived3);
+    } finally {
+      set_active_effect(prev_active_effect);
+      set_inspect_effects(prev_inspect_effects);
+      stack.pop();
+    }
+  } else {
+    try {
+      destroy_derived_children(derived3);
+      value = update_reaction(derived3);
+    } finally {
+      set_active_effect(prev_active_effect);
+    }
+  }
+  return value;
+}
+function update_derived(derived3) {
+  var value = execute_derived(derived3);
+  var status = (skip_reaction || (derived3.f & UNOWNED) !== 0) && derived3.deps !== null ? MAYBE_DIRTY : CLEAN;
+  set_signal_status(derived3, status);
+  if (!derived3.equals(value)) {
+    derived3.v = value;
+    derived3.version = increment_version();
+  }
+}
+function destroy_derived(derived3) {
+  destroy_derived_children(derived3);
+  remove_reactions(derived3, 0);
+  set_signal_status(derived3, DESTROYED);
+  derived3.v = derived3.children = derived3.deps = derived3.ctx = derived3.reactions = null;
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/runtime.js
+var FLUSH_MICROTASK = 0;
+var FLUSH_SYNC = 1;
+var handled_errors = /* @__PURE__ */ new WeakSet();
+var is_throwing_error = false;
+var scheduler_mode = FLUSH_MICROTASK;
+var is_micro_task_queued2 = false;
+var last_scheduled_effect = null;
+var is_flushing_effect = false;
+var is_destroying_effect = false;
+function set_is_flushing_effect(value) {
+  is_flushing_effect = value;
+}
+function set_is_destroying_effect(value) {
+  is_destroying_effect = value;
+}
+var queued_root_effects = [];
+var flush_count = 0;
+var dev_effect_stack = [];
+var active_reaction = null;
+function set_active_reaction(reaction) {
+  active_reaction = reaction;
+}
+var active_effect = null;
+function set_active_effect(effect2) {
+  active_effect = effect2;
+}
+var derived_sources = null;
+var new_deps = null;
+var skipped_deps = 0;
+var untracked_writes = null;
+function set_untracked_writes(value) {
+  untracked_writes = value;
+}
+var current_version = 1;
+var skip_reaction = false;
+var captured_signals = null;
+var component_context = null;
+var dev_current_component_function = null;
+function increment_version() {
+  return ++current_version;
+}
+function is_runes() {
+  return !legacy_mode_flag || component_context !== null && component_context.l === null;
+}
+function check_dirtiness(reaction) {
+  var flags = reaction.f;
+  if ((flags & DIRTY) !== 0) {
+    return true;
+  }
+  if ((flags & MAYBE_DIRTY) !== 0) {
+    var dependencies = reaction.deps;
+    var is_unowned = (flags & UNOWNED) !== 0;
+    if (dependencies !== null) {
+      var i2;
+      if ((flags & DISCONNECTED) !== 0) {
+        for (i2 = 0; i2 < dependencies.length; i2++) {
+          (dependencies[i2].reactions ??= []).push(reaction);
+        }
+        reaction.f ^= DISCONNECTED;
+      }
+      for (i2 = 0; i2 < dependencies.length; i2++) {
+        var dependency = dependencies[i2];
+        if (check_dirtiness(
+          /** @type {Derived} */
+          dependency
+        )) {
+          update_derived(
+            /** @type {Derived} */
+            dependency
+          );
+        }
+        if (is_unowned && active_effect !== null && !skip_reaction && !dependency?.reactions?.includes(reaction)) {
+          (dependency.reactions ??= []).push(reaction);
+        }
+        if (dependency.version > reaction.version) {
+          return true;
+        }
+      }
+    }
+    if (!is_unowned || active_effect !== null && !skip_reaction) {
+      set_signal_status(reaction, CLEAN);
+    }
+  }
+  return false;
+}
+function propagate_error(error, effect2) {
+  var current = effect2;
+  while (current !== null) {
+    if ((current.f & BOUNDARY_EFFECT) !== 0) {
+      try {
+        current.fn(error);
+        return;
+      } catch {
+        current.f ^= BOUNDARY_EFFECT;
+      }
+    }
+    current = current.parent;
+  }
+  is_throwing_error = false;
+  throw error;
+}
+function should_rethrow_error(effect2) {
+  return (effect2.f & DESTROYED) === 0 && (effect2.parent === null || (effect2.parent.f & BOUNDARY_EFFECT) === 0);
+}
+function handle_error(error, effect2, previous_effect, component_context2) {
+  if (is_throwing_error) {
+    if (previous_effect === null) {
+      is_throwing_error = false;
+    }
+    if (should_rethrow_error(effect2)) {
+      throw error;
+    }
+    return;
+  }
+  if (previous_effect !== null) {
+    is_throwing_error = true;
+  }
+  if (!dev_fallback_default || component_context2 === null || !(error instanceof Error) || handled_errors.has(error)) {
+    propagate_error(error, effect2);
+    return;
+  }
+  handled_errors.add(error);
+  const component_stack = [];
+  const effect_name = effect2.fn?.name;
+  if (effect_name) {
+    component_stack.push(effect_name);
+  }
+  let current_context = component_context2;
+  while (current_context !== null) {
+    if (dev_fallback_default) {
+      var filename = current_context.function?.[FILENAME];
+      if (filename) {
+        const file = filename.split("/").pop();
+        component_stack.push(file);
+      }
+    }
+    current_context = current_context.p;
+  }
+  const indent = /Firefox/.test(navigator.userAgent) ? "  " : "	";
+  define_property(error, "message", {
+    value: error.message + `
+${component_stack.map((name) => `
+${indent}in ${name}`).join("")}
+`
+  });
+  define_property(error, "component_stack", {
+    value: component_stack
+  });
+  const stack2 = error.stack;
+  if (stack2) {
+    const lines = stack2.split("\n");
+    const new_lines = [];
+    for (let i2 = 0; i2 < lines.length; i2++) {
+      const line = lines[i2];
+      if (line.includes("svelte/src/internal")) {
+        continue;
+      }
+      new_lines.push(line);
+    }
+    define_property(error, "stack", {
+      value: new_lines.join("\n")
     });
-    const ordinary = ExternalSourceConfig.factory(c.fn, trigger);
-    onCleanup(() => ordinary.dispose());
-    const triggerInTransition = () => startTransition(trigger).then(() => inTransition.dispose());
-    const inTransition = ExternalSourceConfig.factory(c.fn, triggerInTransition);
-    c.fn = (x2) => {
-      track();
-      return Transition && Transition.running ? inTransition.track(x2) : ordinary.track(x2);
+  }
+  propagate_error(error, effect2);
+  if (should_rethrow_error(effect2)) {
+    throw error;
+  }
+}
+function update_reaction(reaction) {
+  var previous_deps = new_deps;
+  var previous_skipped_deps = skipped_deps;
+  var previous_untracked_writes = untracked_writes;
+  var previous_reaction = active_reaction;
+  var previous_skip_reaction = skip_reaction;
+  var prev_derived_sources = derived_sources;
+  var previous_component_context = component_context;
+  var flags = reaction.f;
+  new_deps = /** @type {null | Value[]} */
+  null;
+  skipped_deps = 0;
+  untracked_writes = null;
+  active_reaction = (flags & (BRANCH_EFFECT | ROOT_EFFECT)) === 0 ? reaction : null;
+  skip_reaction = !is_flushing_effect && (flags & UNOWNED) !== 0;
+  derived_sources = null;
+  component_context = reaction.ctx;
+  try {
+    var result = (
+      /** @type {Function} */
+      (0, reaction.fn)()
+    );
+    var deps = reaction.deps;
+    if (new_deps !== null) {
+      var i2;
+      remove_reactions(reaction, skipped_deps);
+      if (deps !== null && skipped_deps > 0) {
+        deps.length = skipped_deps + new_deps.length;
+        for (i2 = 0; i2 < new_deps.length; i2++) {
+          deps[skipped_deps + i2] = new_deps[i2];
+        }
+      } else {
+        reaction.deps = deps = new_deps;
+      }
+      if (!skip_reaction) {
+        for (i2 = skipped_deps; i2 < deps.length; i2++) {
+          (deps[i2].reactions ??= []).push(reaction);
+        }
+      }
+    } else if (deps !== null && skipped_deps < deps.length) {
+      remove_reactions(reaction, skipped_deps);
+      deps.length = skipped_deps;
+    }
+    return result;
+  } finally {
+    new_deps = previous_deps;
+    skipped_deps = previous_skipped_deps;
+    untracked_writes = previous_untracked_writes;
+    active_reaction = previous_reaction;
+    skip_reaction = previous_skip_reaction;
+    derived_sources = prev_derived_sources;
+    component_context = previous_component_context;
+  }
+}
+function remove_reaction(signal, dependency) {
+  let reactions = dependency.reactions;
+  if (reactions !== null) {
+    var index2 = reactions.indexOf(signal);
+    if (index2 !== -1) {
+      var new_length = reactions.length - 1;
+      if (new_length === 0) {
+        reactions = dependency.reactions = null;
+      } else {
+        reactions[index2] = reactions[new_length];
+        reactions.pop();
+      }
+    }
+  }
+  if (reactions === null && (dependency.f & DERIVED) !== 0 && // Destroying a child effect while updating a parent effect can cause a dependency to appear
+  // to be unused, when in fact it is used by the currently-updating parent. Checking `new_deps`
+  // allows us to skip the expensive work of disconnecting and immediately reconnecting it
+  (new_deps === null || !new_deps.includes(dependency))) {
+    set_signal_status(dependency, MAYBE_DIRTY);
+    if ((dependency.f & (UNOWNED | DISCONNECTED)) === 0) {
+      dependency.f ^= DISCONNECTED;
+    }
+    remove_reactions(
+      /** @type {Derived} **/
+      dependency,
+      0
+    );
+  }
+}
+function remove_reactions(signal, start_index) {
+  var dependencies = signal.deps;
+  if (dependencies === null) return;
+  for (var i2 = start_index; i2 < dependencies.length; i2++) {
+    remove_reaction(signal, dependencies[i2]);
+  }
+}
+function update_effect(effect2) {
+  var flags = effect2.f;
+  if ((flags & DESTROYED) !== 0) {
+    return;
+  }
+  set_signal_status(effect2, CLEAN);
+  var previous_effect = active_effect;
+  var previous_component_context = component_context;
+  active_effect = effect2;
+  if (dev_fallback_default) {
+    var previous_component_fn = dev_current_component_function;
+    dev_current_component_function = effect2.component_function;
+  }
+  try {
+    if ((flags & BLOCK_EFFECT) !== 0) {
+      destroy_block_effect_children(effect2);
+    } else {
+      destroy_effect_children(effect2);
+    }
+    destroy_effect_deriveds(effect2);
+    execute_effect_teardown(effect2);
+    var teardown2 = update_reaction(effect2);
+    effect2.teardown = typeof teardown2 === "function" ? teardown2 : null;
+    effect2.version = current_version;
+    if (dev_fallback_default) {
+      dev_effect_stack.push(effect2);
+    }
+  } catch (error) {
+    handle_error(error, effect2, previous_effect, previous_component_context || effect2.ctx);
+  } finally {
+    active_effect = previous_effect;
+    if (dev_fallback_default) {
+      dev_current_component_function = previous_component_fn;
+    }
+  }
+}
+function log_effect_stack() {
+  console.error(
+    "Last ten effects were: ",
+    dev_effect_stack.slice(-10).map((d) => d.fn)
+  );
+  dev_effect_stack = [];
+}
+function infinite_loop_guard() {
+  if (flush_count > 1e3) {
+    flush_count = 0;
+    try {
+      effect_update_depth_exceeded();
+    } catch (error) {
+      if (dev_fallback_default) {
+        define_property(error, "stack", {
+          value: ""
+        });
+      }
+      if (last_scheduled_effect !== null) {
+        if (dev_fallback_default) {
+          try {
+            handle_error(error, last_scheduled_effect, null, null);
+          } catch (e) {
+            log_effect_stack();
+            throw e;
+          }
+        } else {
+          handle_error(error, last_scheduled_effect, null, null);
+        }
+      } else {
+        if (dev_fallback_default) {
+          log_effect_stack();
+        }
+        throw error;
+      }
+    }
+  }
+  flush_count++;
+}
+function flush_queued_root_effects(root_effects) {
+  var length = root_effects.length;
+  if (length === 0) {
+    return;
+  }
+  infinite_loop_guard();
+  var previously_flushing_effect = is_flushing_effect;
+  is_flushing_effect = true;
+  try {
+    for (var i2 = 0; i2 < length; i2++) {
+      var effect2 = root_effects[i2];
+      if ((effect2.f & CLEAN) === 0) {
+        effect2.f ^= CLEAN;
+      }
+      var collected_effects = [];
+      process_effects(effect2, collected_effects);
+      flush_queued_effects(collected_effects);
+    }
+  } finally {
+    is_flushing_effect = previously_flushing_effect;
+  }
+}
+function flush_queued_effects(effects) {
+  var length = effects.length;
+  if (length === 0) return;
+  for (var i2 = 0; i2 < length; i2++) {
+    var effect2 = effects[i2];
+    if ((effect2.f & (DESTROYED | INERT)) === 0) {
+      try {
+        if (check_dirtiness(effect2)) {
+          update_effect(effect2);
+          if (effect2.deps === null && effect2.first === null && effect2.nodes_start === null) {
+            if (effect2.teardown === null) {
+              unlink_effect(effect2);
+            } else {
+              effect2.fn = null;
+            }
+          }
+        }
+      } catch (error) {
+        handle_error(error, effect2, null, effect2.ctx);
+      }
+    }
+  }
+}
+function process_deferred() {
+  is_micro_task_queued2 = false;
+  if (flush_count > 1001) {
+    return;
+  }
+  const previous_queued_root_effects = queued_root_effects;
+  queued_root_effects = [];
+  flush_queued_root_effects(previous_queued_root_effects);
+  if (!is_micro_task_queued2) {
+    flush_count = 0;
+    last_scheduled_effect = null;
+    if (dev_fallback_default) {
+      dev_effect_stack = [];
+    }
+  }
+}
+function schedule_effect(signal) {
+  if (scheduler_mode === FLUSH_MICROTASK) {
+    if (!is_micro_task_queued2) {
+      is_micro_task_queued2 = true;
+      queueMicrotask(process_deferred);
+    }
+  }
+  last_scheduled_effect = signal;
+  var effect2 = signal;
+  while (effect2.parent !== null) {
+    effect2 = effect2.parent;
+    var flags = effect2.f;
+    if ((flags & (ROOT_EFFECT | BRANCH_EFFECT)) !== 0) {
+      if ((flags & CLEAN) === 0) return;
+      effect2.f ^= CLEAN;
+    }
+  }
+  queued_root_effects.push(effect2);
+}
+function process_effects(effect2, collected_effects) {
+  var current_effect = effect2.first;
+  var effects = [];
+  main_loop: while (current_effect !== null) {
+    var flags = current_effect.f;
+    var is_branch = (flags & BRANCH_EFFECT) !== 0;
+    var is_skippable_branch = is_branch && (flags & CLEAN) !== 0;
+    var sibling2 = current_effect.next;
+    if (!is_skippable_branch && (flags & INERT) === 0) {
+      if ((flags & RENDER_EFFECT) !== 0) {
+        if (is_branch) {
+          current_effect.f ^= CLEAN;
+        } else {
+          try {
+            if (check_dirtiness(current_effect)) {
+              update_effect(current_effect);
+            }
+          } catch (error) {
+            handle_error(error, current_effect, null, current_effect.ctx);
+          }
+        }
+        var child2 = current_effect.first;
+        if (child2 !== null) {
+          current_effect = child2;
+          continue;
+        }
+      } else if ((flags & EFFECT) !== 0) {
+        effects.push(current_effect);
+      }
+    }
+    if (sibling2 === null) {
+      let parent = current_effect.parent;
+      while (parent !== null) {
+        if (effect2 === parent) {
+          break main_loop;
+        }
+        var parent_sibling = parent.next;
+        if (parent_sibling !== null) {
+          current_effect = parent_sibling;
+          continue main_loop;
+        }
+        parent = parent.parent;
+      }
+    }
+    current_effect = sibling2;
+  }
+  for (var i2 = 0; i2 < effects.length; i2++) {
+    child2 = effects[i2];
+    collected_effects.push(child2);
+    process_effects(child2, collected_effects);
+  }
+}
+function flush_sync(fn) {
+  var previous_scheduler_mode = scheduler_mode;
+  var previous_queued_root_effects = queued_root_effects;
+  try {
+    infinite_loop_guard();
+    const root_effects = [];
+    scheduler_mode = FLUSH_SYNC;
+    queued_root_effects = root_effects;
+    is_micro_task_queued2 = false;
+    flush_queued_root_effects(previous_queued_root_effects);
+    var result = fn?.();
+    flush_tasks();
+    if (queued_root_effects.length > 0 || root_effects.length > 0) {
+      flush_sync();
+    }
+    flush_count = 0;
+    last_scheduled_effect = null;
+    if (dev_fallback_default) {
+      dev_effect_stack = [];
+    }
+    return result;
+  } finally {
+    scheduler_mode = previous_scheduler_mode;
+    queued_root_effects = previous_queued_root_effects;
+  }
+}
+function get(signal) {
+  var flags = signal.f;
+  var is_derived = (flags & DERIVED) !== 0;
+  if (is_derived && (flags & DESTROYED) !== 0) {
+    var value = execute_derived(
+      /** @type {Derived} */
+      signal
+    );
+    destroy_derived(
+      /** @type {Derived} */
+      signal
+    );
+    return value;
+  }
+  if (captured_signals !== null) {
+    captured_signals.add(signal);
+  }
+  if (active_reaction !== null) {
+    if (derived_sources !== null && derived_sources.includes(signal)) {
+      state_unsafe_local_read();
+    }
+    var deps = active_reaction.deps;
+    if (new_deps === null && deps !== null && deps[skipped_deps] === signal) {
+      skipped_deps++;
+    } else if (new_deps === null) {
+      new_deps = [signal];
+    } else {
+      new_deps.push(signal);
+    }
+    if (untracked_writes !== null && active_effect !== null && (active_effect.f & CLEAN) !== 0 && (active_effect.f & BRANCH_EFFECT) === 0 && untracked_writes.includes(signal)) {
+      set_signal_status(active_effect, DIRTY);
+      schedule_effect(active_effect);
+    }
+  } else if (is_derived && /** @type {Derived} */
+  signal.deps === null) {
+    var derived3 = (
+      /** @type {Derived} */
+      signal
+    );
+    var parent = derived3.parent;
+    var target = derived3;
+    while (parent !== null) {
+      if ((parent.f & DERIVED) !== 0) {
+        var parent_derived = (
+          /** @type {Derived} */
+          parent
+        );
+        target = parent_derived;
+        parent = parent_derived.parent;
+      } else {
+        var parent_effect = (
+          /** @type {Effect} */
+          parent
+        );
+        if (!parent_effect.deriveds?.includes(target)) {
+          (parent_effect.deriveds ??= []).push(target);
+        }
+        break;
+      }
+    }
+  }
+  if (is_derived) {
+    derived3 = /** @type {Derived} */
+    signal;
+    if (check_dirtiness(derived3)) {
+      update_derived(derived3);
+    }
+  }
+  if (dev_fallback_default && tracing_mode_flag && tracing_expressions !== null && active_reaction !== null && tracing_expressions.reaction === active_reaction) {
+    if (signal.debug) {
+      signal.debug();
+    } else if (signal.created) {
+      var entry = tracing_expressions.entries.get(signal);
+      if (entry === void 0) {
+        entry = { read: [] };
+        tracing_expressions.entries.set(signal, entry);
+      }
+      entry.read.push(get_stack("TracedAt"));
+    }
+  }
+  return signal.v;
+}
+var STATUS_MASK = ~(DIRTY | MAYBE_DIRTY | CLEAN);
+function set_signal_status(signal, status) {
+  signal.f = signal.f & STATUS_MASK | status;
+}
+function push(props, runes = false, fn) {
+  component_context = {
+    p: component_context,
+    c: null,
+    e: null,
+    m: false,
+    s: props,
+    x: null,
+    l: null
+  };
+  if (legacy_mode_flag && !runes) {
+    component_context.l = {
+      s: null,
+      u: null,
+      r1: [],
+      r2: source(false)
     };
   }
-  return c;
-}
-function runTop(node) {
-  const runningTransition = Transition && Transition.running;
-  if ((runningTransition ? node.tState : node.state) === 0) return;
-  if ((runningTransition ? node.tState : node.state) === PENDING) return lookUpstream(node);
-  if (node.suspense && untrack(node.suspense.inFallback)) return node.suspense.effects.push(node);
-  const ancestors = [node];
-  while ((node = node.owner) && (!node.updatedAt || node.updatedAt < ExecCount)) {
-    if (runningTransition && Transition.disposed.has(node)) return;
-    if (runningTransition ? node.tState : node.state) ancestors.push(node);
+  if (dev_fallback_default) {
+    component_context.function = fn;
+    dev_current_component_function = fn;
   }
-  for (let i2 = ancestors.length - 1; i2 >= 0; i2--) {
-    node = ancestors[i2];
-    if (runningTransition) {
-      let top = node, prev = ancestors[i2 + 1];
-      while ((top = top.owner) && top !== prev) {
-        if (Transition.disposed.has(top)) return;
-      }
+}
+function pop(component2) {
+  const context_stack_item = component_context;
+  if (context_stack_item !== null) {
+    if (component2 !== void 0) {
+      context_stack_item.x = component2;
     }
-    if ((runningTransition ? node.tState : node.state) === STALE) {
-      updateComputation(node);
-    } else if ((runningTransition ? node.tState : node.state) === PENDING) {
-      const updates = Updates;
-      Updates = null;
-      runUpdates(() => lookUpstream(node, ancestors[0]), false);
-      Updates = updates;
-    }
-  }
-}
-function runUpdates(fn, init2) {
-  if (Updates) return fn();
-  let wait = false;
-  if (!init2) Updates = [];
-  if (Effects) wait = true;
-  else Effects = [];
-  ExecCount++;
-  try {
-    const res = fn();
-    completeUpdates(wait);
-    return res;
-  } catch (err) {
-    if (!wait) Effects = null;
-    Updates = null;
-    handleError(err);
-  }
-}
-function completeUpdates(wait) {
-  if (Updates) {
-    if (Scheduler && Transition && Transition.running) scheduleQueue(Updates);
-    else runQueue(Updates);
-    Updates = null;
-  }
-  if (wait) return;
-  let res;
-  if (Transition) {
-    if (!Transition.promises.size && !Transition.queue.size) {
-      const sources = Transition.sources;
-      const disposed = Transition.disposed;
-      Effects.push.apply(Effects, Transition.effects);
-      res = Transition.resolve;
-      for (const e2 of Effects) {
-        "tState" in e2 && (e2.state = e2.tState);
-        delete e2.tState;
-      }
-      Transition = null;
-      runUpdates(() => {
-        for (const d of disposed) cleanNode(d);
-        for (const v of sources) {
-          v.value = v.tValue;
-          if (v.owned) {
-            for (let i2 = 0, len = v.owned.length; i2 < len; i2++) cleanNode(v.owned[i2]);
-          }
-          if (v.tOwned) v.owned = v.tOwned;
-          delete v.tValue;
-          delete v.tOwned;
-          v.tState = 0;
+    const component_effects = context_stack_item.e;
+    if (component_effects !== null) {
+      var previous_effect = active_effect;
+      var previous_reaction = active_reaction;
+      context_stack_item.e = null;
+      try {
+        for (var i2 = 0; i2 < component_effects.length; i2++) {
+          var component_effect = component_effects[i2];
+          set_active_effect(component_effect.effect);
+          set_active_reaction(component_effect.reaction);
+          effect(component_effect.fn);
         }
-        setTransPending(false);
-      }, false);
-    } else if (Transition.running) {
-      Transition.running = false;
-      Transition.effects.push.apply(Transition.effects, Effects);
-      Effects = null;
-      setTransPending(true);
-      return;
+      } finally {
+        set_active_effect(previous_effect);
+        set_active_reaction(previous_reaction);
+      }
     }
+    component_context = context_stack_item.p;
+    if (dev_fallback_default) {
+      dev_current_component_function = context_stack_item.p?.function ?? null;
+    }
+    context_stack_item.m = true;
   }
-  const e = Effects;
-  Effects = null;
-  if (e.length) runUpdates(() => runEffects(e), false);
-  if (res) res();
+  return component2 || /** @type {T} */
+  {};
 }
-function runQueue(queue) {
-  for (let i2 = 0; i2 < queue.length; i2++) runTop(queue[i2]);
-}
-function scheduleQueue(queue) {
-  for (let i2 = 0; i2 < queue.length; i2++) {
-    const item = queue[i2];
-    const tasks = Transition.queue;
-    if (!tasks.has(item)) {
-      tasks.add(item);
-      Scheduler(() => {
-        tasks.delete(item);
-        runUpdates(() => {
-          Transition.running = true;
-          runTop(item);
-        }, false);
-        Transition && (Transition.running = false);
+if (dev_fallback_default) {
+  let throw_rune_error = function(rune) {
+    if (!(rune in globalThis)) {
+      let value;
+      Object.defineProperty(globalThis, rune, {
+        configurable: true,
+        // eslint-disable-next-line getter-return
+        get: () => {
+          if (value !== void 0) {
+            return value;
+          }
+          rune_outside_svelte(rune);
+        },
+        set: (v) => {
+          value = v;
+        }
       });
     }
-  }
+  };
+  throw_rune_error2 = throw_rune_error;
+  throw_rune_error("$state");
+  throw_rune_error("$effect");
+  throw_rune_error("$derived");
+  throw_rune_error("$inspect");
+  throw_rune_error("$props");
+  throw_rune_error("$bindable");
 }
-function lookUpstream(node, ignore) {
-  const runningTransition = Transition && Transition.running;
-  if (runningTransition) node.tState = 0;
-  else node.state = 0;
-  for (let i2 = 0; i2 < node.sources.length; i2 += 1) {
-    const source = node.sources[i2];
-    if (source.sources) {
-      const state = runningTransition ? source.tState : source.state;
-      if (state === STALE) {
-        if (source !== ignore && (!source.updatedAt || source.updatedAt < ExecCount)) runTop(source);
-      } else if (state === PENDING) lookUpstream(source, ignore);
-    }
-  }
+var throw_rune_error2;
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dom/hydration.js
+var hydrating = false;
+function set_hydrating(value) {
+  hydrating = value;
 }
-function markDownstream(node) {
-  const runningTransition = Transition && Transition.running;
-  for (let i2 = 0; i2 < node.observers.length; i2 += 1) {
-    const o = node.observers[i2];
-    if (runningTransition ? !o.tState : !o.state) {
-      if (runningTransition) o.tState = PENDING;
-      else o.state = PENDING;
-      if (o.pure) Updates.push(o);
-      else Effects.push(o);
-      o.observers && markDownstream(o);
-    }
+var hydrate_node;
+function set_hydrate_node(node) {
+  if (node === null) {
+    hydration_mismatch();
+    throw HYDRATION_ERROR;
   }
+  return hydrate_node = node;
 }
-function cleanNode(node) {
-  let i2;
-  if (node.sources) {
-    while (node.sources.length) {
-      const source = node.sources.pop(), index = node.sourceSlots.pop(), obs = source.observers;
-      if (obs && obs.length) {
-        const n2 = obs.pop(), s = source.observerSlots.pop();
-        if (index < obs.length) {
-          n2.sourceSlots[s] = index;
-          obs[index] = n2;
-          source.observerSlots[index] = s;
+function hydrate_next() {
+  return set_hydrate_node(
+    /** @type {TemplateNode} */
+    get_next_sibling(hydrate_node)
+  );
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/proxy.js
+function get_proxied_value(value) {
+  if (value !== null && typeof value === "object" && STATE_SYMBOL in value) {
+    return value[STATE_SYMBOL];
+  }
+  return value;
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dev/equality.js
+function init_array_prototype_warnings() {
+  const array_prototype2 = Array.prototype;
+  const cleanup = Array.__svelte_cleanup;
+  if (cleanup) {
+    cleanup();
+  }
+  const { indexOf, lastIndexOf, includes } = array_prototype2;
+  array_prototype2.indexOf = function(item, from_index) {
+    const index2 = indexOf.call(this, item, from_index);
+    if (index2 === -1) {
+      for (let i2 = from_index ?? 0; i2 < this.length; i2 += 1) {
+        if (get_proxied_value(this[i2]) === item) {
+          state_proxy_equality_mismatch("array.indexOf(...)");
+          break;
         }
       }
     }
-  }
-  if (node.tOwned) {
-    for (i2 = node.tOwned.length - 1; i2 >= 0; i2--) cleanNode(node.tOwned[i2]);
-    delete node.tOwned;
-  }
-  if (Transition && Transition.running && node.pure) {
-    reset(node, true);
-  } else if (node.owned) {
-    for (i2 = node.owned.length - 1; i2 >= 0; i2--) cleanNode(node.owned[i2]);
-    node.owned = null;
-  }
-  if (node.cleanups) {
-    for (i2 = node.cleanups.length - 1; i2 >= 0; i2--) node.cleanups[i2]();
-    node.cleanups = null;
-  }
-  if (Transition && Transition.running) node.tState = 0;
-  else node.state = 0;
-}
-function reset(node, top) {
-  if (!top) {
-    node.tState = 0;
-    Transition.disposed.add(node);
-  }
-  if (node.owned) {
-    for (let i2 = 0; i2 < node.owned.length; i2++) reset(node.owned[i2]);
-  }
-}
-function castError(err) {
-  if (err instanceof Error) return err;
-  return new Error(typeof err === "string" ? err : "Unknown error", {
-    cause: err
-  });
-}
-function runErrors(err, fns, owner) {
-  try {
-    for (const f of fns) f(err);
-  } catch (e) {
-    handleError(e, owner && owner.owner || null);
-  }
-}
-function handleError(err, owner = Owner) {
-  const fns = ERROR && owner && owner.context && owner.context[ERROR];
-  const error = castError(err);
-  if (!fns) throw error;
-  if (Effects) Effects.push({
-    fn() {
-      runErrors(error, fns, owner);
-    },
-    state: STALE
-  });
-  else runErrors(error, fns, owner);
-}
-function resolveChildren(children2) {
-  if (typeof children2 === "function" && !children2.length) return resolveChildren(children2());
-  if (Array.isArray(children2)) {
-    const results = [];
-    for (let i2 = 0; i2 < children2.length; i2++) {
-      const result = resolveChildren(children2[i2]);
-      Array.isArray(result) ? results.push.apply(results, result) : results.push(result);
+    return index2;
+  };
+  array_prototype2.lastIndexOf = function(item, from_index) {
+    const index2 = lastIndexOf.call(this, item, from_index ?? this.length - 1);
+    if (index2 === -1) {
+      for (let i2 = 0; i2 <= (from_index ?? this.length - 1); i2 += 1) {
+        if (get_proxied_value(this[i2]) === item) {
+          state_proxy_equality_mismatch("array.lastIndexOf(...)");
+          break;
+        }
+      }
     }
-    return results;
-  }
-  return children2;
-}
-function createProvider(id, options) {
-  return function provider(props) {
-    let res;
-    createRenderEffect(() => res = untrack(() => {
-      Owner.context = {
-        ...Owner.context,
-        [id]: props.value
-      };
-      return children(() => props.children);
-    }), void 0);
-    return res;
+    return index2;
+  };
+  array_prototype2.includes = function(item, from_index) {
+    const has2 = includes.call(this, item, from_index);
+    if (!has2) {
+      for (let i2 = 0; i2 < this.length; i2 += 1) {
+        if (get_proxied_value(this[i2]) === item) {
+          state_proxy_equality_mismatch("array.includes(...)");
+          break;
+        }
+      }
+    }
+    return has2;
+  };
+  Array.__svelte_cleanup = () => {
+    array_prototype2.indexOf = indexOf;
+    array_prototype2.lastIndexOf = lastIndexOf;
+    array_prototype2.includes = includes;
   };
 }
-var FALLBACK = Symbol("fallback");
 
-// node_modules/.pnpm/solid-js@1.9.2/node_modules/solid-js/store/dist/store.js
-var $RAW = Symbol("store-raw");
-var $NODE = Symbol("store-node");
-var $HAS = Symbol("store-has");
-var $SELF = Symbol("store-self");
-function wrap$1(value) {
-  let p2 = value[$PROXY];
-  if (!p2) {
-    Object.defineProperty(value, $PROXY, {
-      value: p2 = new Proxy(value, proxyTraps$1)
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dom/operations.js
+var $window;
+var $document;
+var first_child_getter;
+var next_sibling_getter;
+function init_operations() {
+  if ($window !== void 0) {
+    return;
+  }
+  $window = window;
+  $document = document;
+  var element_prototype = Element.prototype;
+  var node_prototype = Node.prototype;
+  first_child_getter = get_descriptor(node_prototype, "firstChild").get;
+  next_sibling_getter = get_descriptor(node_prototype, "nextSibling").get;
+  element_prototype.__click = void 0;
+  element_prototype.__className = "";
+  element_prototype.__attributes = null;
+  element_prototype.__styles = null;
+  element_prototype.__e = void 0;
+  Text.prototype.__t = void 0;
+  if (dev_fallback_default) {
+    element_prototype.__svelte_meta = null;
+    init_array_prototype_warnings();
+  }
+}
+function create_text(value = "") {
+  return document.createTextNode(value);
+}
+// @__NO_SIDE_EFFECTS__
+function get_first_child(node) {
+  return first_child_getter.call(node);
+}
+// @__NO_SIDE_EFFECTS__
+function get_next_sibling(node) {
+  return next_sibling_getter.call(node);
+}
+function clear_text_content(node) {
+  node.textContent = "";
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/reactivity/effects.js
+function push_effect(effect2, parent_effect) {
+  var parent_last = parent_effect.last;
+  if (parent_last === null) {
+    parent_effect.last = parent_effect.first = effect2;
+  } else {
+    parent_last.next = effect2;
+    effect2.prev = parent_last;
+    parent_effect.last = effect2;
+  }
+}
+function create_effect(type5, fn, sync, push2 = true) {
+  var is_root = (type5 & ROOT_EFFECT) !== 0;
+  var parent_effect = active_effect;
+  if (dev_fallback_default) {
+    while (parent_effect !== null && (parent_effect.f & INSPECT_EFFECT) !== 0) {
+      parent_effect = parent_effect.parent;
+    }
+  }
+  var effect2 = {
+    ctx: component_context,
+    deps: null,
+    deriveds: null,
+    nodes_start: null,
+    nodes_end: null,
+    f: type5 | DIRTY,
+    first: null,
+    fn,
+    last: null,
+    next: null,
+    parent: is_root ? null : parent_effect,
+    prev: null,
+    teardown: null,
+    transitions: null,
+    version: 0
+  };
+  if (dev_fallback_default) {
+    effect2.component_function = dev_current_component_function;
+  }
+  if (sync) {
+    var previously_flushing_effect = is_flushing_effect;
+    try {
+      set_is_flushing_effect(true);
+      update_effect(effect2);
+      effect2.f |= EFFECT_RAN;
+    } catch (e) {
+      destroy_effect(effect2);
+      throw e;
+    } finally {
+      set_is_flushing_effect(previously_flushing_effect);
+    }
+  } else if (fn !== null) {
+    schedule_effect(effect2);
+  }
+  var inert = sync && effect2.deps === null && effect2.first === null && effect2.nodes_start === null && effect2.teardown === null && (effect2.f & EFFECT_HAS_DERIVED) === 0;
+  if (!inert && !is_root && push2) {
+    if (parent_effect !== null) {
+      push_effect(effect2, parent_effect);
+    }
+    if (active_reaction !== null && (active_reaction.f & DERIVED) !== 0) {
+      var derived3 = (
+        /** @type {Derived} */
+        active_reaction
+      );
+      (derived3.children ??= []).push(effect2);
+    }
+  }
+  return effect2;
+}
+function effect_root(fn) {
+  const effect2 = create_effect(ROOT_EFFECT, fn, true);
+  return () => {
+    destroy_effect(effect2);
+  };
+}
+function component_root(fn) {
+  const effect2 = create_effect(ROOT_EFFECT, fn, true);
+  return (options = {}) => {
+    return new Promise((fulfil) => {
+      if (options.outro) {
+        pause_effect(effect2, () => {
+          destroy_effect(effect2);
+          fulfil(void 0);
+        });
+      } else {
+        destroy_effect(effect2);
+        fulfil(void 0);
+      }
     });
-    if (!Array.isArray(value)) {
-      const keys = Object.keys(value), desc = Object.getOwnPropertyDescriptors(value);
-      for (let i2 = 0, l = keys.length; i2 < l; i2++) {
-        const prop = keys[i2];
-        if (desc[prop].get) {
-          Object.defineProperty(value, prop, {
-            enumerable: desc[prop].enumerable,
-            get: desc[prop].get.bind(p2)
+  };
+}
+function effect(fn) {
+  return create_effect(EFFECT, fn, false);
+}
+function render_effect(fn) {
+  return create_effect(RENDER_EFFECT, fn, true);
+}
+function branch(fn, push2 = true) {
+  return create_effect(RENDER_EFFECT | BRANCH_EFFECT, fn, true, push2);
+}
+function execute_effect_teardown(effect2) {
+  var teardown2 = effect2.teardown;
+  if (teardown2 !== null) {
+    const previously_destroying_effect = is_destroying_effect;
+    const previous_reaction = active_reaction;
+    set_is_destroying_effect(true);
+    set_active_reaction(null);
+    try {
+      teardown2.call(null);
+    } finally {
+      set_is_destroying_effect(previously_destroying_effect);
+      set_active_reaction(previous_reaction);
+    }
+  }
+}
+function destroy_effect_deriveds(signal) {
+  var deriveds = signal.deriveds;
+  if (deriveds !== null) {
+    signal.deriveds = null;
+    for (var i2 = 0; i2 < deriveds.length; i2 += 1) {
+      destroy_derived(deriveds[i2]);
+    }
+  }
+}
+function destroy_effect_children(signal, remove_dom = false) {
+  var effect2 = signal.first;
+  signal.first = signal.last = null;
+  while (effect2 !== null) {
+    var next2 = effect2.next;
+    destroy_effect(effect2, remove_dom);
+    effect2 = next2;
+  }
+}
+function destroy_block_effect_children(signal) {
+  var effect2 = signal.first;
+  while (effect2 !== null) {
+    var next2 = effect2.next;
+    if ((effect2.f & BRANCH_EFFECT) === 0) {
+      destroy_effect(effect2);
+    }
+    effect2 = next2;
+  }
+}
+function destroy_effect(effect2, remove_dom = true) {
+  var removed = false;
+  if ((remove_dom || (effect2.f & HEAD_EFFECT) !== 0) && effect2.nodes_start !== null) {
+    var node = effect2.nodes_start;
+    var end = effect2.nodes_end;
+    while (node !== null) {
+      var next2 = node === end ? null : (
+        /** @type {TemplateNode} */
+        get_next_sibling(node)
+      );
+      node.remove();
+      node = next2;
+    }
+    removed = true;
+  }
+  destroy_effect_children(effect2, remove_dom && !removed);
+  destroy_effect_deriveds(effect2);
+  remove_reactions(effect2, 0);
+  set_signal_status(effect2, DESTROYED);
+  var transitions = effect2.transitions;
+  if (transitions !== null) {
+    for (const transition2 of transitions) {
+      transition2.stop();
+    }
+  }
+  execute_effect_teardown(effect2);
+  var parent = effect2.parent;
+  if (parent !== null && parent.first !== null) {
+    unlink_effect(effect2);
+  }
+  if (dev_fallback_default) {
+    effect2.component_function = null;
+  }
+  effect2.next = effect2.prev = effect2.teardown = effect2.ctx = effect2.deps = effect2.fn = effect2.nodes_start = effect2.nodes_end = null;
+}
+function unlink_effect(effect2) {
+  var parent = effect2.parent;
+  var prev = effect2.prev;
+  var next2 = effect2.next;
+  if (prev !== null) prev.next = next2;
+  if (next2 !== null) next2.prev = prev;
+  if (parent !== null) {
+    if (parent.first === effect2) parent.first = next2;
+    if (parent.last === effect2) parent.last = prev;
+  }
+}
+function pause_effect(effect2, callback) {
+  var transitions = [];
+  pause_children(effect2, transitions, true);
+  run_out_transitions(transitions, () => {
+    destroy_effect(effect2);
+    if (callback) callback();
+  });
+}
+function run_out_transitions(transitions, fn) {
+  var remaining = transitions.length;
+  if (remaining > 0) {
+    var check = () => --remaining || fn();
+    for (var transition2 of transitions) {
+      transition2.out(check);
+    }
+  } else {
+    fn();
+  }
+}
+function pause_children(effect2, transitions, local) {
+  if ((effect2.f & INERT) !== 0) return;
+  effect2.f ^= INERT;
+  if (effect2.transitions !== null) {
+    for (const transition2 of effect2.transitions) {
+      if (transition2.is_global || local) {
+        transitions.push(transition2);
+      }
+    }
+  }
+  var child2 = effect2.first;
+  while (child2 !== null) {
+    var sibling2 = child2.next;
+    var transparent = (child2.f & EFFECT_TRANSPARENT) !== 0 || (child2.f & BRANCH_EFFECT) !== 0;
+    pause_children(child2, transitions, transparent ? local : false);
+    child2 = sibling2;
+  }
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/utils.js
+var DOM_BOOLEAN_ATTRIBUTES = [
+  "allowfullscreen",
+  "async",
+  "autofocus",
+  "autoplay",
+  "checked",
+  "controls",
+  "default",
+  "disabled",
+  "formnovalidate",
+  "hidden",
+  "indeterminate",
+  "ismap",
+  "loop",
+  "multiple",
+  "muted",
+  "nomodule",
+  "novalidate",
+  "open",
+  "playsinline",
+  "readonly",
+  "required",
+  "reversed",
+  "seamless",
+  "selected",
+  "webkitdirectory"
+];
+var DOM_PROPERTIES = [
+  ...DOM_BOOLEAN_ATTRIBUTES,
+  "formNoValidate",
+  "isMap",
+  "noModule",
+  "playsInline",
+  "readOnly",
+  "value",
+  "inert",
+  "volume",
+  "defaultValue",
+  "defaultChecked",
+  "srcObject"
+];
+var PASSIVE_EVENTS = ["touchstart", "touchmove"];
+function is_passive_event(name) {
+  return PASSIVE_EVENTS.includes(name);
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dom/elements/events.js
+var all_registered_events = /* @__PURE__ */ new Set();
+var root_event_handles = /* @__PURE__ */ new Set();
+function handle_event_propagation(event2) {
+  var handler_element = this;
+  var owner_document = (
+    /** @type {Node} */
+    handler_element.ownerDocument
+  );
+  var event_name = event2.type;
+  var path = event2.composedPath?.() || [];
+  var current_target = (
+    /** @type {null | Element} */
+    path[0] || event2.target
+  );
+  var path_idx = 0;
+  var handled_at = event2.__root;
+  if (handled_at) {
+    var at_idx = path.indexOf(handled_at);
+    if (at_idx !== -1 && (handler_element === document || handler_element === /** @type {any} */
+    window)) {
+      event2.__root = handler_element;
+      return;
+    }
+    var handler_idx = path.indexOf(handler_element);
+    if (handler_idx === -1) {
+      return;
+    }
+    if (at_idx <= handler_idx) {
+      path_idx = at_idx;
+    }
+  }
+  current_target = /** @type {Element} */
+  path[path_idx] || event2.target;
+  if (current_target === handler_element) return;
+  define_property(event2, "currentTarget", {
+    configurable: true,
+    get() {
+      return current_target || owner_document;
+    }
+  });
+  var previous_reaction = active_reaction;
+  var previous_effect = active_effect;
+  set_active_reaction(null);
+  set_active_effect(null);
+  try {
+    var throw_error;
+    var other_errors = [];
+    while (current_target !== null) {
+      var parent_element = current_target.assignedSlot || current_target.parentNode || /** @type {any} */
+      current_target.host || null;
+      try {
+        var delegated = current_target["__" + event_name];
+        if (delegated !== void 0 && !/** @type {any} */
+        current_target.disabled) {
+          if (is_array(delegated)) {
+            var [fn, ...data] = delegated;
+            fn.apply(current_target, [event2, ...data]);
+          } else {
+            delegated.call(current_target, event2);
+          }
+        }
+      } catch (error) {
+        if (throw_error) {
+          other_errors.push(error);
+        } else {
+          throw_error = error;
+        }
+      }
+      if (event2.cancelBubble || parent_element === handler_element || parent_element === null) {
+        break;
+      }
+      current_target = parent_element;
+    }
+    if (throw_error) {
+      for (let error of other_errors) {
+        queueMicrotask(() => {
+          throw error;
+        });
+      }
+      throw throw_error;
+    }
+  } finally {
+    event2.__root = handler_element;
+    delete event2.currentTarget;
+    set_active_reaction(previous_reaction);
+    set_active_effect(previous_effect);
+  }
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dom/blocks/svelte-head.js
+var head_anchor;
+function reset_head_anchor() {
+  head_anchor = void 0;
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dom/template.js
+function assign_nodes(start, end) {
+  var effect2 = (
+    /** @type {Effect} */
+    active_effect
+  );
+  if (effect2.nodes_start === null) {
+    effect2.nodes_start = start;
+    effect2.nodes_end = end;
+  }
+}
+function append(anchor, dom) {
+  if (hydrating) {
+    active_effect.nodes_end = hydrate_node;
+    hydrate_next();
+    return;
+  }
+  if (anchor === null) {
+    return;
+  }
+  anchor.before(
+    /** @type {Node} */
+    dom
+  );
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/render.js
+var should_intro = true;
+function mount(component2, options) {
+  return _mount(component2, options);
+}
+function hydrate(component2, options) {
+  init_operations();
+  options.intro = options.intro ?? false;
+  const target = options.target;
+  const was_hydrating = hydrating;
+  const previous_hydrate_node = hydrate_node;
+  try {
+    var anchor = (
+      /** @type {TemplateNode} */
+      get_first_child(target)
+    );
+    while (anchor && (anchor.nodeType !== 8 || /** @type {Comment} */
+    anchor.data !== HYDRATION_START)) {
+      anchor = /** @type {TemplateNode} */
+      get_next_sibling(anchor);
+    }
+    if (!anchor) {
+      throw HYDRATION_ERROR;
+    }
+    set_hydrating(true);
+    set_hydrate_node(
+      /** @type {Comment} */
+      anchor
+    );
+    hydrate_next();
+    const instance = _mount(component2, { ...options, anchor });
+    if (hydrate_node === null || hydrate_node.nodeType !== 8 || /** @type {Comment} */
+    hydrate_node.data !== HYDRATION_END) {
+      hydration_mismatch();
+      throw HYDRATION_ERROR;
+    }
+    set_hydrating(false);
+    return (
+      /**  @type {Exports} */
+      instance
+    );
+  } catch (error) {
+    if (error === HYDRATION_ERROR) {
+      if (options.recover === false) {
+        hydration_failed();
+      }
+      init_operations();
+      clear_text_content(target);
+      set_hydrating(false);
+      return mount(component2, options);
+    }
+    throw error;
+  } finally {
+    set_hydrating(was_hydrating);
+    set_hydrate_node(previous_hydrate_node);
+    reset_head_anchor();
+  }
+}
+var document_listeners = /* @__PURE__ */ new Map();
+function _mount(Component, { target, anchor, props = {}, events, context: context2, intro = true }) {
+  init_operations();
+  var registered_events = /* @__PURE__ */ new Set();
+  var event_handle = (events2) => {
+    for (var i2 = 0; i2 < events2.length; i2++) {
+      var event_name = events2[i2];
+      if (registered_events.has(event_name)) continue;
+      registered_events.add(event_name);
+      var passive2 = is_passive_event(event_name);
+      target.addEventListener(event_name, handle_event_propagation, { passive: passive2 });
+      var n2 = document_listeners.get(event_name);
+      if (n2 === void 0) {
+        document.addEventListener(event_name, handle_event_propagation, { passive: passive2 });
+        document_listeners.set(event_name, 1);
+      } else {
+        document_listeners.set(event_name, n2 + 1);
+      }
+    }
+  };
+  event_handle(array_from(all_registered_events));
+  root_event_handles.add(event_handle);
+  var component2 = void 0;
+  var unmount2 = component_root(() => {
+    var anchor_node = anchor ?? target.appendChild(create_text());
+    branch(() => {
+      if (context2) {
+        push({});
+        var ctx = (
+          /** @type {ComponentContext} */
+          component_context
+        );
+        ctx.c = context2;
+      }
+      if (events) {
+        props.$$events = events;
+      }
+      if (hydrating) {
+        assign_nodes(
+          /** @type {TemplateNode} */
+          anchor_node,
+          null
+        );
+      }
+      should_intro = intro;
+      component2 = Component(anchor_node, props) || {};
+      should_intro = true;
+      if (hydrating) {
+        active_effect.nodes_end = hydrate_node;
+      }
+      if (context2) {
+        pop();
+      }
+    });
+    return () => {
+      for (var event_name of registered_events) {
+        target.removeEventListener(event_name, handle_event_propagation);
+        var n2 = (
+          /** @type {number} */
+          document_listeners.get(event_name)
+        );
+        if (--n2 === 0) {
+          document.removeEventListener(event_name, handle_event_propagation);
+          document_listeners.delete(event_name);
+        } else {
+          document_listeners.set(event_name, n2);
+        }
+      }
+      root_event_handles.delete(event_handle);
+      if (anchor_node !== anchor) {
+        anchor_node.parentNode?.removeChild(anchor_node);
+      }
+    };
+  });
+  mounted_components.set(component2, unmount2);
+  return component2;
+}
+var mounted_components = /* @__PURE__ */ new WeakMap();
+function unmount(component2, options) {
+  const fn = mounted_components.get(component2);
+  if (fn) {
+    mounted_components.delete(component2);
+    return fn(options);
+  }
+  if (dev_fallback_default) {
+    lifecycle_double_unmount();
+  }
+  return Promise.resolve();
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/legacy/legacy-client.js
+function createClassComponent(options) {
+  return new Svelte4Component(options);
+}
+var Svelte4Component = class {
+  /** @type {any} */
+  #events;
+  /** @type {Record<string, any>} */
+  #instance;
+  /**
+   * @param {ComponentConstructorOptions & {
+   *  component: any;
+   * }} options
+   */
+  constructor(options) {
+    var sources = /* @__PURE__ */ new Map();
+    var add_source = (key, value) => {
+      var s = mutable_source(value);
+      sources.set(key, s);
+      return s;
+    };
+    const props = new Proxy(
+      { ...options.props || {}, $$events: {} },
+      {
+        get(target, prop2) {
+          return get(sources.get(prop2) ?? add_source(prop2, Reflect.get(target, prop2)));
+        },
+        has(target, prop2) {
+          if (prop2 === LEGACY_PROPS) return true;
+          get(sources.get(prop2) ?? add_source(prop2, Reflect.get(target, prop2)));
+          return Reflect.has(target, prop2);
+        },
+        set(target, prop2, value) {
+          set(sources.get(prop2) ?? add_source(prop2, value), value);
+          return Reflect.set(target, prop2, value);
+        }
+      }
+    );
+    this.#instance = (options.hydrate ? hydrate : mount)(options.component, {
+      target: options.target,
+      anchor: options.anchor,
+      props,
+      context: options.context,
+      intro: options.intro ?? false,
+      recover: options.recover
+    });
+    if (!options?.props?.$$host || options.sync === false) {
+      flush_sync();
+    }
+    this.#events = props.$$events;
+    for (const key of Object.keys(this.#instance)) {
+      if (key === "$set" || key === "$destroy" || key === "$on") continue;
+      define_property(this, key, {
+        get() {
+          return this.#instance[key];
+        },
+        /** @param {any} value */
+        set(value) {
+          this.#instance[key] = value;
+        },
+        enumerable: true
+      });
+    }
+    this.#instance.$set = /** @param {Record<string, any>} next */
+    (next2) => {
+      Object.assign(props, next2);
+    };
+    this.#instance.$destroy = () => {
+      unmount(this.#instance);
+    };
+  }
+  /** @param {Record<string, any>} props */
+  $set(props) {
+    this.#instance.$set(props);
+  }
+  /**
+   * @param {string} event
+   * @param {(...args: any[]) => any} callback
+   * @returns {any}
+   */
+  $on(event2, callback) {
+    this.#events[event2] = this.#events[event2] || [];
+    const cb = (...args) => callback.call(this, ...args);
+    this.#events[event2].push(cb);
+    return () => {
+      this.#events[event2] = this.#events[event2].filter(
+        /** @param {any} fn */
+        (fn) => fn !== cb
+      );
+    };
+  }
+  $destroy() {
+    this.#instance.$destroy();
+  }
+};
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/internal/client/dom/elements/custom-element.js
+var SvelteElement;
+if (typeof HTMLElement === "function") {
+  SvelteElement = class extends HTMLElement {
+    /** The Svelte component constructor */
+    $$ctor;
+    /** Slots */
+    $$s;
+    /** @type {any} The Svelte component instance */
+    $$c;
+    /** Whether or not the custom element is connected */
+    $$cn = false;
+    /** @type {Record<string, any>} Component props data */
+    $$d = {};
+    /** `true` if currently in the process of reflecting component props back to attributes */
+    $$r = false;
+    /** @type {Record<string, CustomElementPropDefinition>} Props definition (name, reflected, type etc) */
+    $$p_d = {};
+    /** @type {Record<string, EventListenerOrEventListenerObject[]>} Event listeners */
+    $$l = {};
+    /** @type {Map<EventListenerOrEventListenerObject, Function>} Event listener unsubscribe functions */
+    $$l_u = /* @__PURE__ */ new Map();
+    /** @type {any} The managed render effect for reflecting attributes */
+    $$me;
+    /**
+     * @param {*} $$componentCtor
+     * @param {*} $$slots
+     * @param {*} use_shadow_dom
+     */
+    constructor($$componentCtor, $$slots, use_shadow_dom) {
+      super();
+      this.$$ctor = $$componentCtor;
+      this.$$s = $$slots;
+      if (use_shadow_dom) {
+        this.attachShadow({ mode: "open" });
+      }
+    }
+    /**
+     * @param {string} type
+     * @param {EventListenerOrEventListenerObject} listener
+     * @param {boolean | AddEventListenerOptions} [options]
+     */
+    addEventListener(type5, listener, options) {
+      this.$$l[type5] = this.$$l[type5] || [];
+      this.$$l[type5].push(listener);
+      if (this.$$c) {
+        const unsub = this.$$c.$on(type5, listener);
+        this.$$l_u.set(listener, unsub);
+      }
+      super.addEventListener(type5, listener, options);
+    }
+    /**
+     * @param {string} type
+     * @param {EventListenerOrEventListenerObject} listener
+     * @param {boolean | AddEventListenerOptions} [options]
+     */
+    removeEventListener(type5, listener, options) {
+      super.removeEventListener(type5, listener, options);
+      if (this.$$c) {
+        const unsub = this.$$l_u.get(listener);
+        if (unsub) {
+          unsub();
+          this.$$l_u.delete(listener);
+        }
+      }
+    }
+    async connectedCallback() {
+      this.$$cn = true;
+      if (!this.$$c) {
+        let create_slot2 = function(name) {
+          return (anchor) => {
+            const slot2 = document.createElement("slot");
+            if (name !== "default") slot2.name = name;
+            append(anchor, slot2);
+          };
+        };
+        var create_slot = create_slot2;
+        await Promise.resolve();
+        if (!this.$$cn || this.$$c) {
+          return;
+        }
+        const $$slots = {};
+        const existing_slots = get_custom_elements_slots(this);
+        for (const name of this.$$s) {
+          if (name in existing_slots) {
+            if (name === "default" && !this.$$d.children) {
+              this.$$d.children = create_slot2(name);
+              $$slots.default = true;
+            } else {
+              $$slots[name] = create_slot2(name);
+            }
+          }
+        }
+        for (const attribute of this.attributes) {
+          const name = this.$$g_p(attribute.name);
+          if (!(name in this.$$d)) {
+            this.$$d[name] = get_custom_element_value(name, attribute.value, this.$$p_d, "toProp");
+          }
+        }
+        for (const key in this.$$p_d) {
+          if (!(key in this.$$d) && this[key] !== void 0) {
+            this.$$d[key] = this[key];
+            delete this[key];
+          }
+        }
+        this.$$c = createClassComponent({
+          component: this.$$ctor,
+          target: this.shadowRoot || this,
+          props: {
+            ...this.$$d,
+            $$slots,
+            $$host: this
+          }
+        });
+        this.$$me = effect_root(() => {
+          render_effect(() => {
+            this.$$r = true;
+            for (const key of object_keys(this.$$c)) {
+              if (!this.$$p_d[key]?.reflect) continue;
+              this.$$d[key] = this.$$c[key];
+              const attribute_value = get_custom_element_value(
+                key,
+                this.$$d[key],
+                this.$$p_d,
+                "toAttribute"
+              );
+              if (attribute_value == null) {
+                this.removeAttribute(this.$$p_d[key].attribute || key);
+              } else {
+                this.setAttribute(this.$$p_d[key].attribute || key, attribute_value);
+              }
+            }
+            this.$$r = false;
           });
+        });
+        for (const type5 in this.$$l) {
+          for (const listener of this.$$l[type5]) {
+            const unsub = this.$$c.$on(type5, listener);
+            this.$$l_u.set(listener, unsub);
+          }
+        }
+        this.$$l = {};
+      }
+    }
+    // We don't need this when working within Svelte code, but for compatibility of people using this outside of Svelte
+    // and setting attributes through setAttribute etc, this is helpful
+    /**
+     * @param {string} attr
+     * @param {string} _oldValue
+     * @param {string} newValue
+     */
+    attributeChangedCallback(attr2, _oldValue, newValue) {
+      if (this.$$r) return;
+      attr2 = this.$$g_p(attr2);
+      this.$$d[attr2] = get_custom_element_value(attr2, newValue, this.$$p_d, "toProp");
+      this.$$c?.$set({ [attr2]: this.$$d[attr2] });
+    }
+    disconnectedCallback() {
+      this.$$cn = false;
+      Promise.resolve().then(() => {
+        if (!this.$$cn && this.$$c) {
+          this.$$c.$destroy();
+          this.$$me();
+          this.$$c = void 0;
+        }
+      });
+    }
+    /**
+     * @param {string} attribute_name
+     */
+    $$g_p(attribute_name) {
+      return object_keys(this.$$p_d).find(
+        (key) => this.$$p_d[key].attribute === attribute_name || !this.$$p_d[key].attribute && key.toLowerCase() === attribute_name
+      ) || attribute_name;
+    }
+  };
+}
+function get_custom_element_value(prop2, value, props_definition, transform) {
+  const type5 = props_definition[prop2]?.type;
+  value = type5 === "Boolean" && typeof value !== "boolean" ? value != null : value;
+  if (!transform || !props_definition[prop2]) {
+    return value;
+  } else if (transform === "toAttribute") {
+    switch (type5) {
+      case "Object":
+      case "Array":
+        return value == null ? null : JSON.stringify(value);
+      case "Boolean":
+        return value ? "" : null;
+      case "Number":
+        return value == null ? null : value;
+      default:
+        return value;
+    }
+  } else {
+    switch (type5) {
+      case "Object":
+      case "Array":
+        return value && JSON.parse(value);
+      case "Boolean":
+        return value;
+      // conversion already handled above
+      case "Number":
+        return value != null ? +value : value;
+      default:
+        return value;
+    }
+  }
+}
+function get_custom_elements_slots(element2) {
+  const result = {};
+  element2.childNodes.forEach((node) => {
+    result[
+      /** @type {Element} node */
+      node.slot || "default"
+    ] = true;
+  });
+  return result;
+}
+
+// ../../node_modules/.pnpm/svelte@5.16.0/node_modules/svelte/src/store/shared/index.js
+var subscriber_queue = [];
+function writable(value, start = noop2) {
+  let stop = null;
+  const subscribers = /* @__PURE__ */ new Set();
+  function set2(new_value) {
+    if (safe_not_equal(value, new_value)) {
+      value = new_value;
+      if (stop) {
+        const run_queue = !subscriber_queue.length;
+        for (const subscriber of subscribers) {
+          subscriber[1]();
+          subscriber_queue.push(subscriber, value);
+        }
+        if (run_queue) {
+          for (let i2 = 0; i2 < subscriber_queue.length; i2 += 2) {
+            subscriber_queue[i2][0](subscriber_queue[i2 + 1]);
+          }
+          subscriber_queue.length = 0;
         }
       }
     }
   }
-  return p2;
-}
-function isWrappable(obj) {
-  let proto;
-  return obj != null && typeof obj === "object" && (obj[$PROXY] || !(proto = Object.getPrototypeOf(obj)) || proto === Object.prototype || Array.isArray(obj));
-}
-function unwrap2(item, set = /* @__PURE__ */ new Set()) {
-  let result, unwrapped, v, prop;
-  if (result = item != null && item[$RAW]) return result;
-  if (!isWrappable(item) || set.has(item)) return item;
-  if (Array.isArray(item)) {
-    if (Object.isFrozen(item)) item = item.slice(0);
-    else set.add(item);
-    for (let i2 = 0, l = item.length; i2 < l; i2++) {
-      v = item[i2];
-      if ((unwrapped = unwrap2(v, set)) !== v) item[i2] = unwrapped;
-    }
-  } else {
-    if (Object.isFrozen(item)) item = Object.assign({}, item);
-    else set.add(item);
-    const keys = Object.keys(item), desc = Object.getOwnPropertyDescriptors(item);
-    for (let i2 = 0, l = keys.length; i2 < l; i2++) {
-      prop = keys[i2];
-      if (desc[prop].get) continue;
-      v = item[prop];
-      if ((unwrapped = unwrap2(v, set)) !== v) item[prop] = unwrapped;
-    }
+  function update2(fn) {
+    set2(fn(
+      /** @type {T} */
+      value
+    ));
   }
-  return item;
-}
-function getNodes(target, symbol) {
-  let nodes = target[symbol];
-  if (!nodes) Object.defineProperty(target, symbol, {
-    value: nodes = /* @__PURE__ */ Object.create(null)
-  });
-  return nodes;
-}
-function getNode(nodes, property, value) {
-  if (nodes[property]) return nodes[property];
-  const [s, set] = createSignal(value, {
-    equals: false,
-    internal: true
-  });
-  s.$ = set;
-  return nodes[property] = s;
-}
-function proxyDescriptor$1(target, property) {
-  const desc = Reflect.getOwnPropertyDescriptor(target, property);
-  if (!desc || desc.get || !desc.configurable || property === $PROXY || property === $NODE) return desc;
-  delete desc.value;
-  delete desc.writable;
-  desc.get = () => target[$PROXY][property];
-  return desc;
-}
-function trackSelf(target) {
-  getListener() && getNode(getNodes(target, $NODE), $SELF)();
-}
-function ownKeys(target) {
-  trackSelf(target);
-  return Reflect.ownKeys(target);
-}
-var proxyTraps$1 = {
-  get(target, property, receiver) {
-    if (property === $RAW) return target;
-    if (property === $PROXY) return receiver;
-    if (property === $TRACK) {
-      trackSelf(target);
-      return receiver;
+  function subscribe(run2, invalidate = noop2) {
+    const subscriber = [run2, invalidate];
+    subscribers.add(subscriber);
+    if (subscribers.size === 1) {
+      stop = start(set2, update2) || noop2;
     }
-    const nodes = getNodes(target, $NODE);
-    const tracked = nodes[property];
-    let value = tracked ? tracked() : target[property];
-    if (property === $NODE || property === $HAS || property === "__proto__") return value;
-    if (!tracked) {
-      const desc = Object.getOwnPropertyDescriptor(target, property);
-      if (getListener() && (typeof value !== "function" || target.hasOwnProperty(property)) && !(desc && desc.get)) value = getNode(nodes, property, value)();
-    }
-    return isWrappable(value) ? wrap$1(value) : value;
-  },
-  has(target, property) {
-    if (property === $RAW || property === $PROXY || property === $TRACK || property === $NODE || property === $HAS || property === "__proto__") return true;
-    getListener() && getNode(getNodes(target, $HAS), property)();
-    return property in target;
-  },
-  set() {
-    return true;
-  },
-  deleteProperty() {
-    return true;
-  },
-  ownKeys,
-  getOwnPropertyDescriptor: proxyDescriptor$1
-};
-function setProperty2(state, property, value, deleting = false) {
-  if (!deleting && state[property] === value) return;
-  const prev = state[property], len = state.length;
-  if (value === void 0) {
-    delete state[property];
-    if (state[$HAS] && state[$HAS][property] && prev !== void 0) state[$HAS][property].$();
-  } else {
-    state[property] = value;
-    if (state[$HAS] && state[$HAS][property] && prev === void 0) state[$HAS][property].$();
-  }
-  let nodes = getNodes(state, $NODE), node;
-  if (node = getNode(nodes, property, prev)) node.$(() => value);
-  if (Array.isArray(state) && state.length !== len) {
-    for (let i2 = state.length; i2 < len; i2++) (node = nodes[i2]) && node.$();
-    (node = getNode(nodes, "length", len)) && node.$(state.length);
-  }
-  (node = nodes[$SELF]) && node.$();
-}
-function mergeStoreNode(state, value) {
-  const keys = Object.keys(value);
-  for (let i2 = 0; i2 < keys.length; i2 += 1) {
-    const key = keys[i2];
-    setProperty2(state, key, value[key]);
-  }
-}
-function updateArray(current, next) {
-  if (typeof next === "function") next = next(current);
-  next = unwrap2(next);
-  if (Array.isArray(next)) {
-    if (current === next) return;
-    let i2 = 0, len = next.length;
-    for (; i2 < len; i2++) {
-      const value = next[i2];
-      if (current[i2] !== value) setProperty2(current, i2, value);
-    }
-    setProperty2(current, "length", len);
-  } else mergeStoreNode(current, next);
-}
-function updatePath(current, path, traversed = []) {
-  let part, prev = current;
-  if (path.length > 1) {
-    part = path.shift();
-    const partType = typeof part, isArray3 = Array.isArray(current);
-    if (Array.isArray(part)) {
-      for (let i2 = 0; i2 < part.length; i2++) {
-        updatePath(current, [part[i2]].concat(path), traversed);
+    run2(
+      /** @type {T} */
+      value
+    );
+    return () => {
+      subscribers.delete(subscriber);
+      if (subscribers.size === 0 && stop) {
+        stop();
+        stop = null;
       }
-      return;
-    } else if (isArray3 && partType === "function") {
-      for (let i2 = 0; i2 < current.length; i2++) {
-        if (part(current[i2], i2)) updatePath(current, [i2].concat(path), traversed);
-      }
-      return;
-    } else if (isArray3 && partType === "object") {
-      const {
-        from: from2 = 0,
-        to = current.length - 1,
-        by = 1
-      } = part;
-      for (let i2 = from2; i2 <= to; i2 += by) {
-        updatePath(current, [i2].concat(path), traversed);
-      }
-      return;
-    } else if (path.length > 1) {
-      updatePath(current[part], path, [part].concat(traversed));
-      return;
-    }
-    prev = current[part];
-    traversed = [part].concat(traversed);
+    };
   }
-  let value = path[0];
-  if (typeof value === "function") {
-    value = value(prev, traversed);
-    if (value === prev) return;
-  }
-  if (part === void 0 && value == void 0) return;
-  value = unwrap2(value);
-  if (part === void 0 || isWrappable(prev) && isWrappable(value) && !Array.isArray(value)) {
-    mergeStoreNode(prev, value);
-  } else setProperty2(current, part, value);
+  return { set: set2, update: update2, subscribe };
 }
-function createStore(...[store, options]) {
-  const unwrappedStore = unwrap2(store || {});
-  const isArray3 = Array.isArray(unwrappedStore);
-  const wrappedStore = wrap$1(unwrappedStore);
-  function setStore(...args) {
-    batch(() => {
-      isArray3 && args.length === 1 ? updateArray(unwrappedStore, args[0]) : updatePath(unwrappedStore, args);
-    });
-  }
-  return [wrappedStore, setStore];
-}
-var $ROOT = Symbol("store-root");
 
 // src/lib/entities/extension/model.ts
 var initialExtensionContext = {
@@ -17731,8 +19131,13 @@ var initialExtensionContext = {
   route_query: null,
   props: null
 };
-var ExtensionContext = createContext(initialExtensionContext);
-var [extensionContextState, setExtensionContextState] = createStore(initialExtensionContext);
+var extensionContextStore = writable(initialExtensionContext);
+var setExtensionContextState = (updater) => {
+  extensionContextStore.update((state2) => ({
+    ...state2,
+    ...updater(state2)
+  }));
+};
 
 // src/lib/entities/extension/index.ts
 var tagName = "akaia-app";
@@ -17741,17 +19146,26 @@ var db = await createRxDatabase({
   storage: getRxStorageDexie()
 });
 var install = async () => {
-  const extension = await h({
-    // files: [ // only one of urls or files can be provided
-    //     {
-    //         name: 'App',
-    //         type: 'svelte',
-    //         content: '...',
-    //         modified: true,
-    //     }
+  const extensionBundle = await h({
+    // files: [
+    // 	// only one of urls or files can be provided
+    // 	{
+    // 		name: "App",
+    // 		type: "svelte",
+    // 		modified: true,
+    // 		content: `
+    // 			<script>
+    // 				import { onMount } from "svelte"
+    // 				onMount(() => {
+    // 					console.log("test")
+    // 				})
+    // 				<\/script>
+    // 				<p>Example CommLink extension written in Svelte</p>
+    // 		`,
+    // 	},
     // ],
     urls: [
-      "./static/packages/extensions/haptic/routes/+layout.svelte"
+      "/static/packages/extensions/haptic/routes/+layout.svelte"
       /* "./Nested.svelte" */
     ],
     packagesUrl: "https://ga.jspm.io",
@@ -17759,12 +19173,9 @@ var install = async () => {
     injectedJS: "",
     injectedCSS: "",
     onstatus: (val) => {
-      console.log(val);
+      console.log("onStatus", val);
     }
   });
-  console.log("source:", extension);
-  const ExtensionInstance = new extension.render();
-  console.log(ExtensionInstance);
   if (customElements.get(tagName) === void 0) {
     customElements.define(
       tagName,
@@ -17782,10 +19193,13 @@ var install = async () => {
         }
         connectedCallback() {
           console.log("connected");
-          const _extension = new ExtensionInstance({
-            target: this.attachShadow({ mode: "closed" })
+          const Extension = new extensionBundle.render();
+          console.log("Extension", Extension);
+          console.log("attachShadow result:", this.attachShadow({ mode: "open" }));
+          const extensionInstance = new Extension({
+            target: this.attachShadow({ mode: "open" })
           });
-          console.log(_extension);
+          console.log("extensionInstance", extensionInstance);
         }
       }
     );
@@ -17793,12 +19207,12 @@ var install = async () => {
 };
 
 // src/index.ts
-var init = () => {
+var init2 = () => {
   install();
 };
-init();
+init2();
 export {
-  init
+  init2 as init
 };
 /*! Bundled license information:
 
